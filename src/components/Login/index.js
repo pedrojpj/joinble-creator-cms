@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Login = ({ onLogin, form, updateForm }) => (
+const Login = ({ form, formError, updateForm, submitForm }) => (
   <form name="login">
     <h3>SIGN IN</h3>
+
+    {formError && <p>Todos los campos son obligatorios</p>}
 
     <label htmlFor="email">
       <input
@@ -29,7 +31,7 @@ const Login = ({ onLogin, form, updateForm }) => (
       />
     </label>
 
-    <button type="submit" onClick={onLogin}>
+    <button type="submit" onClick={submitForm}>
       Login
     </button>
   </form>
@@ -38,6 +40,8 @@ const Login = ({ onLogin, form, updateForm }) => (
 Login.propTypes = {
   onLogin: PropTypes.func,
   updateForm: PropTypes.func,
+  submitForm: PropTypes.func,
+  formError: PropTypes.bool,
   form: PropTypes.shape({
     email: PropTypes.string,
     password: PropTypes.string

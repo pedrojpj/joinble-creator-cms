@@ -1,9 +1,7 @@
 # source: http://localhost:8000/graphql
-# timestamp: Mon Feb 26 2018 13:57:43 GMT+0100 (CET)
+# timestamp: Tue Feb 27 2018 13:49:47 GMT+0100 (CET)
 
-"""
-This represent a App
-"""
+"""This represent a App"""
 type App {
   id: ID!
   user: ID!
@@ -29,11 +27,10 @@ input AppInput {
 
 type checkUser {
   status: Boolean
+  user: User
 }
 
-"""
-This represent a Content of Widget
-"""
+"""This represent a Content of Widget"""
 type Content {
   component: String
   name: String
@@ -53,9 +50,7 @@ input ContentInput {
   repeat: Boolean
 }
 
-"""
-This represent a Country
-"""
+"""This represent a Country"""
 type Country {
   name: String
   code: String
@@ -81,9 +76,7 @@ type deletePage {
   status: Boolean
 }
 
-"""
-This represent a Element
-"""
+"""This represent a Element"""
 type Element {
   id: ID!
   name: String
@@ -104,9 +97,12 @@ type forgetPassword {
   status: Boolean
 }
 
-"""
-This represent a Image
-"""
+type getUser {
+  name: String
+  email: String
+}
+
+"""This represent a Image"""
 type Image {
   name: String
   url: String
@@ -115,6 +111,11 @@ type Image {
 type Login {
   user: User
   token: Token
+}
+
+input LoginInput {
+  email: String
+  password: String
 }
 
 type logout {
@@ -126,23 +127,19 @@ type Mutation {
   deletePage(id: ID!): deletePage
   addApp(app: AppInput!): App
   deleteApp(id: ID!): deleteApp
-  login(email: String!, password: String!): Login
+  login(login: LoginInput): Login
   logout(token: String!): logout
   createUser(user: UserInput!): createUser
   forgetPassword(email: String!): forgetPassword
 }
 
-"""
-Options of Content
-"""
+"""Options of Content"""
 type Options {
   formats: [String]
   maxSize: Int
 }
 
-"""
-This represent a Page
-"""
+"""This represent a Page"""
 type Page {
   id: ID!
   name: String
@@ -165,9 +162,7 @@ input PageInput {
   primary: Boolean
 }
 
-"""
-This represent a platform
-"""
+"""This represent a platform"""
 enum platforms {
   web
   android
@@ -180,6 +175,7 @@ type Query {
   apps: [App]
   app(id: ID!): App
   users: [User]
+  getUser: getUser
   checkUser: checkUser
   countries(language: String): [Country]
   translations: [String]
@@ -187,18 +183,14 @@ type Query {
   widgets: [Widget]
 }
 
-"""
-This represent a Token
-"""
+"""This represent a Token"""
 type Token {
   _id: ID!
   token: String
   lastLogin: String
 }
 
-"""
-This represent a Translation
-"""
+"""This represent a Translation"""
 type Translation {
   en: String
   es: String
@@ -215,9 +207,7 @@ input TranslationInput {
   pt: String
 }
 
-"""
-This represent a User
-"""
+"""This represent a User"""
 type User {
   id: ID!
   name: String
@@ -236,9 +226,7 @@ input UserInput {
   password: String!
 }
 
-"""
-This represent a Widget
-"""
+"""This represent a Widget"""
 type Widget {
   id: ID!
   name: String

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { QueryRenderer } from 'react-relay';
+import { QueryRenderer, graphql } from 'react-relay';
 import environment from '../environment';
+
+import { Login } from '../containers';
 
 const invariant = () => {
   if (!environment) {
@@ -8,27 +10,29 @@ const invariant = () => {
   }
 };
 
-export const withQuery = (rootQuery, variables) => BaseComponent =>
+export const withAuth = () => BaseComponent =>
   class RelayRoot extends Component {
     static displayName = `RelayRoot(${BaseComponent.displayName})`;
 
     render() {
       invariant();
 
-      const vars = typeof variables === 'function' ? variables(this.props) : variables;
-
       return (
         <QueryRenderer
           environment={environment}
-          query={rootQuery}
-          variables={vars}
-          render={({ error, props }) => {
-            console.log(props);
-            if (!props && !error) {
-              return null;
+          query={graphql`
+            query withAuthQuery {
+              checkUser {
+                status
+              }
             }
-
-            return <BaseComponent {...props} {...this.props} error={error} />;
+          `}
+          render={({ error, props }) => {
+            if (props && props.checkUser.status) {
+              return <BaseComponent {...props} {...this.props} error={error} />;
+            } else {
+              return <Login {...this.props} />;
+            }
           }}
         />
       );

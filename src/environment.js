@@ -1,7 +1,7 @@
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 
 function fetchQuery(operation, variables) {
-  return fetch('http://localhost:8000/graphql', {
+  const options = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -10,7 +10,13 @@ function fetchQuery(operation, variables) {
       query: operation.text,
       variables
     })
-  }).then(response => {
+  };
+
+  if (localStorage.getItem('AUTH_TOKEN')) {
+    options.headers.Authorization = 'JWT ' + localStorage.getItem('AUTH_TOKEN');
+  }
+
+  return fetch('http://localhost:8000/graphql', options).then(response => {
     return response.json();
   });
 }

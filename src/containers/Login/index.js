@@ -1,4 +1,4 @@
-import { compose, withHandlers, lifecycle, pure } from 'recompose';
+import { compose, pure } from 'recompose';
 import { graphql } from 'react-relay';
 
 import { withQuery, withForm, withMutation } from '../../hoc';
@@ -10,32 +10,44 @@ export default compose(
       translations
     }
   `),
-  withForm({
-    email: '',
-    password: ''
-  }),
-  withHandlers({
-    onLogin: ({ form }) => event => {
-      event.preventDefault();
-
-      console.log(form);
+  withForm(
+    {
+      email: {
+        value: '',
+        required: true
+      },
+      password: {
+        value: '',
+        required: true
+      }
+    },
+    ({ history }) => form => {
       withMutation(
         graphql`
-          mutation LoginMutation($input: Login!) {
-            login(email: $email, password: $password) {
-              user
-              token
+          mutation LoginMutation($login: LoginInput!) {
+            login(login: $login) {
+              user {
+                id
+                name
+                email
+                city
+                country
+                address
+              }
+              token {
+                token
+                lastLogin
+              }
             }
           }
         `,
-        { input: form }
-      ).then(res => console.log(res));
+        { login: form }
+      ).then(({ login }) => {
+        if (login.token) {
+          localStorage.setItem('AUTH_TOKEN', login.token.token);
+        }
+      });
     }
-  }),
-  lifecycle({
-    componentDidMount() {
-      console.log(this.props);
-    }
-  }),
+  ),
   pure
 )(Login);

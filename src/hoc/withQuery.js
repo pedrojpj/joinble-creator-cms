@@ -23,7 +23,6 @@ export const withQuery = (rootQuery, variables) => BaseComponent =>
           query={rootQuery}
           variables={vars}
           render={({ error, props }) => {
-            console.log(props);
             if (!props && !error) {
               return null;
             }

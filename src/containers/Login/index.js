@@ -1,7 +1,8 @@
 import { compose, pure } from 'recompose';
 import { graphql } from 'react-relay';
+import { withForm } from 'recompose-extends';
+import { withQuery, withMutation } from '../../hoc';
 
-import { withQuery, withForm, withMutation } from '../../hoc';
 import Login from '../../components/Login';
 
 export default compose(
@@ -45,6 +46,7 @@ export default compose(
       ).then(({ login }) => {
         if (login.token) {
           localStorage.setItem('AUTH_TOKEN', login.token.token);
+          history.push('/home');
         }
       });
     }

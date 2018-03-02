@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose, pure } from 'recompose';
+import { withAnimation } from '../../hoc';
 
 const Alert = ({ message, type, onClose, show }) => (
   <div className={'alert alert-' + type}>
@@ -29,4 +31,10 @@ Alert.defaultProps = {
   type: 'info'
 };
 
-export default Alert;
+export default compose(
+  withAnimation({
+    opacity: [0, 1],
+    translateY: '1em'
+  }),
+  pure
+)(Alert);

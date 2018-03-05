@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { compose, pure } from 'recompose';
 import { withAnimation } from '../../hoc';
 
-const Alert = ({ message, type, onClose, show }) => (
+export const Alert = ({ message, type, onClose, show }) => (
   <div className={'alert alert-' + type}>
     {onClose && (
       <button

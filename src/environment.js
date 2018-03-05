@@ -16,9 +16,13 @@ function fetchQuery(operation, variables) {
     options.headers.Authorization = 'JWT ' + localStorage.getItem('AUTH_TOKEN');
   }
 
-  return fetch('http://localhost:8000/graphql', options).then(response => {
-    return response.json();
-  });
+  return fetch('http://localhost:8000/graphql', options)
+    .then(response => {
+      return response.json();
+    })
+    .catch(error => {
+      console.error(error);
+    });
 }
 
 const environment = new Environment({

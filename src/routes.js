@@ -1,16 +1,34 @@
 import React from 'react';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import {
+  makeRouteConfig,
+  createFarceRouter,
+  Route,
+  Redirect,
+  queryMiddleware,
+  createRender
+} from 'found';
 
-import { Home, Login } from './containers';
+import HashProtocol from 'farce/lib/HashProtocol';
 
-const Routes = () => (
-  <Router>
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/home" component={Home} />
-      <Route exact path="/login" component={Login} />
-    </Switch>
-  </Router>
-);
+import { Home, Login, Error } from './containers';
+import { Layout, LayoutAuth } from './components/Layout';
 
-export default Routes;
+export default createFarceRouter({
+  historyProtocol: new HashProtocol(),
+  historyMiddleware: [queryMiddleware],
+  routeConfig: makeRouteConfig(
+    <Route path="/">
+      <Route path="/cms" Component={Layout}>
+        <Route path="/home" Component={Home} />
+      </Route>
+      <Route path="/auth" Component={LayoutAuth}>
+        <Route path="/login" Component={Login} />
+      </Route>
+      <Redirect from="/" to="/cms/home" />
+    </Route>
+  ),
+  renderError: ({ error, ...rest }) => (
+    <Error code={404} message="Sorry, page not found" {...rest} />
+  ),
+  render: createRender({})
+});

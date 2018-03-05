@@ -15,7 +15,7 @@ export default compose(
     }
   `),
   withHandlers({
-    onLogout: ({ history }) => () => {
+    onLogout: ({ router }) => () => {
       withMutation(
         graphql`
           mutation HeaderMutation($token: String!) {
@@ -25,11 +25,9 @@ export default compose(
           }
         `,
         { token: localStorage.getItem('AUTH_TOKEN') }
-      ).then(({ login }) => {
-        if (login.token) {
-          localStorage.removeItem('AUTH_TOKEN');
-          history.push('/home');
-        }
+      ).then(response => {
+        localStorage.removeItem('AUTH_TOKEN');
+        router.push('/auth/login');
       });
     }
   }),

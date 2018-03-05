@@ -1,0 +1,16 @@
+.header {
+  background: #111112;
+  height: 30px;
+}
+
+.logo {
+  padding: 0.5rem;
+  float: left;
+}
+
+.logo img {
+  height: 5.5rem;
+}
+
+.actions {
+}

@@ -1,0 +1,246 @@
+# source: http://localhost:8000/graphql
+# timestamp: Tue Feb 27 2018 13:49:47 GMT+0100 (CET)
+
+"""This represent a App"""
+type App {
+  id: ID!
+  user: ID!
+  name: String
+  code: String
+  platform: [platforms]
+  domain: String
+  icon: Image
+  languages: [String]
+  updateAt: String
+  createdAt: String
+}
+
+input AppInput {
+  id: String
+  name: String!
+  code: String!
+  platform: [platforms]!
+  domain: String!
+  icon: String!
+  languages: [String]!
+}
+
+type checkUser {
+  status: Boolean
+  user: User
+}
+
+"""This represent a Content of Widget"""
+type Content {
+  component: String
+  name: String
+  label: Translation
+  options: Options
+  required: Boolean
+  value: String
+  repeat: Boolean
+}
+
+input ContentInput {
+  component: String
+  name: String
+  value: String
+  label: TranslationInput
+  required: Boolean
+  repeat: Boolean
+}
+
+"""This represent a Country"""
+type Country {
+  name: String
+  code: String
+  capital: String
+  region: String
+  population: Int
+  timezones: [String]
+  languages: [String]
+  translations: Translation
+}
+
+type createUser {
+  errors: [ErrorSchema]
+  user: User
+  token: Token
+}
+
+type deleteApp {
+  status: Boolean
+}
+
+type deletePage {
+  status: Boolean
+}
+
+"""This represent a Element"""
+type Element {
+  id: ID!
+  name: String
+  description: String
+  type: String
+  selector: String
+  childs: [String]
+  updateAt: String
+}
+
+type ErrorSchema {
+  key: String!
+  value: String!
+}
+
+type forgetPassword {
+  errors: [ErrorSchema]
+  status: Boolean
+}
+
+type getUser {
+  name: String
+  email: String
+}
+
+"""This represent a Image"""
+type Image {
+  name: String
+  url: String
+}
+
+type Login {
+  user: User
+  token: Token
+}
+
+input LoginInput {
+  email: String
+  password: String
+}
+
+type logout {
+  status: Boolean
+}
+
+type Mutation {
+  addPage(page: PageInput): Page
+  deletePage(id: ID!): deletePage
+  addApp(app: AppInput!): App
+  deleteApp(id: ID!): deleteApp
+  login(login: LoginInput): Login
+  logout(token: String!): logout
+  createUser(user: UserInput!): createUser
+  forgetPassword(email: String!): forgetPassword
+}
+
+"""Options of Content"""
+type Options {
+  formats: [String]
+  maxSize: Int
+}
+
+"""This represent a Page"""
+type Page {
+  id: ID!
+  name: String
+  slug: String
+  app: ID
+  active: Boolean
+  primary: Boolean
+  createdAt: String
+  updateAt: String
+  widgets: [Widget]
+}
+
+input PageInput {
+  id: ID
+  name: String!
+  slug: String!
+  app: ID!
+  active: Boolean!
+  widgets: [WidgetInput]
+  primary: Boolean
+}
+
+"""This represent a platform"""
+enum platforms {
+  web
+  android
+  ios
+}
+
+type Query {
+  pages(app: ID!): [Page]
+  page(id: ID!): Page
+  apps: [App]
+  app(id: ID!): App
+  users: [User]
+  getUser: getUser
+  checkUser: checkUser
+  countries(language: String): [Country]
+  translations: [String]
+  elements: [Element]
+  widgets: [Widget]
+}
+
+"""This represent a Token"""
+type Token {
+  _id: ID!
+  token: String
+  lastLogin: String
+}
+
+"""This represent a Translation"""
+type Translation {
+  en: String
+  es: String
+  de: String
+  fr: String
+  pt: String
+}
+
+input TranslationInput {
+  en: String
+  es: String
+  de: String
+  fr: String
+  pt: String
+}
+
+"""This represent a User"""
+type User {
+  id: ID!
+  name: String
+  email: String
+  city: String
+  country: String
+  address: String
+}
+
+input UserInput {
+  name: String!
+  email: String!
+  address: String!
+  city: String!
+  country: String!
+  password: String!
+}
+
+"""This represent a Widget"""
+type Widget {
+  id: ID!
+  name: String
+  description: Translation
+  content: [Content]
+  repeat: Boolean
+  mode: String
+}
+
+input WidgetInput {
+  id: String!
+  name: String
+  description: TranslationInput
+  content: [ContentInput]
+  mode: String
+  repeat: Boolean
+}

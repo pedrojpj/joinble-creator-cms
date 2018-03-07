@@ -2,7 +2,7 @@ import { compose, pure } from 'recompose';
 import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
 
-import { withQuery, withMutation, withAnimation } from '../../hoc';
+import { withMutation, withAnimation } from '../../hoc';
 import Login from '../../components/Login';
 
 export default compose(
@@ -14,11 +14,6 @@ export default compose(
       return 200 + i * 200;
     }
   }),
-  withQuery(graphql`
-    query LoginQuery {
-      translations
-    }
-  `),
   withForm(
     {
       email: {

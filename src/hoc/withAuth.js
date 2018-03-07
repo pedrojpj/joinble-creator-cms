@@ -38,10 +38,8 @@ export const withAuth = () => BaseComponent =>
             if (props && props.checkUser.status) {
               return <BaseComponent {...props} {...this.props} error={error} />;
             } else if (props && !props.checkUser.status) {
-              return <RedirectLogin {...this.props} />
-            }
-            
-            else {
+              return <RedirectLogin {...this.props} />;
+            } else {
               return null;
             }
           }}

@@ -1,11 +1,12 @@
-import { compose, pure, lifecycle } from 'recompose';
+import { compose, withState, pure, lifecycle } from 'recompose';
 import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
 
-import { withAnimation, withQuery } from '../../hoc';
+import { withMutation, withAnimation, withQuery } from '../../hoc';
 import CreateUser from '../../components/CreateUser';
 
 export default compose(
+  withState('errorMessage', 'setErrorMessage', 'There are errors in the form'),
   withAnimation({
     opacity: [0, 1],
     delay: 200,
@@ -37,7 +38,8 @@ export default compose(
       },
       password: {
         value: '',
-        required: true
+        required: true,
+        pattern: '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$'
       },
       address: {
         value: ''
@@ -49,7 +51,48 @@ export default compose(
         value: ''
       }
     },
-    ({ router }) => form => {}
+    ({ router, setErrorMessage, errorMessage, formSetError }) => form => {
+      withMutation(
+        graphql`
+          mutation CreateUserMutation($user: UserInput!) {
+            createUser(user: $user) {
+              user {
+                id
+                name
+                email
+                city
+                country
+                address
+              }
+              token {
+                token
+                lastLogin
+              }
+              errors {
+                key
+                value
+              }
+            }
+          }
+        `,
+        { user: form }
+      ).then(({ createUser }) => {
+        let newError = errorMessage + '<br />';
+        if (createUser.errors) {
+          createUser.errors.map(error => {
+            newError += `- ${error.key}: ${error.value}`;
+            formSetError(error.key);
+          });
+
+          setErrorMessage(newError);
+        }
+
+        if (createUser.token) {
+          localStorage.setItem('AUTH_TOKEN', createUser.token.token);
+          router.push('/cms/home');
+        }
+      });
+    }
   ),
   lifecycle({
     componentDidMount() {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { compose, pure } from 'recompose';
 import { withAnimation } from '../../hoc';
 
-export const Alert = ({ message, type, onClose, show }) => (
+export const Alert = ({ message, type, onClose, show, children }) => (
   <div className={'alert alert-' + type}>
     {onClose && (
       <button
@@ -16,12 +16,13 @@ export const Alert = ({ message, type, onClose, show }) => (
         <span aria-hidden="true">×</span>
       </button>
     )}
-    {message}
+    {message} {children && <span dangerouslySetInnerHTML={{ __html: children }} />}
   </div>
 );
 
 Alert.propTypes = {
   message: PropTypes.string,
+  children: PropTypes.node,
   type: PropTypes.oneOf(['warning', 'success', 'info', 'danger']),
   onClose: PropTypes.func,
   show: PropTypes.bool

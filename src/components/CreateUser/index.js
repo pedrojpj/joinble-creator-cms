@@ -8,7 +8,8 @@ const CreateUser = ({
   updateForm,
   submitForm,
   countries,
-  formFieldsWithErrors
+  formFieldsWithErrors,
+  errorMessage
 }) => (
   <div className="panel panel-color panel-primary panel-pages">
     <div className="panel-body">
@@ -20,7 +21,7 @@ const CreateUser = ({
       <form className="form-horizontal m-t-20" name="createUser">
         <div className="form-group">
           <div className="col-xs-12">
-            {formError && <Alert type="danger" message="Todos los campos son obligatorios" />}
+            {formError && <Alert type="danger">{errorMessage}</Alert>}
           </div>
         </div>
 
@@ -107,7 +108,8 @@ CreateUser.propTypes = {
   ),
   submitForm: PropTypes.func,
   formError: PropTypes.bool,
-  formFieldsWithErrors: PropTypes.arrayOf(PropTypes.string)
+  formFieldsWithErrors: PropTypes.arrayOf(PropTypes.string),
+  errorMessage: PropTypes.string
 };
 
 export default CreateUser;

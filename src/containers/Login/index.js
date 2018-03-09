@@ -6,14 +6,17 @@ import { withMutation, withAnimation } from '../../hoc';
 import Login from '../../components/Login';
 
 export default compose(
-  withAnimation({
-    opacity: [0, 1],
-    delay: 200,
-    translateY: '10em',
-    elasticity: function(el, i, l) {
-      return 200 + i * 200;
-    }
-  }),
+  withAnimation(
+    {
+      opacity: [0, 1],
+      delay: 200,
+      translateY: '0em',
+      elasticity: function(el, i, l) {
+        return 200 + i * 200;
+      }
+    },
+    { transform: 'translateY(-10em)' }
+  ),
   withForm(
     {
       email: {

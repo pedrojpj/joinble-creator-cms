@@ -7,14 +7,17 @@ import CreateUser from '../../components/CreateUser';
 
 export default compose(
   withState('errorMessage', 'setErrorMessage', 'There are errors in the form'),
-  withAnimation({
-    opacity: [0, 1],
-    delay: 200,
-    translateY: '10em',
-    elasticity: function(el, i, l) {
-      return 200 + i * 200;
-    }
-  }),
+  withAnimation(
+    {
+      opacity: [0, 1],
+      delay: 200,
+      translateY: '0em',
+      elasticity: function(el, i, l) {
+        return 200 + i * 200;
+      }
+    },
+    { transform: 'translateY(-10em)' }
+  ),
   withQuery(
     graphql`
       query CreateUserQuery {

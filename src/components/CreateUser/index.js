@@ -112,4 +112,9 @@ CreateUser.propTypes = {
   errorMessage: PropTypes.string
 };
 
+CreateUser.defaultProps = {
+  formFieldsWithErrors: [],
+  countries: []
+};
+
 export default CreateUser;

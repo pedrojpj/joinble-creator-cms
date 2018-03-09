@@ -2,23 +2,21 @@ import { compose, pure } from 'recompose';
 import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
 
-import { withQuery, withMutation, withAnimation } from '../../hoc';
+import { withMutation, withAnimation } from '../../hoc';
 import Login from '../../components/Login';
 
 export default compose(
-  withAnimation({
-    opacity: [0, 1],
-    delay: 200,
-    translateY: '10em',
-    elasticity: function(el, i, l) {
-      return 200 + i * 200;
-    }
-  }),
-  withQuery(graphql`
-    query LoginQuery {
-      translations
-    }
-  `),
+  withAnimation(
+    {
+      opacity: [0, 1],
+      delay: 200,
+      translateY: '0em',
+      elasticity: function(el, i, l) {
+        return 200 + i * 200;
+      }
+    },
+    { transform: 'translateY(-10em)' }
+  ),
   withForm(
     {
       email: {

@@ -1,12 +1,14 @@
-import { compose, withState, pure, lifecycle } from 'recompose';
+import { compose, withState, pure } from 'recompose';
 import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
 
 import { withMutation, withAnimation, withQuery } from '../../hoc';
 import CreateUser from '../../components/CreateUser';
 
+const errorText = 'There are errors in the form';
+
 export default compose(
-  withState('errorMessage', 'setErrorMessage', 'There are errors in the form'),
+  withState('errorMessage', 'setErrorMessage', errorText),
   withAnimation(
     {
       opacity: [0, 1],
@@ -80,11 +82,12 @@ export default compose(
         `,
         { user: form }
       ).then(({ createUser }) => {
-        let newError = errorMessage + '<br />';
+        let newError = errorText + '<br />';
         if (createUser.errors) {
           createUser.errors.map(error => {
             newError += `- ${error.key}: ${error.value}`;
             formSetError(error.key);
+            return error;
           });
 
           setErrorMessage(newError);
@@ -97,10 +100,5 @@ export default compose(
       });
     }
   ),
-  lifecycle({
-    componentDidMount() {
-      console.log(this.props);
-    }
-  }),
   pure
 )(CreateUser);

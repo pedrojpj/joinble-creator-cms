@@ -4,22 +4,13 @@ import { withForm } from 'recompose-extends';
 
 import { withMutation, withAnimation } from '../../hoc';
 import Login from '../../components/Login';
+import { animationAuth } from '../../utils';
 
 const errorText = 'There are errors in the form';
 
 export default compose(
   withState('errorMessage', 'setErrorMessage', errorText),
-  withAnimation(
-    {
-      opacity: [0, 1],
-      delay: 200,
-      translateY: '0em',
-      elasticity: function(el, i, l) {
-        return 200 + i * 200;
-      }
-    },
-    { transform: 'translateY(-10em)' }
-  ),
+  withAnimation(animationAuth, { transform: 'translateY(-10em)' }),
   withForm(
     {
       email: {

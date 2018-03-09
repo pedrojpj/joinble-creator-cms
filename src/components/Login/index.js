@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'found';
 
-import { Alert } from '../../components-ui';
+import { Alert, Input } from '../../components-ui';
 
-const Login = ({ form, formError, updateForm, submitForm }) => (
+const Login = ({ form, formError, formFieldsWithErrors, updateForm, submitForm, errorMessage }) => (
   <div className="panel panel-color panel-primary panel-pages">
     <div className="panel-body">
       <h3 className="text-center m-t-0 m-b-15">logo</h3>
@@ -15,39 +15,29 @@ const Login = ({ form, formError, updateForm, submitForm }) => (
       <form className="form-horizontal m-t-20" name="login">
         <div className="form-group">
           <div className="col-xs-12">
-            {formError && <Alert type="danger" message="Todos los campos son obligatorios" />}
+            {formError && <Alert type="danger">{errorMessage}</Alert>}
           </div>
         </div>
 
-        <div className="form-group">
-          <div className="col-xs-12">
-            <input
-              className="form-control"
-              type="email"
-              name="email"
-              autoComplete="off"
-              placeholder="Enter your email"
-              id="email"
-              value={form.email}
-              onChange={updateForm}
-            />
-          </div>
-        </div>
+        <Input
+          type="email"
+          name="email"
+          autoComplete="off"
+          placeholder="Enter your email"
+          form={form}
+          updateForm={updateForm}
+          error={formFieldsWithErrors.includes('email')}
+        />
 
-        <div className="form-group">
-          <div className="col-xs-12">
-            <input
-              type="password"
-              name="password"
-              className="form-control"
-              autoComplete="off"
-              placeholder="Enter your password"
-              id="password"
-              value={form.password}
-              onChange={updateForm}
-            />
-          </div>
-        </div>
+        <Input
+          type="password"
+          name="password"
+          autoComplete="off"
+          placeholder="Enter your password"
+          form={form}
+          updateForm={updateForm}
+          error={formFieldsWithErrors.includes('password')}
+        />
 
         <div className="form-group text-center m-t-40">
           <div className="col-xs-12">
@@ -84,7 +74,9 @@ Login.propTypes = {
   form: PropTypes.shape({
     email: PropTypes.string,
     password: PropTypes.string
-  })
+  }),
+  formFieldsWithErrors: PropTypes.arrayOf(PropTypes.string),
+  errorMessage: PropTypes.string
 };
 
 export default Login;

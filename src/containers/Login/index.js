@@ -1,11 +1,14 @@
-import { compose, pure } from 'recompose';
+import { compose, withState, pure } from 'recompose';
 import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
 
 import { withMutation, withAnimation } from '../../hoc';
 import Login from '../../components/Login';
 
+const errorText = 'There are errors in the form';
+
 export default compose(
+  withState('errorMessage', 'setErrorMessage', errorText),
   withAnimation(
     {
       opacity: [0, 1],
@@ -21,14 +24,15 @@ export default compose(
     {
       email: {
         value: '',
-        required: true
+        required: true,
+        type: 'email'
       },
       password: {
         value: '',
         required: true
       }
     },
-    ({ router }) => form => {
+    ({ router, errorMessage, setErrorMessage, formSetError }) => form => {
       withMutation(
         graphql`
           mutation LoginMutation($login: LoginInput!) {
@@ -45,11 +49,26 @@ export default compose(
                 token
                 lastLogin
               }
+              errors {
+                key
+                value
+              }
             }
           }
         `,
         { login: form }
       ).then(({ login }) => {
+        let newError = errorText + '<br />';
+        if (login.errors) {
+          login.errors.map(error => {
+            newError += `- ${error.key}: ${error.value}`;
+            formSetError(error.key);
+            return error;
+          });
+
+          setErrorMessage(newError);
+        }
+
         if (login.token) {
           localStorage.setItem('AUTH_TOKEN', login.token.token);
           router.push('/cms/home');

@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Tue Feb 27 2018 13:49:47 GMT+0100 (CET)
+# timestamp: Fri Mar 09 2018 11:13:58 GMT+0100 (CET)
 
 """This represent a App"""
 type App {
@@ -109,6 +109,7 @@ type Image {
 }
 
 type Login {
+  errors: [ErrorSchema]
   user: User
   token: Token
 }

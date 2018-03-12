@@ -3,23 +3,14 @@ import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
 
 import { withMutation, withAnimation, withQuery } from '../../hoc';
+import { animationAuth } from '../../utils';
 import CreateUser from '../../components/CreateUser';
 
 const errorText = 'There are errors in the form';
 
 export default compose(
   withState('errorMessage', 'setErrorMessage', errorText),
-  withAnimation(
-    {
-      opacity: [0, 1],
-      delay: 200,
-      translateY: '0em',
-      elasticity: function(el, i, l) {
-        return 200 + i * 200;
-      }
-    },
-    { transform: 'translateY(-10em)' }
-  ),
+  withAnimation(animationAuth, { transform: 'translateY(-10em)' }),
   withQuery(
     graphql`
       query CreateUserQuery {

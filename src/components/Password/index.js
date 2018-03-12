@@ -1,20 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'found';
 
 import { Alert, Input } from '../../components-ui';
 
-const Login = ({ form, formError, formFieldsWithErrors, updateForm, submitForm, errorMessage }) => (
+const Password = ({
+  formError,
+  errorMessage,
+  advice,
+  adviceMessage,
+  hideAdvice,
+  form,
+  updateForm,
+  formFieldsWithErrors,
+  submitForm
+}) => (
   <div className="panel panel-color panel-primary panel-pages">
     <div className="panel-body">
       <h3 className="text-center m-t-0 m-b-15">logo</h3>
       <h4 className="text-muted text-center m-t-0">
-        <b>Sign In</b>
+        <b>Reset Password</b>
       </h4>
 
-      <form className="form-horizontal m-t-20" name="login">
+      <form className="form-horizontal m-t-20" name="password">
         <div className="form-group">
           <div className="col-xs-12">
+            {!formError &&
+              advice && (
+                <Alert type="info" onClose={hideAdvice}>
+                  {adviceMessage}
+                </Alert>
+              )}
             {formError && <Alert type="danger">{errorMessage}</Alert>}
           </div>
         </div>
@@ -29,34 +44,11 @@ const Login = ({ form, formError, formFieldsWithErrors, updateForm, submitForm, 
           error={formFieldsWithErrors.includes('email')}
         />
 
-        <Input
-          type="password"
-          name="password"
-          autoComplete="off"
-          placeholder="Enter your password"
-          form={form}
-          updateForm={updateForm}
-          error={formFieldsWithErrors.includes('password')}
-        />
-
         <div className="form-group text-center m-t-40">
           <div className="col-xs-12">
             <button onClick={submitForm} className="btn btn-primary btn-block btn-lg" type="submit">
-              Log In
+              Recover Password
             </button>
-          </div>
-        </div>
-
-        <div className="form-group m-t-30 m-b-0">
-          <div className="col-sm-7">
-            <Link to="/auth/forgotten-password" className="text-muted">
-              <i className="fa fa-lock m-r-5" /> Forgot your password?
-            </Link>
-          </div>
-          <div className="col-sm-5 text-right">
-            <Link to="/auth/create-user" className="text-muted">
-              Create an account
-            </Link>
           </div>
         </div>
       </form>
@@ -64,17 +56,22 @@ const Login = ({ form, formError, formFieldsWithErrors, updateForm, submitForm, 
   </div>
 );
 
-Login.propTypes = {
-  onLogin: PropTypes.func,
-  updateForm: PropTypes.func,
-  submitForm: PropTypes.func,
+Password.propTypes = {
+  advice: PropTypes.bool,
+  adviceMessage: PropTypes.string,
+  hideAdvice: PropTypes.func,
+  errorMessage: PropTypes.string,
   formError: PropTypes.bool,
   form: PropTypes.shape({
-    email: PropTypes.string,
     password: PropTypes.string
   }),
+  updateForm: PropTypes.func,
   formFieldsWithErrors: PropTypes.arrayOf(PropTypes.string),
-  errorMessage: PropTypes.string
+  submitForm: PropTypes.func
 };
 
-export default Login;
+Password.defaultProps = {
+  formFieldsWithErrors: []
+};
+
+export default Password;

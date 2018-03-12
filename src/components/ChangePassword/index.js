@@ -12,13 +12,14 @@ const ChangePassword = ({
   form,
   updateForm,
   formFieldsWithErrors,
-  submitForm
+  submitForm,
+  translations
 }) => (
   <div className="panel panel-color panel-primary panel-pages">
     <div className="panel-body">
       <h3 className="text-center m-t-0 m-b-15">logo</h3>
       <h4 className="text-muted text-center m-t-0">
-        <b>Change Password</b>
+        <b>{translations.CHANGE_PASSWORD}</b>
       </h4>
 
       <form className="form-horizontal m-t-20" name="password">
@@ -38,7 +39,7 @@ const ChangePassword = ({
           type="password"
           name="newPassword"
           autoComplete="off"
-          placeholder="Enter your new password"
+          placeholder={translations.ENTER_YOUR_NEW_PASSWORD}
           form={form}
           updateForm={updateForm}
           error={formFieldsWithErrors.includes('newPassword')}
@@ -48,7 +49,7 @@ const ChangePassword = ({
           type="password"
           name="repeatNewPassword"
           autoComplete="off"
-          placeholder="Repeat your new password"
+          placeholder={translations.REPEAT_YOUR_NEW_PASSWORD}
           form={form}
           updateForm={updateForm}
           error={formFieldsWithErrors.includes('repeatNewPassword')}
@@ -57,7 +58,7 @@ const ChangePassword = ({
         <div className="form-group text-center m-t-40">
           <div className="col-xs-12">
             <button onClick={submitForm} className="btn btn-primary btn-block btn-lg" type="submit">
-              Change Password
+              {translations.CHANGE_PASSWORD}
             </button>
           </div>
         </div>
@@ -77,11 +78,13 @@ ChangePassword.propTypes = {
   }),
   updateForm: PropTypes.func,
   formFieldsWithErrors: PropTypes.arrayOf(PropTypes.string),
-  submitForm: PropTypes.func
+  submitForm: PropTypes.func,
+  translations: PropTypes.shape({})
 };
 
 ChangePassword.defaultProps = {
-  formFieldsWithErrors: []
+  formFieldsWithErrors: [],
+  translations: {}
 };
 
 export default ChangePassword;

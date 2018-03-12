@@ -9,13 +9,14 @@ const CreateUser = ({
   submitForm,
   countries,
   formFieldsWithErrors,
-  errorMessage
+  errorMessage,
+  translations
 }) => (
   <div className="panel panel-color panel-primary panel-pages">
     <div className="panel-body">
       <h3 className="text-center m-t-0 m-b-15">logo</h3>
       <h4 className="text-muted text-center m-t-0">
-        <b>Sign Up</b>
+        <b>{translations.SIGN_UP}</b>
       </h4>
 
       <form className="form-horizontal m-t-20" name="createUser">
@@ -28,7 +29,7 @@ const CreateUser = ({
         <Input
           type="text"
           name="name"
-          placeholder="Enter your name"
+          placeholder={translations.ENTER_YOUR_NAME}
           form={form}
           updateForm={updateForm}
           error={formFieldsWithErrors.includes('name')}
@@ -36,7 +37,7 @@ const CreateUser = ({
         <Input
           type="email"
           name="email"
-          placeholder="Enter your email"
+          placeholder={translations.ENTER_YOUR_EMAIL}
           form={form}
           updateForm={updateForm}
           error={formFieldsWithErrors.includes('email')}
@@ -44,15 +45,15 @@ const CreateUser = ({
         <Input
           type="text"
           name="address"
-          placeholder="Enter your address"
+          placeholder={translations.ENTER_YOUR_ADDRESS}
           form={form}
           updateForm={updateForm}
         />
         <div className="form-group">
           <div className="col-xs-12">
-            <select className="form-control">
-              <option value="" disabled selected>
-                Select your country
+            <select className="form-control" value={form.country}>
+              <option value="" disabled>
+                {translations.SELECT_YOUR_COUNTRY}
               </option>
               {countries.map(country => (
                 <option key={country.code} value={country.code}>
@@ -65,14 +66,14 @@ const CreateUser = ({
         <Input
           type="text"
           name="city"
-          placeholder="Enter your city"
+          placeholder={translations.ENTER_YOUR_CITY}
           form={form}
           updateForm={updateForm}
         />
         <Input
           type="password"
           name="password"
-          placeholder="Enter your password"
+          placeholder={translations.ENTER_YOUR_PASSWORD}
           form={form}
           updateForm={updateForm}
           error={formFieldsWithErrors.includes('password')}
@@ -81,7 +82,7 @@ const CreateUser = ({
         <div className="form-group text-center m-t-40">
           <div className="col-xs-12">
             <button onClick={submitForm} className="btn btn-primary btn-block btn-lg" type="submit">
-              Create User
+              {translations.CREATE_USER}
             </button>
           </div>
         </div>
@@ -109,12 +110,17 @@ CreateUser.propTypes = {
   submitForm: PropTypes.func,
   formError: PropTypes.bool,
   formFieldsWithErrors: PropTypes.arrayOf(PropTypes.string),
-  errorMessage: PropTypes.string
+  errorMessage: PropTypes.string,
+  translations: PropTypes.shape({})
 };
 
 CreateUser.defaultProps = {
   formFieldsWithErrors: [],
-  countries: []
+  form: {
+    country: ''
+  },
+  countries: [],
+  translations: {}
 };
 
 export default CreateUser;

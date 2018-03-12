@@ -16,7 +16,6 @@ export const Input = ({ updateForm, name, type, form, placeholder, error, errorM
           className={inputStyles}
           type={type}
           name={name}
-          autoComplete="off"
           placeholder={placeholder}
           value={form[name]}
           onChange={updateForm}

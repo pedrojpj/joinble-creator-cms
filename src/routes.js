@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   makeRouteConfig,
   createFarceRouter,
@@ -10,8 +11,16 @@ import {
 
 import HashProtocol from 'farce/lib/HashProtocol';
 
-import { Home, Login, Error, CreateUser, Password, ChangePassword } from './containers';
-import { Layout, LayoutAuth } from './components/Layout';
+import {
+  Home,
+  Login,
+  Error,
+  CreateUser,
+  Password,
+  ChangePassword,
+  Layout,
+  LayoutAuth
+} from './containers';
 
 export default createFarceRouter({
   historyProtocol: new HashProtocol(),

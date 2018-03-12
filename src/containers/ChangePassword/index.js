@@ -6,8 +6,6 @@ import { withQuery, withAnimation, withMutation } from '../../hoc';
 import ChangePassword from '../../components/ChangePassword';
 import { animationAuth } from '../../utils';
 
-const errorText = 'There are errors in the form';
-
 export default compose(
   withQuery(
     graphql`
@@ -26,13 +24,12 @@ export default compose(
       }
     }
   }),
-  withState('errorMessage', 'setErrorMessage', errorText),
+  withState('errorMessage', 'setErrorMessage', ({ translations }) => translations.ERROR_FORM),
   withStateHandlers(
-    {
+    ({ translations }) => ({
       advice: true,
-      adviceMessage:
-        'Enter the new password, remember that it must have at least one numeric character and another in capital letters.'
-    },
+      adviceMessage: translations.ADVICE_CHANGE_PASSWORD
+    }),
     {
       hideAdvice: ({ advice }) => () => ({ advice: false }),
       showAdvice: ({ advice }) => () => ({ advice: true }),
@@ -61,12 +58,13 @@ export default compose(
       resetForm,
       formSetError,
       showAdvice,
-      setAdvice
+      setAdvice,
+      translations
     }) => form => {
       if (form.newPassword !== form.repeatNewPassword) {
         setTimeout(() => {
           formSetError('repeatNewPassword');
-          setErrorMessage('The two passwords must match');
+          setErrorMessage(translations.TWO_PASSWORD_MUST_MATCH);
         }, 0);
       } else {
         withMutation(
@@ -83,7 +81,7 @@ export default compose(
           `,
           { password: form.newPassword, token: routeParams.token }
         ).then(({ changePassword: data }) => {
-          let newError = errorText + '<br />';
+          let newError = translations.ERROR_FORM + '<br />';
           if (data.errors) {
             data.errors.map(error => {
               newError += `- ${error.key}: ${error.value}`;
@@ -95,7 +93,7 @@ export default compose(
           }
 
           if (data.status) {
-            setAdvice('Your password has been changed correctly. Please login in again');
+            setAdvice(translations.CHANGE_PASSWORD_OK);
             showAdvice(true);
             resetForm();
           }

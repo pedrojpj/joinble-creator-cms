@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import { Header } from '../../containers';
 
-export const Layout = ({ children, ...rest }) => (
-  <div>
-    <Header {...rest} />
-    {children}
-  </div>
-);
+export const Layout = ({ children, ...rest }) => {
+  return (
+    <div>
+      <Header {...rest} />
+      {cloneElement(children, { ...rest })}
+    </div>
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node

@@ -12,13 +12,14 @@ const Password = ({
   form,
   updateForm,
   formFieldsWithErrors,
-  submitForm
+  submitForm,
+  translations
 }) => (
   <div className="panel panel-color panel-primary panel-pages">
     <div className="panel-body">
       <h3 className="text-center m-t-0 m-b-15">logo</h3>
       <h4 className="text-muted text-center m-t-0">
-        <b>Reset Password</b>
+        <b>{translations.RESET_PASSWORD}</b>
       </h4>
 
       <form className="form-horizontal m-t-20" name="password">
@@ -38,7 +39,7 @@ const Password = ({
           type="email"
           name="email"
           autoComplete="off"
-          placeholder="Enter your email"
+          placeholder={translations.ENTER_YOUR_EMAIL}
           form={form}
           updateForm={updateForm}
           error={formFieldsWithErrors.includes('email')}
@@ -47,7 +48,7 @@ const Password = ({
         <div className="form-group text-center m-t-40">
           <div className="col-xs-12">
             <button onClick={submitForm} className="btn btn-primary btn-block btn-lg" type="submit">
-              Recover Password
+              {translations.RECOVER_PASSWORD}
             </button>
           </div>
         </div>
@@ -71,7 +72,8 @@ Password.propTypes = {
 };
 
 Password.defaultProps = {
-  formFieldsWithErrors: []
+  formFieldsWithErrors: [],
+  translations: {}
 };
 
 export default Password;

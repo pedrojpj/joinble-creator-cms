@@ -6,4 +6,5 @@ import CreateUser from './CreateUser';
 import Password from './Password';
 import ChangePassword from './ChangePassword';
 
+export * from './Layout';
 export { Home, Login, Header, Error, CreateUser, Password, ChangePassword };

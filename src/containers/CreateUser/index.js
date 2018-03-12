@@ -6,10 +6,8 @@ import { withMutation, withAnimation, withQuery } from '../../hoc';
 import { animationAuth } from '../../utils';
 import CreateUser from '../../components/CreateUser';
 
-const errorText = 'There are errors in the form';
-
 export default compose(
-  withState('errorMessage', 'setErrorMessage', errorText),
+  withState('errorMessage', 'setErrorMessage', ({ translations }) => translations.ERROR_FORM),
   withAnimation(animationAuth, { transform: 'translateY(-10em)' }),
   withQuery(
     graphql`
@@ -47,7 +45,7 @@ export default compose(
         value: ''
       }
     },
-    ({ router, setErrorMessage, errorMessage, formSetError }) => form => {
+    ({ router, setErrorMessage, errorMessage, formSetError, translations }) => form => {
       withMutation(
         graphql`
           mutation CreateUserMutation($user: UserInput!) {
@@ -73,7 +71,7 @@ export default compose(
         `,
         { user: form }
       ).then(({ createUser }) => {
-        let newError = errorText + '<br />';
+        let newError = translations.ERROR_FORM + '<br />';
         if (createUser.errors) {
           createUser.errors.map(error => {
             newError += `- ${error.key}: ${error.value}`;

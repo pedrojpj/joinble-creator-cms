@@ -29,6 +29,10 @@ export default compose(
         localStorage.removeItem('AUTH_TOKEN');
         router.push('/auth/login');
       });
+    },
+    onChangeLanguage: ({ changeLanguage }) => event => {
+      const value = event.target.value;
+      changeLanguage(value);
     }
   }),
   pure

@@ -6,12 +6,10 @@ import { withMutation, withAnimation } from '../../hoc';
 import Password from '../../components/Password';
 import { animationAuth } from '../../utils';
 
-const errorText = 'There are errors in the form';
-
 export default compose(
-  withState('errorMessage', 'setErrorMessage', errorText),
+  withState('errorMessage', 'setErrorMessage', ({ translations }) => translations.ERROR_FORM),
   withStateHandlers(
-    { advice: true, adviceMessage: 'Enter your Email and instructions will be sent to you!' },
+    ({ translations }) => ({ advice: true, adviceMessage: translations.ADVICE_PASSWORD }),
     {
       hideAdvice: ({ advice }) => () => ({ advice: false }),
       showAdvice: ({ advice }) => () => ({ advice: true }),
@@ -34,7 +32,8 @@ export default compose(
       resetForm,
       formSetError,
       showAdvice,
-      setAdvice
+      setAdvice,
+      translations
     }) => form => {
       withMutation(
         graphql`
@@ -50,7 +49,7 @@ export default compose(
         `,
         { email: form.email }
       ).then(({ forgetPassword: data }) => {
-        let newError = errorText + '<br />';
+        let newError = translations.ERROR_FORM + '<br />';
         if (data.errors) {
           data.errors.map(error => {
             newError += `- ${error.key}: ${error.value}`;
@@ -62,7 +61,7 @@ export default compose(
         }
 
         if (data.status) {
-          setAdvice('We have sent you an email with instructions to reset your password');
+          setAdvice(translations.PASSWORD_OK);
           showAdvice(true);
           resetForm();
         }

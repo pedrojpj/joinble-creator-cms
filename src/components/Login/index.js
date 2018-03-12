@@ -4,12 +4,20 @@ import { Link } from 'found';
 
 import { Alert, Input } from '../../components-ui';
 
-const Login = ({ form, formError, formFieldsWithErrors, updateForm, submitForm, errorMessage }) => (
+const Login = ({
+  form,
+  formError,
+  formFieldsWithErrors,
+  updateForm,
+  submitForm,
+  errorMessage,
+  translations
+}) => (
   <div className="panel panel-color panel-primary panel-pages">
     <div className="panel-body">
       <h3 className="text-center m-t-0 m-b-15">logo</h3>
       <h4 className="text-muted text-center m-t-0">
-        <b>Sign In</b>
+        <b>{translations.SIGN_IN}</b>
       </h4>
 
       <form className="form-horizontal m-t-20" name="login">
@@ -23,7 +31,7 @@ const Login = ({ form, formError, formFieldsWithErrors, updateForm, submitForm, 
           type="email"
           name="email"
           autoComplete="off"
-          placeholder="Enter your email"
+          placeholder={translations.ENTER_YOUR_EMAIL}
           form={form}
           updateForm={updateForm}
           error={formFieldsWithErrors.includes('email')}
@@ -33,7 +41,7 @@ const Login = ({ form, formError, formFieldsWithErrors, updateForm, submitForm, 
           type="password"
           name="password"
           autoComplete="off"
-          placeholder="Enter your password"
+          placeholder={translations.ENTER_YOUR_PASSWORD}
           form={form}
           updateForm={updateForm}
           error={formFieldsWithErrors.includes('password')}
@@ -42,7 +50,7 @@ const Login = ({ form, formError, formFieldsWithErrors, updateForm, submitForm, 
         <div className="form-group text-center m-t-40">
           <div className="col-xs-12">
             <button onClick={submitForm} className="btn btn-primary btn-block btn-lg" type="submit">
-              Log In
+              {translations.LOG_IN}
             </button>
           </div>
         </div>
@@ -50,12 +58,12 @@ const Login = ({ form, formError, formFieldsWithErrors, updateForm, submitForm, 
         <div className="form-group m-t-30 m-b-0">
           <div className="col-sm-7">
             <Link to="/auth/forgotten-password" className="text-muted">
-              <i className="fa fa-lock m-r-5" /> Forgot your password?
+              <i className="fa fa-lock m-r-5" /> {translations.FORGOT_YOUR_PASSWORD}
             </Link>
           </div>
           <div className="col-sm-5 text-right">
             <Link to="/auth/create-user" className="text-muted">
-              Create an account
+              {translations.CREATE_AN_ACCOUNT}
             </Link>
           </div>
         </div>
@@ -74,7 +82,8 @@ Login.propTypes = {
     password: PropTypes.string
   }),
   formFieldsWithErrors: PropTypes.arrayOf(PropTypes.string),
-  errorMessage: PropTypes.string
+  errorMessage: PropTypes.string,
+  translations: PropTypes.shape({})
 };
 
 export default Login;

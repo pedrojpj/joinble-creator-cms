@@ -6,10 +6,8 @@ import { withMutation, withAnimation } from '../../hoc';
 import Login from '../../components/Login';
 import { animationAuth } from '../../utils';
 
-const errorText = 'There are errors in the form';
-
 export default compose(
-  withState('errorMessage', 'setErrorMessage', errorText),
+  withState('errorMessage', 'setErrorMessage', ({ translations }) => translations.ERROR_FORM),
   withAnimation(animationAuth, { transform: 'translateY(-10em)' }),
   withForm(
     {
@@ -23,7 +21,7 @@ export default compose(
         required: true
       }
     },
-    ({ router, errorMessage, setErrorMessage, formSetError }) => form => {
+    ({ router, errorMessage, setErrorMessage, formSetError, translations }) => form => {
       withMutation(
         graphql`
           mutation LoginMutation($login: LoginInput!) {
@@ -49,7 +47,7 @@ export default compose(
         `,
         { login: form }
       ).then(({ login }) => {
-        let newError = errorText + '<br />';
+        let newError = translations.ERROR_FORM + '<br />';
         if (login.errors) {
           login.errors.map(error => {
             newError += `- ${error.key}: ${error.value}`;

@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Fri Mar 09 2018 11:13:58 GMT+0100 (CET)
+# timestamp: Mon Mar 12 2018 12:06:56 GMT+0100 (CET)
 
 """This represent a App"""
 type App {
@@ -23,6 +23,15 @@ input AppInput {
   domain: String!
   icon: String!
   languages: [String]!
+}
+
+type changePassword {
+  errors: [ErrorSchema]
+  status: Boolean
+}
+
+type checkRevocerPasswordToken {
+  status: Boolean
 }
 
 type checkUser {
@@ -129,9 +138,10 @@ type Mutation {
   addApp(app: AppInput!): App
   deleteApp(id: ID!): deleteApp
   login(login: LoginInput): Login
-  logout(token: String!): logout
   createUser(user: UserInput!): createUser
   forgetPassword(email: String!): forgetPassword
+  logout(token: String!): logout
+  changePassword(token: String!, password: String!): changePassword
 }
 
 """Options of Content"""
@@ -178,6 +188,7 @@ type Query {
   users: [User]
   getUser: getUser
   checkUser: checkUser
+  checkRecoverPasswordToken(token: String!): checkRevocerPasswordToken
   countries(language: String): [Country]
   translations: [String]
   elements: [Element]

@@ -10,7 +10,7 @@ import {
 
 import HashProtocol from 'farce/lib/HashProtocol';
 
-import { Home, Login, Error, CreateUser, Password } from './containers';
+import { Home, Login, Error, CreateUser, Password, ChangePassword } from './containers';
 import { Layout, LayoutAuth } from './components/Layout';
 
 export default createFarceRouter({
@@ -25,6 +25,7 @@ export default createFarceRouter({
         <Route path="/login" Component={Login} />
         <Route path="/create-user" Component={CreateUser} />
         <Route path="/forgotten-password" Component={Password} />
+        <Route path="/change-password/:token" Component={ChangePassword} />
       </Route>
       <Redirect from="/" to="/cms/home" />
     </Route>

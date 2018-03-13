@@ -1,4 +1,4 @@
-import { compose, withHandlers, setDisplayName, pure } from 'recompose';
+import { compose, withHandlers, withProps, setDisplayName, pure, mapProps } from 'recompose';
 import { graphql } from 'react-relay';
 
 import { withQuery, withMutation } from '../../hoc';
@@ -14,6 +14,7 @@ export default compose(
       }
     }
   `),
+  mapProps(({ getUser, ...rest }) => ({ ...getUser, ...rest })),
   withHandlers({
     onLogout: ({ router }) => () => {
       withMutation(
@@ -35,5 +36,17 @@ export default compose(
       changeLanguage(value);
     }
   }),
+  withProps(({ translations, onLogout }) => ({
+    userMenu: [
+      {
+        name: translations.PROFILE,
+        onClick: () => {}
+      },
+      {
+        name: translations.LOGOUT,
+        onClick: onLogout
+      }
+    ]
+  })),
   pure
 )(Header);

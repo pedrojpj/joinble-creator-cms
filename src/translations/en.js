@@ -26,5 +26,6 @@ export const translations = {
   LOGOUT: 'Logout',
   ENGLISH: 'English',
   SPANISH: 'Spanish',
-  SELECT_A_LANGUAGE: 'Select a language'
+  SELECT_A_LANGUAGE: 'Select a language',
+  PROFILE: 'Your profile'
 };

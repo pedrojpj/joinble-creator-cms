@@ -27,5 +27,6 @@ export const translations = {
   LOGOUT: 'Desconectarse',
   ENGLISH: 'Inglés',
   SPANISH: 'Español',
-  SELECT_A_LANGUAGE: 'Selecciona un idioma'
+  SELECT_A_LANGUAGE: 'Selecciona un idioma',
+  PROFILE: 'Tu perfil'
 };

@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Dialog, DialogModel } from '../../components-ui';
 import styles from './header.css';
 
-const Header = ({ onLogout, translations, onChangeLanguage, currentLanguage }) => (
+const Header = ({ onLogout, translations, onChangeLanguage, currentLanguage, userMenu, name }) => (
   <header className={styles.header}>
     <div className={styles.logo}>logo</div>
 
     <div className={styles.action}>
       <button onClick={onLogout}>{translations.LOGOUT}</button>
     </div>
+
+    <Dialog items={userMenu}>{name}</Dialog>
 
     <select name="translations" onChange={onChangeLanguage} value={currentLanguage}>
       <option default value="">
@@ -23,7 +26,9 @@ const Header = ({ onLogout, translations, onChangeLanguage, currentLanguage }) =
 
 Header.propTypes = {
   onLogout: PropTypes.func,
-  translations: PropTypes.shape({})
+  translations: PropTypes.shape({}),
+  userMenu: DialogModel,
+  name: PropTypes.string
 };
 
 export default Header;

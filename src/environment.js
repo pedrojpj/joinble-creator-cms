@@ -1,5 +1,7 @@
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 
+import { LocalStorage } from './utils';
+
 function fetchQuery(operation, variables) {
   const options = {
     method: 'POST',
@@ -13,7 +15,7 @@ function fetchQuery(operation, variables) {
   };
 
   if (localStorage.getItem('AUTH_TOKEN')) {
-    options.headers.Authorization = 'JWT ' + localStorage.getItem('AUTH_TOKEN');
+    options.headers.Authorization = 'JWT ' + LocalStorage.get('AUTH_TOKEN');
   }
 
   return fetch('http://localhost:8000/graphql', options)

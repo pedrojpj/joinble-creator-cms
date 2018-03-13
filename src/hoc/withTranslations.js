@@ -1,5 +1,7 @@
 import { createFactory, Component } from 'react';
 
+import { LocalStorage } from '../utils';
+
 export const withTranslations = () => BaseComponent => {
   const factory = createFactory(BaseComponent);
 
@@ -10,7 +12,8 @@ export const withTranslations = () => BaseComponent => {
       this.state = {
         translationsLoad: false,
         translations: [],
-        currentLanguage: navigator.language || navigator.userLanguage
+        currentLanguage:
+          LocalStorage.get('LANGUAGE') || navigator.language || navigator.userLanguage
       };
 
       import(`../translations/${this.state.currentLanguage}`).then(data => {
@@ -23,6 +26,8 @@ export const withTranslations = () => BaseComponent => {
 
     changeLanguage = language => {
       import(`../translations/${language}`).then(data => {
+        LocalStorage.set('LANGUAGE', language);
+
         this.setState(() => ({
           currentLanguage: language,
           translations: data.translations

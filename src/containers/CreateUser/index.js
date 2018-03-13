@@ -3,7 +3,7 @@ import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
 
 import { withMutation, withAnimation, withQuery } from '../../hoc';
-import { animationAuth } from '../../utils';
+import { animationAuth, LocalStorage } from '../../utils';
 import CreateUser from '../../components/CreateUser';
 
 export default compose(
@@ -83,7 +83,7 @@ export default compose(
         }
 
         if (createUser.token) {
-          localStorage.setItem('AUTH_TOKEN', createUser.token.token);
+          LocalStorage.set('AUTH_TOKEN', createUser.token.token);
           router.push('/cms/home');
         }
       });

@@ -3,6 +3,7 @@ import { graphql } from 'react-relay';
 
 import { withQuery, withMutation } from '../../hoc';
 import Header from '../../components/Header';
+import { LocalStorage } from '../../utils';
 
 export default compose(
   setDisplayName('HeaderContainer'),
@@ -27,7 +28,7 @@ export default compose(
         `,
         { token: localStorage.getItem('AUTH_TOKEN') }
       ).then(response => {
-        localStorage.removeItem('AUTH_TOKEN');
+        LocalStorage.remove('AUTH_TOKEN');
         router.push('/auth/login');
       });
     },

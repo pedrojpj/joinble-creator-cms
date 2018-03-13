@@ -4,7 +4,7 @@ import { withForm } from 'recompose-extends';
 
 import { withMutation, withAnimation } from '../../hoc';
 import Login from '../../components/Login';
-import { animationAuth } from '../../utils';
+import { animationAuth, LocalStorage } from '../../utils';
 
 export default compose(
   withState('errorMessage', 'setErrorMessage', ({ translations }) => translations.ERROR_FORM),
@@ -59,7 +59,7 @@ export default compose(
         }
 
         if (login.token) {
-          localStorage.setItem('AUTH_TOKEN', login.token.token);
+          LocalStorage.set('AUTH_TOKEN', login.token.token);
           router.push('/cms/home');
         }
       });

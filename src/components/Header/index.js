@@ -12,7 +12,9 @@ const Header = ({ onLogout, translations, onChangeLanguage, currentLanguage, use
       <button onClick={onLogout}>{translations.LOGOUT}</button>
     </div>
 
-    <Dialog items={userMenu}>{name}</Dialog>
+    <Dialog items={userMenu}>
+      <span id="username">{name}</span>
+    </Dialog>
 
     <select name="translations" onChange={onChangeLanguage} value={currentLanguage}>
       <option default value="">

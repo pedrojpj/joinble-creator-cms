@@ -9,11 +9,12 @@ export const withTranslations = () => BaseComponent => {
     constructor(props) {
       super(props);
 
+      this.availableLanguages = ['es', 'en'];
+
       this.state = {
         translationsLoad: false,
         translations: [],
-        currentLanguage:
-          LocalStorage.get('LANGUAGE') || navigator.language || navigator.userLanguage
+        currentLanguage: this.currentLanguage()
       };
 
       import(`../translations/${this.state.currentLanguage}`).then(data => {
@@ -23,6 +24,18 @@ export const withTranslations = () => BaseComponent => {
         }));
       });
     }
+
+    currentLanguage = () => {
+      if (LocalStorage.get('LANGUAGE')) {
+        return LocalStorage.get('LANGUAGE');
+      } else {
+        if (this.availableLanguages.includes(navigator.language)) {
+          return navigator.language;
+        } else {
+          return this.availableLanguages[0];
+        }
+      }
+    };
 
     changeLanguage = language => {
       import(`../translations/${language}`).then(data => {

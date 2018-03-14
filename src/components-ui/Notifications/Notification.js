@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Notification = ({ onRemove, message, id }) => (
+export const Notification = ({ onRemove, message, id, type }) => (
   <div className="alert alert-success alert-dismissible fade in">
     <button
       type="button"
@@ -18,5 +18,6 @@ export const Notification = ({ onRemove, message, id }) => (
 
 Notification.propTypes = {
   message: PropTypes.string,
+  type: PropTypes.string,
   onRemove: PropTypes.func
 };

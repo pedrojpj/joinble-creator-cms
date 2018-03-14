@@ -10,7 +10,8 @@ const CreateUser = ({
   countries,
   formFieldsWithErrors,
   errorMessage,
-  translations
+  translations,
+  showConditions
 }) => (
   <div className="panel panel-color panel-primary panel-pages">
     <div className="panel-body">
@@ -95,7 +96,15 @@ const CreateUser = ({
                 onChange={updateForm}
               />
               <label htmlFor="conditions">
-                {translations.READ_CONDITIONS} <a>{translations.CONDITIONS_USE}</a>
+                {translations.READ_CONDITIONS}{' '}
+                <a
+                  onClick={e => {
+                    e.preventDefault();
+                    showConditions();
+                  }}
+                >
+                  {translations.CONDITIONS_USE}
+                </a>
               </label>
             </div>
           </div>
@@ -134,7 +143,8 @@ CreateUser.propTypes = {
   formError: PropTypes.bool,
   formFieldsWithErrors: PropTypes.arrayOf(PropTypes.string),
   errorMessage: PropTypes.string,
-  translations: PropTypes.shape({})
+  translations: PropTypes.shape({}),
+  showConditions: PropTypes.func
 };
 
 CreateUser.defaultProps = {

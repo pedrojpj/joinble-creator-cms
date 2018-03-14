@@ -1,13 +1,21 @@
-import { compose, withState, pure } from 'recompose';
+import { compose, withState, withStateHandlers, pure } from 'recompose';
 import { graphql } from 'react-relay';
-import { withForm } from 'recompose-extends';
+import { withForm, withModal } from 'recompose-extends';
 
 import { withMutation, withAnimation, withQuery } from '../../hoc';
 import { animationAuth, LocalStorage } from '../../utils';
 import CreateUser from '../../components/CreateUser';
+import { Modal } from '../../components-ui';
 
 export default compose(
   withState('errorMessage', 'setErrorMessage', ({ translations }) => translations.ERROR_FORM),
+  withStateHandlers(
+    { showConditionsModal: false },
+    {
+      showConditions: () => () => ({ showConditionsModal: true }),
+      hideConditions: () => () => ({ showConditionsModal: false })
+    }
+  ),
   withAnimation(animationAuth, { transform: 'translateY(-10em)' }),
   withQuery(
     graphql`
@@ -92,6 +100,15 @@ export default compose(
         }
       });
     }
+  ),
+  withModal(
+    ({ showConditionsModal }) => showConditionsModal,
+    Modal,
+    ({ translations, hideConditions }) => ({
+      title: translations.CONDITIONS_USE,
+      text: translations.CONDITIONS_USE_TEXT,
+      onClose: () => hideConditions()
+    })
   ),
   pure
 )(CreateUser);

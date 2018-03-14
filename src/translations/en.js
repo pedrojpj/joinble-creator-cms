@@ -27,5 +27,7 @@ export const translations = {
   ENGLISH: 'English',
   SPANISH: 'Spanish',
   SELECT_A_LANGUAGE: 'Select a language',
-  PROFILE: 'Your profile'
+  PROFILE: 'Your profile',
+  READ_CONDITIONS: 'I have read and accept the',
+  CONDITIONS_USE: 'Conditions of Use'
 };

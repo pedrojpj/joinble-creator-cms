@@ -51,7 +51,12 @@ const CreateUser = ({
         />
         <div className="form-group">
           <div className="col-xs-12">
-            <select className="form-control" value={form.country}>
+            <select
+              className="form-control"
+              value={form.country}
+              name="country"
+              onChange={updateForm}
+            >
               <option value="" disabled>
                 {translations.SELECT_YOUR_COUNTRY}
               </option>
@@ -79,6 +84,23 @@ const CreateUser = ({
           error={formFieldsWithErrors.includes('password')}
         />
 
+        <div className="form-group">
+          <div className="col-xs-12">
+            <div className="checkbox checkbox-primary">
+              <input
+                id="conditions"
+                name="conditions"
+                type="checkbox"
+                value={form.conditions}
+                onChange={updateForm}
+              />
+              <label htmlFor="conditions">
+                {translations.READ_CONDITIONS} <a>{translations.CONDITIONS_USE}</a>
+              </label>
+            </div>
+          </div>
+        </div>
+
         <div className="form-group text-center m-t-40">
           <div className="col-xs-12">
             <button onClick={submitForm} className="btn btn-primary btn-block btn-lg" type="submit">
@@ -98,7 +120,8 @@ CreateUser.propTypes = {
     address: PropTypes.string,
     country: PropTypes.string,
     city: PropTypes.string,
-    password: PropTypes.password
+    password: PropTypes.password,
+    conditions: PropTypes.bool
   }),
   updateForm: PropTypes.func,
   countries: PropTypes.arrayOf(

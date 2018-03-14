@@ -43,6 +43,10 @@ export default compose(
       },
       country: {
         value: ''
+      },
+      conditions: {
+        value: false,
+        required: true
       }
     },
     ({ router, setErrorMessage, errorMessage, formSetError, translations }) => form => {

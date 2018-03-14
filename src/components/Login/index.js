@@ -57,12 +57,12 @@ const Login = ({
 
         <div className="form-group m-t-30 m-b-0">
           <div className="col-sm-7">
-            <Link to="/auth/forgotten-password" className="text-muted">
+            <Link to="/auth/forgotten-password" id="forgotten-password" className="text-muted">
               <i className="fa fa-lock m-r-5" /> {translations.FORGOT_YOUR_PASSWORD}
             </Link>
           </div>
           <div className="col-sm-5 text-right">
-            <Link to="/auth/create-user" className="text-muted">
+            <Link to="/auth/create-user" id="create-user" className="text-muted">
               {translations.CREATE_AN_ACCOUNT}
             </Link>
           </div>

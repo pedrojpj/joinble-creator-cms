@@ -1,6 +1,7 @@
-import { compose, withState, withStateHandlers, pure } from 'recompose';
+import { compose, withState, withStateHandlers, getContext, pure } from 'recompose';
 import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
+import PropTypes from 'prop-types';
 
 import { withMutation, withAnimation } from '../../hoc';
 import Password from '../../components/Password';
@@ -16,6 +17,7 @@ export default compose(
       setAdvice: ({ adviceMessage }) => value => ({ adviceMessage: value })
     }
   ),
+  getContext({ addNotification: PropTypes.func }),
   withAnimation(animationAuth, { transform: 'translateY(-10em)' }),
   withForm(
     {
@@ -31,9 +33,10 @@ export default compose(
       setErrorMessage,
       resetForm,
       formSetError,
-      showAdvice,
+      hideAdvice,
       setAdvice,
-      translations
+      translations,
+      addNotification
     }) => form => {
       withMutation(
         graphql`
@@ -61,8 +64,8 @@ export default compose(
         }
 
         if (data.status) {
-          setAdvice(translations.PASSWORD_OK);
-          showAdvice(true);
+          addNotification({ message: translations.PASSWORD_OK, type: 'info' }, 3000);
+          hideAdvice();
           resetForm();
         }
       });

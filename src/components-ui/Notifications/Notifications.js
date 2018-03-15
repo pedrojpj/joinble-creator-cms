@@ -13,9 +13,13 @@ import styles from './styles.css';
 export const Notifications = ({ notifications, children, removeNotification, refs }) => (
   <Fragment>
     <div className={styles.notificationCenter} ref={r => refs.store('center', r)}>
-      {notifications.map(notification => (
-        <Notification key={notification.id} {...notification} onRemove={removeNotification} />
-      ))}
+      <div className={styles.container}>
+        {notifications
+          .filter(notification => notification.primary)
+          .map(notification => (
+            <Notification key={notification.id} {...notification} onRemove={removeNotification} />
+          ))}
+      </div>
     </div>
     {children}
   </Fragment>
@@ -52,8 +56,14 @@ export default compose(
     {
       addNotification: ({ notifications }, { animationShow }) => value => {
         animationShow();
+
+        const newNotifications = notifications.map(
+          notification =>
+            notification.primary ? { ...notification, primary: false } : notification
+        );
+
         return {
-          notifications: [...notifications, { ...value, id: uuid() }]
+          notifications: [...newNotifications, { ...value, id: uuid(), primary: true }]
         };
       },
       removeNotification: ({ notifications }, { animationHide }) => id => {
@@ -64,8 +74,19 @@ export default compose(
       }
     }
   ),
-  withContext({ addNotification: PropTypes.func }, ({ addNotification }) => ({
-    addNotification: addNotification
+  withHandlers({
+    insertNotification: ({ addNotification, removeNotification }) => (notification, time) => {
+      addNotification(notification);
+
+      if (time) {
+        setTimeout(() => {
+          removeNotification(notification);
+        }, 3000);
+      }
+    }
+  }),
+  withContext({ addNotification: PropTypes.func }, ({ insertNotification }) => ({
+    addNotification: insertNotification
   })),
   pure
 )(Notifications);

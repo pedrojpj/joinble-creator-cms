@@ -1,4 +1,4 @@
-import { compose, withState, lifecycle, getContext, pure } from 'recompose';
+import { compose, withState, getContext, pure } from 'recompose';
 import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
 import PropTypes from 'prop-types';
@@ -68,9 +68,12 @@ export default compose(
         }
 
         if (login.token) {
-          addNotification({ message: `${translations.WELCOME}, ${login.user.name}` });
           LocalStorage.set('AUTH_TOKEN', login.token.token);
           router.push('/cms/home');
+          addNotification(
+            { message: `${translations.WELCOME}, ${login.user.name}`, type: 'info' },
+            3000
+          );
         }
       });
     }

@@ -1,6 +1,7 @@
-import { compose, withState, pure } from 'recompose';
+import { compose, withState, getContext, pure } from 'recompose';
 import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
+import PropTypes from 'prop-types';
 
 import { withMutation, withAnimation } from '../../hoc';
 import Login from '../../components/Login';
@@ -9,6 +10,7 @@ import { animationAuth, LocalStorage } from '../../utils';
 export default compose(
   withState('errorMessage', 'setErrorMessage', ({ translations }) => translations.ERROR_FORM),
   withAnimation(animationAuth, { transform: 'translateY(-10em)' }),
+  getContext({ addNotification: PropTypes.func }),
   withForm(
     {
       email: {
@@ -21,7 +23,14 @@ export default compose(
         required: true
       }
     },
-    ({ router, errorMessage, setErrorMessage, formSetError, translations }) => form => {
+    ({
+      router,
+      errorMessage,
+      setErrorMessage,
+      formSetError,
+      translations,
+      addNotification
+    }) => form => {
       withMutation(
         graphql`
           mutation LoginMutation($login: LoginInput!) {
@@ -61,6 +70,10 @@ export default compose(
         if (login.token) {
           LocalStorage.set('AUTH_TOKEN', login.token.token);
           router.push('/cms/home');
+          addNotification(
+            { message: `${translations.WELCOME}, ${login.user.name}`, type: 'info' },
+            3000
+          );
         }
       });
     }

@@ -1,0 +1,14 @@
+.notificationCenter {
+  background: #fafafa;
+  position: relative;
+  overflow: hidden;
+  height: 0;
+  box-shadow: inset 0px -7px 5px 0px rgba(50, 50, 50, 0.2);
+  z-index: 2;
+}
+
+.notificationCenter .container {
+  padding: 20px;
+  width: 980px;
+  margin: 0 auto;
+}

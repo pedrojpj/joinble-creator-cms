@@ -1,6 +1,7 @@
-import { compose, withState, withStateHandlers, lifecycle, pure } from 'recompose';
+import { compose, withState, withStateHandlers, getContext, lifecycle, pure } from 'recompose';
 import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
+import PropTypes from 'prop-types';
 
 import { withQuery, withAnimation, withMutation } from '../../hoc';
 import ChangePassword from '../../components/ChangePassword';
@@ -24,6 +25,7 @@ export default compose(
       }
     }
   }),
+  getContext({ addNotification: PropTypes.func }),
   withState('errorMessage', 'setErrorMessage', ({ translations }) => translations.ERROR_FORM),
   withStateHandlers(
     ({ translations }) => ({
@@ -59,7 +61,8 @@ export default compose(
       formSetError,
       showAdvice,
       setAdvice,
-      translations
+      translations,
+      addNotification
     }) => form => {
       if (form.newPassword !== form.repeatNewPassword) {
         setTimeout(() => {
@@ -93,7 +96,7 @@ export default compose(
           }
 
           if (data.status) {
-            setAdvice(translations.CHANGE_PASSWORD_OK);
+            addNotification({ message: translations.CHANGE_PASSWORD_OK, type: 'info' }, 3000);
             showAdvice(true);
             resetForm();
           }

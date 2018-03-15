@@ -1,6 +1,7 @@
-import { compose, withState, withStateHandlers, pure } from 'recompose';
+import { compose, withState, withStateHandlers, getContext, pure } from 'recompose';
 import { graphql } from 'react-relay';
 import { withForm, withModal } from 'recompose-extends';
+import PropTypes from 'prop-types';
 
 import { withMutation, withAnimation, withQuery } from '../../hoc';
 import { animationAuth, LocalStorage } from '../../utils';
@@ -27,6 +28,7 @@ export default compose(
       }
     `
   ),
+  getContext({ addNotification: PropTypes.func }),
   withForm(
     {
       name: {
@@ -57,7 +59,14 @@ export default compose(
         required: true
       }
     },
-    ({ router, setErrorMessage, errorMessage, formSetError, translations }) => form => {
+    ({
+      router,
+      setErrorMessage,
+      errorMessage,
+      formSetError,
+      translations,
+      addNotification
+    }) => form => {
       withMutation(
         graphql`
           mutation CreateUserMutation($user: UserInput!) {
@@ -97,6 +106,13 @@ export default compose(
         if (createUser.token) {
           LocalStorage.set('AUTH_TOKEN', createUser.token.token);
           router.push('/cms/home');
+          addNotification(
+            {
+              message: `${translations.WELCOME}, ${createUser.user.name}`,
+              type: 'info'
+            },
+            3000
+          );
         }
       });
     }

@@ -55,27 +55,31 @@ export default compose(
           }
         `,
         { login: form }
-      ).then(({ login }) => {
-        let newError = translations.ERROR_FORM + '<br />';
-        if (login.errors) {
-          login.errors.map(error => {
-            newError += `- ${error.key}: ${error.value}`;
-            formSetError(error.key);
-            return error;
-          });
+      )
+        .then(({ login }) => {
+          let newError = translations.ERROR_FORM + '<br />';
+          if (login.errors) {
+            login.errors.map(error => {
+              newError += `- ${error.key}: ${error.value}`;
+              formSetError(error.key);
+              return error;
+            });
 
-          setErrorMessage(newError);
-        }
+            setErrorMessage(newError);
+          }
 
-        if (login.token) {
-          LocalStorage.set('AUTH_TOKEN', login.token.token);
-          router.push('/cms/home');
-          addNotification(
-            { message: `${translations.WELCOME}, ${login.user.name}`, type: 'info' },
-            3000
-          );
-        }
-      });
+          if (login.token) {
+            LocalStorage.set('AUTH_TOKEN', login.token.token);
+            router.push('/cms/home');
+            addNotification(
+              { message: `${translations.WELCOME}, ${login.user.name}`, type: 'info' },
+              3000
+            );
+          }
+        })
+        .catch(error => {
+          router.push({ pathname: '/error', state: { error } });
+        });
     }
   ),
   pure

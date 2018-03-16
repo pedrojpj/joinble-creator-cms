@@ -11,8 +11,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 if (process.env.NODE_ENV === 'development') {
   const options = {
-    shouldLog: true,
-    port: 3000
+    shouldLog: false
   };
 
   registerObserver(options);

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { QueryRenderer } from 'react-relay';
 import environment from '../environment';
 
+import { Error } from '../containers';
+
 const invariant = () => {
   if (!environment) {
     throw new Error('Relay environment has not been declared.');
@@ -25,6 +27,10 @@ export const withQuery = (rootQuery, variables) => BaseComponent =>
           render={({ error, props }) => {
             if (!props && !error) {
               return null;
+            }
+
+            if (error) {
+              return <Error code={error.code} error={error} {...this.props} />;
             }
 
             return <BaseComponent {...props} {...this.props} error={error} />;

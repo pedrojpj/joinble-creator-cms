@@ -1,5 +1,9 @@
+import withTranslations from './withTranslations';
+import withAuth from './withAuth';
+import withAnimation from './withAnimation';
+
 export * from './withQuery';
 export * from './withMutation';
 export * from './withAuth';
-export * from './withAnimation';
-export * from './withTranslations';
+
+export { withTranslations, withAuth, withAnimation };

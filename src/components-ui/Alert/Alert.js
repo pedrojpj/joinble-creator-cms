@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose, pure } from 'recompose';
-import { withAnimation } from '../../hoc';
+import withAnimation from '../../hoc/withAnimation';
 
 export const Alert = ({ message, type, onClose, show, children }) => (
   <div className={'alert alert-' + type}>

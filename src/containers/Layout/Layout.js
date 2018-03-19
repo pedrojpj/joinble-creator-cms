@@ -1,8 +1,14 @@
-import { compose, pure } from 'recompose';
+import { compose, lifecycle, pure } from 'recompose';
 
 import { Layout } from '../../components/Layout';
 import withTranslations from '../../hoc/withTranslations';
 
-console.log(withTranslations);
-
-export default compose(withTranslations(), pure)(Layout);
+export default compose(
+  withTranslations(),
+  lifecycle({
+    componentDidMount() {
+      console.log(this.props);
+    }
+  }),
+  pure
+)(Layout);

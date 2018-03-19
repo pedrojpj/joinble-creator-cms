@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Mon Mar 12 2018 12:06:56 GMT+0100 (CET)
+# timestamp: Mon Mar 19 2018 12:38:34 GMT+0100 (CET)
 
 """This represent a App"""
 type App {
@@ -107,8 +107,7 @@ type forgetPassword {
 }
 
 type getUser {
-  name: String
-  email: String
+  user: User
 }
 
 """This represent a Image"""
@@ -185,7 +184,6 @@ type Query {
   page(id: ID!): Page
   apps: [App]
   app(id: ID!): App
-  users: [User]
   getUser: getUser
   checkUser: checkUser
   checkRecoverPasswordToken(token: String!): checkRevocerPasswordToken
@@ -236,6 +234,7 @@ input UserInput {
   city: String!
   country: String!
   password: String!
+  conditions: Boolean!
 }
 
 """This represent a Widget"""

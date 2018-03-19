@@ -37,6 +37,7 @@ export default createFarceRouter({
         <Route path="/change-password/:token" Component={ChangePassword} />
       </Route>
       <Redirect from="/" to="/cms/home" />
+      <Route path="/error" Component={Error} />
     </Route>
   ),
   renderError: ({ error, ...rest }) => (

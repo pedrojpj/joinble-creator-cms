@@ -91,30 +91,34 @@ export default compose(
           }
         `,
         { user: form }
-      ).then(({ createUser }) => {
-        let newError = translations.ERROR_FORM + '<br />';
-        if (createUser.errors) {
-          createUser.errors.map(error => {
-            newError += `- ${error.key}: ${error.value}`;
-            formSetError(error.key);
-            return error;
-          });
+      )
+        .then(({ createUser }) => {
+          let newError = translations.ERROR_FORM + '<br />';
+          if (createUser.errors) {
+            createUser.errors.map(error => {
+              newError += `- ${error.key}: ${error.value}`;
+              formSetError(error.key);
+              return error;
+            });
 
-          setErrorMessage(newError);
-        }
+            setErrorMessage(newError);
+          }
 
-        if (createUser.token) {
-          LocalStorage.set('AUTH_TOKEN', createUser.token.token);
-          router.push('/cms/home');
-          addNotification(
-            {
-              message: `${translations.WELCOME}, ${createUser.user.name}`,
-              type: 'info'
-            },
-            3000
-          );
-        }
-      });
+          if (createUser.token) {
+            LocalStorage.set('AUTH_TOKEN', createUser.token.token);
+            router.push('/cms/home');
+            addNotification(
+              {
+                message: `${translations.WELCOME}, ${createUser.user.name}`,
+                type: 'info'
+              },
+              3000
+            );
+          }
+        })
+        .catch(error => {
+          router.push({ pathname: '/error', state: { error } });
+        });
     }
   ),
   withModal(

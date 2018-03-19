@@ -1,6 +1,6 @@
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 
-import { LocalStorage } from './utils';
+import { LocalStorage, CustomError } from './utils';
 
 function fetchQuery(operation, variables) {
   const options = {
@@ -22,8 +22,10 @@ function fetchQuery(operation, variables) {
     .then(response => {
       return response.json();
     })
-    .catch(error => {
-      console.error(error);
+    .catch(response => {
+      const error = new CustomError(response);
+      error.code = 503;
+      throw error;
     });
 }
 

@@ -2,7 +2,7 @@ import { createFactory, Component } from 'react';
 
 import { LocalStorage } from '../utils';
 
-export const withTranslations = () => BaseComponent => {
+const withTranslations = () => BaseComponent => {
   const factory = createFactory(BaseComponent);
 
   class WithTranslations extends Component {
@@ -63,3 +63,5 @@ export const withTranslations = () => BaseComponent => {
 
   return WithTranslations;
 };
+
+export default withTranslations;

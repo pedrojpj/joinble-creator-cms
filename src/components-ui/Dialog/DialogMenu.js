@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { compose, pure } from 'recompose';
 import uuid from 'uuid/v4';
 
-import { withAnimation } from '../../hoc';
+import withAnimation from '../../hoc/withAnimation';
 import { DialogModel } from './DialogModel';
 
 const DialogMenu = ({ items }) => {

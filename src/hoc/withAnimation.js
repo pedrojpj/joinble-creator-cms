@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 const anime = typeof window !== 'undefined' ? require('animejs') : _ => _;
 
-export const withAnimation = (input, initialStyle) => BaseComponent => {
+const withAnimation = (input, initialStyle) => BaseComponent => {
   class WithAnimation extends Component {
     constructor(props) {
       super(props);
@@ -55,3 +55,5 @@ export const withAnimation = (input, initialStyle) => BaseComponent => {
 
   return WithAnimation;
 };
+
+export default withAnimation;

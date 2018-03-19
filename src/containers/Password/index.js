@@ -51,24 +51,28 @@ export default compose(
           }
         `,
         { email: form.email }
-      ).then(({ forgetPassword: data }) => {
-        let newError = translations.ERROR_FORM + '<br />';
-        if (data.errors) {
-          data.errors.map(error => {
-            newError += `- ${error.key}: ${error.value}`;
-            formSetError(error.key);
-            return error;
-          });
+      )
+        .then(({ forgetPassword: data }) => {
+          let newError = translations.ERROR_FORM + '<br />';
+          if (data.errors) {
+            data.errors.map(error => {
+              newError += `- ${error.key}: ${error.value}`;
+              formSetError(error.key);
+              return error;
+            });
 
-          setErrorMessage(newError);
-        }
+            setErrorMessage(newError);
+          }
 
-        if (data.status) {
-          addNotification({ message: translations.PASSWORD_OK, type: 'info' }, 3000);
-          hideAdvice();
-          resetForm();
-        }
-      });
+          if (data.status) {
+            addNotification({ message: translations.PASSWORD_OK, type: 'info' }, 3000);
+            hideAdvice();
+            resetForm();
+          }
+        })
+        .catch(error => {
+          router.push({ pathname: '/error', state: { error } });
+        });
     }
   ),
   pure

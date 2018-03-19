@@ -17,7 +17,7 @@ class RedirectLogin extends Component {
   }
 }
 
-export const withAuth = () => BaseComponent =>
+const withAuth = () => BaseComponent =>
   class RelayRoot extends Component {
     static displayName = `RelayRoot(${BaseComponent.displayName})`;
 
@@ -47,3 +47,5 @@ export const withAuth = () => BaseComponent =>
       );
     }
   };
+
+export default withAuth;

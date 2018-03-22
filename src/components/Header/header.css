@@ -1,16 +1,33 @@
-.header {
-  background: #111112;
-  height: 30px;
+.icon {
+  display: inline-block;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  line-height: 35px;
+  position: relative;
+  overflow: hidden;
+  transition: border 0.2s ease-in;
+  cursor: pointer;
+  text-align: center;
 }
 
-.logo {
-  padding: 0.5rem;
-  float: left;
+.icon img {
+  height: 110%;
+  position: absolute;
+  right: -50%;
+  transition: all 0.3s ease-in-out;
 }
 
-.logo img {
-  height: 5.5rem;
+.icon:hover {
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
-.actions {
+.icon:hover img {
+  filter: brightness(110%);
+}
+
+.navItems {
+  display: inline-block;
+  margin: 17px 5px;
 }

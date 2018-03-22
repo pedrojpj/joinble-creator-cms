@@ -1,5 +1,6 @@
 import React from 'react';
 import { Resolver } from 'found-relay';
+import { compose, pure, lifecycle } from 'recompose';
 
 import Routes from './routes';
 import environment from './environment';

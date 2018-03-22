@@ -18,8 +18,8 @@ export default compose(
     }
   `),
   mapProps(({ getUser, ...rest }) => ({
-    email: getUser.user.email,
-    name: getUser.user.name,
+    email: getUser ? getUser.user.email : null,
+    name: getUser ? getUser.user.name : null,
     ...rest
   })),
   withHandlers({
@@ -43,7 +43,7 @@ export default compose(
       changeLanguage(value);
     }
   }),
-  withProps(({ translations, onLogout, router }) => ({
+  withProps(({ translations, onLogout, router, changeLanguage }) => ({
     userMenu: [
       {
         name: translations.PROFILE,
@@ -52,6 +52,16 @@ export default compose(
       {
         name: translations.LOGOUT,
         onClick: onLogout
+      }
+    ],
+    languageMenu: [
+      {
+        name: translations.SPANISH,
+        onClick: () => changeLanguage('es')
+      },
+      {
+        name: translations.ENGLISH,
+        onClick: () => changeLanguage('en')
       }
     ]
   })),

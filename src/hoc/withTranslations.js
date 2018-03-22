@@ -1,5 +1,4 @@
 import { createFactory, Component } from 'react';
-
 import { LocalStorage } from '../utils';
 
 const withTranslations = () => BaseComponent => {
@@ -16,6 +15,8 @@ const withTranslations = () => BaseComponent => {
         translations: [],
         currentLanguage: this.currentLanguage()
       };
+
+      this.getIconCurrentLanguage();
 
       import(`../translations/${this.state.currentLanguage}`).then(data => {
         this.setState(() => ({
@@ -37,9 +38,21 @@ const withTranslations = () => BaseComponent => {
       }
     };
 
+    getIconCurrentLanguage = () => {
+      const icon = this.currentLanguage() === 'en' ? 'gb' : this.currentLanguage();
+
+      return import('svg-country-flags/svg/' + icon + '.svg').then(icon => {
+        this.setState({
+          iconCurrentLanguage: icon
+        });
+      });
+    };
+
     changeLanguage = language => {
       import(`../translations/${language}`).then(data => {
         LocalStorage.set('LANGUAGE', language);
+
+        this.getIconCurrentLanguage();
 
         this.setState(() => ({
           currentLanguage: language,
@@ -55,6 +68,7 @@ const withTranslations = () => BaseComponent => {
           ...this.props,
           translations: this.state.translations,
           currentLanguage: this.state.currentLanguage,
+          iconCurrentLanguage: this.state.iconCurrentLanguage,
           changeLanguage: this.changeLanguage
         })
       );

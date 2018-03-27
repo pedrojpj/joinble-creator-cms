@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Alert, Input } from '../../components-ui';
+import { HeaderAuth } from '../Header';
 
 const ChangePassword = ({
   formError,
@@ -17,7 +18,7 @@ const ChangePassword = ({
 }) => (
   <div className="panel panel-color panel-primary panel-pages">
     <div className="panel-body">
-      <h3 className="text-center m-t-0 m-b-15">logo</h3>
+      <HeaderAuth />
       <h4 className="text-muted text-center m-t-0">
         <b>{translations.CHANGE_PASSWORD}</b>
       </h4>
@@ -57,7 +58,11 @@ const ChangePassword = ({
 
         <div className="form-group text-center m-t-40">
           <div className="col-xs-12">
-            <button onClick={submitForm} className="btn btn-primary btn-block btn-lg" type="submit">
+            <button
+              onClick={submitForm}
+              className="btn btn-primary btn-block btn-lg"
+              type="submit"
+            >
               {translations.CHANGE_PASSWORD}
             </button>
           </div>

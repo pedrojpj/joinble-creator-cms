@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Alert, Input } from '../../components-ui';
+import { HeaderAuth } from '../Header';
 
 const Password = ({
   formError,
@@ -13,11 +14,12 @@ const Password = ({
   updateForm,
   formFieldsWithErrors,
   submitForm,
-  translations
+  translations,
+  router
 }) => (
   <div className="panel panel-color panel-primary panel-pages">
     <div className="panel-body">
-      <h3 className="text-center m-t-0 m-b-15">logo</h3>
+      <HeaderAuth back onBack={() => router.push('/auth/login')} />
       <h4 className="text-muted text-center m-t-0">
         <b>{translations.RESET_PASSWORD}</b>
       </h4>
@@ -47,7 +49,11 @@ const Password = ({
 
         <div className="form-group text-center m-t-40">
           <div className="col-xs-12">
-            <button onClick={submitForm} className="btn btn-primary btn-block btn-lg" type="submit">
+            <button
+              onClick={submitForm}
+              className="btn btn-primary btn-block btn-lg"
+              type="submit"
+            >
               {translations.RECOVER_PASSWORD}
             </button>
           </div>

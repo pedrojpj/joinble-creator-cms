@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'found';
 
 import { Alert, Input } from '../../components-ui';
+import { HeaderAuth } from '../Header';
 
 const Login = ({
   form,
@@ -15,7 +16,7 @@ const Login = ({
 }) => (
   <div className="panel panel-color panel-primary panel-pages">
     <div className="panel-body">
-      <h3 className="text-center m-t-0 m-b-15">logo</h3>
+      <HeaderAuth />
       <h4 className="text-muted text-center m-t-0">
         <b>{translations.SIGN_IN}</b>
       </h4>
@@ -49,7 +50,11 @@ const Login = ({
 
         <div className="form-group text-center m-t-40">
           <div className="col-xs-12">
-            <button onClick={submitForm} className="btn btn-primary btn-block btn-lg" type="submit">
+            <button
+              onClick={submitForm}
+              className="btn btn-primary btn-block btn-lg"
+              type="submit"
+            >
               {translations.LOG_IN}
             </button>
           </div>
@@ -57,12 +62,21 @@ const Login = ({
 
         <div className="form-group m-t-30 m-b-0">
           <div className="col-sm-7">
-            <Link to="/auth/forgotten-password" id="forgotten-password" className="text-muted">
-              <i className="fa fa-lock m-r-5" /> {translations.FORGOT_YOUR_PASSWORD}
+            <Link
+              to="/auth/forgotten-password"
+              id="forgotten-password"
+              className="text-muted"
+            >
+              <i className="fa fa-lock m-r-5" />{' '}
+              {translations.FORGOT_YOUR_PASSWORD}
             </Link>
           </div>
           <div className="col-sm-5 text-right">
-            <Link to="/auth/create-user" id="create-user" className="text-muted">
+            <Link
+              to="/auth/create-user"
+              id="create-user"
+              className="text-muted"
+            >
               {translations.CREATE_AN_ACCOUNT}
             </Link>
           </div>

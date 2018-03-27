@@ -1,8 +1,15 @@
-import { compose, withHandlers, withProps, setDisplayName, pure, mapProps } from 'recompose';
+import {
+  compose,
+  withHandlers,
+  withProps,
+  setDisplayName,
+  pure,
+  mapProps
+} from 'recompose';
 import { graphql } from 'react-relay';
 
 import { withQuery, withMutation } from '../../hoc';
-import Header from '../../components/Header';
+import { Header } from '../../components/Header';
 import { LocalStorage } from '../../utils';
 
 export default compose(

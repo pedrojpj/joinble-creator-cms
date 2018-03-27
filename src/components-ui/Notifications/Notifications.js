@@ -1,6 +1,13 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { compose, pure, withContext, withProps, withStateHandlers, withHandlers } from 'recompose';
+import {
+  compose,
+  pure,
+  withContext,
+  withProps,
+  withStateHandlers,
+  withHandlers
+} from 'recompose';
 import uuid from 'uuid/v4';
 import anime from 'animejs';
 
@@ -10,14 +17,26 @@ import { RefsStore } from '../../utils';
 
 import styles from './styles.css';
 
-export const Notifications = ({ notifications, children, removeNotification, refs }) => (
+export const Notifications = ({
+  notifications,
+  children,
+  removeNotification,
+  refs
+}) => (
   <Fragment>
-    <div className={styles.notificationCenter} ref={r => refs.store('center', r)}>
+    <div
+      className={styles.notificationCenter}
+      ref={r => refs.store('center', r)}
+    >
       <div className={styles.container}>
         {notifications
           .filter(notification => notification.primary)
           .map(notification => (
-            <Notification key={notification.id} {...notification} onRemove={removeNotification} />
+            <Notification
+              key={notification.id}
+              {...notification}
+              onRemove={removeNotification}
+            />
           ))}
       </div>
     </div>
@@ -39,17 +58,21 @@ export default compose(
     animationShow: ({ refs }) => () => {
       anime({
         targets: refs.get('center'),
-        height: [0, 100],
+        translateX: [500, 0],
         elasticity: 50
       });
     },
-    animationHide: ({ refs }) => () => {
-      anime({
-        targets: refs.get('center'),
-        height: [100, 0],
-        elasticity: 50
-      });
-    }
+    animationHide: ({ refs }) => () =>
+      new Promise((resolve, reject) => {
+        anime({
+          targets: refs.get('center'),
+          translateX: [0, 500],
+          elasticity: 50,
+          complete: () => {
+            resolve(true);
+          }
+        });
+      })
   }),
   withStateHandlers(
     { notifications: [] },
@@ -59,34 +82,47 @@ export default compose(
 
         const newNotifications = notifications.map(
           notification =>
-            notification.primary ? { ...notification, primary: false } : notification
+            notification.primary
+              ? { ...notification, primary: false }
+              : notification
         );
 
         return {
-          notifications: [...newNotifications, { ...value, id: uuid(), primary: true }]
+          notifications: [
+            ...newNotifications,
+            { ...value, id: uuid(), primary: true }
+          ]
         };
       },
-      removeNotification: ({ notifications }, { animationHide }) => id => {
-        animationHide();
-        return {
-          notifications: notifications.filter(notification => notification.id !== id)
-        };
-      }
+      deleteNotification: ({ notifications }) => id => ({
+        notifications: notifications.filter(
+          notification => notification.id !== id
+        )
+      })
     }
   ),
   withHandlers({
-    insertNotification: ({ addNotification, removeNotification }) => (notification, time) => {
+    insertNotification: ({ addNotification, deleteNotification }) => (
+      notification,
+      time
+    ) => {
       addNotification(notification);
 
       if (time) {
         setTimeout(() => {
-          removeNotification(notification);
+          deleteNotification(notification);
         }, 3000);
       }
+    },
+    removeNotification: ({ deleteNotification, animationHide }) => id => {
+      animationHide().then(() => deleteNotification(id));
     }
   }),
-  withContext({ addNotification: PropTypes.func }, ({ insertNotification }) => ({
-    addNotification: insertNotification
-  })),
+  withContext(
+    { addNotification: PropTypes.func },
+    ({ insertNotification }) => ({
+      addNotification: insertNotification
+    })
+  ),
   pure
 )(Notifications);

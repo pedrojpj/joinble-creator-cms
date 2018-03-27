@@ -10,12 +10,18 @@ export default compose(
   withQuery(graphql`
     query HeaderQuery {
       getUser {
-        name
-        email
+        user {
+          name
+          email
+        }
       }
     }
   `),
-  mapProps(({ getUser, ...rest }) => ({ ...getUser, ...rest })),
+  mapProps(({ getUser, ...rest }) => ({
+    email: getUser ? getUser.user.email : null,
+    name: getUser ? getUser.user.name : null,
+    ...rest
+  })),
   withHandlers({
     onLogout: ({ router }) => () => {
       withMutation(
@@ -37,15 +43,25 @@ export default compose(
       changeLanguage(value);
     }
   }),
-  withProps(({ translations, onLogout }) => ({
+  withProps(({ translations, onLogout, router, changeLanguage }) => ({
     userMenu: [
       {
         name: translations.PROFILE,
-        onClick: () => {}
+        onClick: () => router.push('/cms/profile')
       },
       {
         name: translations.LOGOUT,
         onClick: onLogout
+      }
+    ],
+    languageMenu: [
+      {
+        name: translations.SPANISH,
+        onClick: () => changeLanguage('es')
+      },
+      {
+        name: translations.ENGLISH,
+        onClick: () => changeLanguage('en')
       }
     ]
   })),

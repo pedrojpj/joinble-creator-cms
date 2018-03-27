@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Mon Mar 12 2018 12:06:56 GMT+0100 (CET)
+# timestamp: Tue Mar 27 2018 11:25:52 GMT+0200 (CEST)
 
 """This represent a App"""
 type App {
@@ -107,8 +107,7 @@ type forgetPassword {
 }
 
 type getUser {
-  name: String
-  email: String
+  user: User
 }
 
 """This represent a Image"""
@@ -139,6 +138,7 @@ type Mutation {
   deleteApp(id: ID!): deleteApp
   login(login: LoginInput): Login
   createUser(user: UserInput!): createUser
+  updateUser(user: ProfileInput!): updateUser
   forgetPassword(email: String!): forgetPassword
   logout(token: String!): logout
   changePassword(token: String!, password: String!): changePassword
@@ -180,12 +180,19 @@ enum platforms {
   ios
 }
 
+input ProfileInput {
+  name: String!
+  email: String!
+  address: String!
+  city: String!
+  country: String!
+}
+
 type Query {
   pages(app: ID!): [Page]
   page(id: ID!): Page
   apps: [App]
   app(id: ID!): App
-  users: [User]
   getUser: getUser
   checkUser: checkUser
   checkRecoverPasswordToken(token: String!): checkRevocerPasswordToken
@@ -219,6 +226,11 @@ input TranslationInput {
   pt: String
 }
 
+type updateUser {
+  errors: [ErrorSchema]
+  user: User
+}
+
 """This represent a User"""
 type User {
   id: ID!
@@ -236,6 +248,7 @@ input UserInput {
   city: String!
   country: String!
   password: String!
+  conditions: Boolean!
 }
 
 """This represent a Widget"""

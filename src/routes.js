@@ -19,7 +19,8 @@ import {
   Password,
   ChangePassword,
   Layout,
-  LayoutAuth
+  LayoutAuth,
+  Profile
 } from './containers';
 
 export default createFarceRouter({
@@ -29,6 +30,7 @@ export default createFarceRouter({
     <Route path="/">
       <Route path="/cms" Component={Layout}>
         <Route path="/home" Component={Home} />
+        <Route path="/profile" Component={Profile} />
       </Route>
       <Route path="/auth" Component={LayoutAuth}>
         <Route path="/login" Component={Login} />

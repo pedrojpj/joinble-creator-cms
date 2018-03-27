@@ -12,7 +12,8 @@ export const translations = {
   ADVICE_CHANGE_PASSWORD:
     'Enter the new password, remember that it must have at least one numeric character and another in capital letters.',
   TWO_PASSWORD_MUST_MATCH: 'The two passwords must match',
-  CHANGE_PASSWORD_OK: 'Your password has been changed correctly. Please login in again',
+  CHANGE_PASSWORD_OK:
+    'Your password has been changed correctly. Please login in again',
   SIGN_UP: 'Sign Up',
   ENTER_YOUR_NAME: 'Enter your name',
   ENTER_YOUR_ADDRESS: 'Enter your address',
@@ -20,7 +21,8 @@ export const translations = {
   ENTER_YOUR_CITY: 'Enter your city',
   CREATE_USER: 'Create User',
   ADVICE_PASSWORD: 'Enter your Email and instructions will be sent to you!',
-  PASSWORD_OK: 'We have sent you an email with instructions to reset your password',
+  PASSWORD_OK:
+    'We have sent you an email with instructions to reset your password',
   RESET_PASSWORD: 'Reset Password',
   RECOVER_PASSWORD: 'Recover password',
   LOGOUT: 'Logout',
@@ -40,5 +42,11 @@ export const translations = {
   ERRORS: {
     500: 'Generic error',
     503: 'Service Unavailable'
-  }
+  },
+  NAME: 'Name',
+  ADDRESS: 'Address',
+  COUNTRY: 'Country',
+  CITY: 'Ciudad',
+  SAVE: 'Save',
+  PROFILE_UPDATE: 'Your user has been updated correctly'
 };

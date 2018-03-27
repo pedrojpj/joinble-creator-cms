@@ -7305,9 +7305,9 @@ readdirp@^2.0.0:
     readable-stream "^2.0.2"
     set-immediate-shim "^1.0.1"
 
-recompose-extends@1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/recompose-extends/-/recompose-extends-1.9.0.tgz#26dd389a099c883d99b8fa9d2443cd7c24f7669e"
+recompose-extends@1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/recompose-extends/-/recompose-extends-1.9.1.tgz#2efcd3c5f84767d225d2e2ae15956e0abaa70246"
   dependencies:
     react "^16.1.1"
     react-dom "^16.2.0"
@@ -8260,6 +8260,10 @@ supports-color@^5.2.0:
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.2.0.tgz#b0d5333b1184dd3666cbe5aa0b45c5ac7ac17a4a"
   dependencies:
     has-flag "^3.0.0"
+
+svg-country-flags@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/svg-country-flags/-/svg-country-flags-1.2.1.tgz#a9d995bb66771304e45a4d51b325b55cdeed919e"
 
 svgo@^0.7.0:
   version "0.7.2"

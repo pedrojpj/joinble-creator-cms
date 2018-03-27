@@ -5,9 +5,12 @@ import { Header } from '../../containers';
 
 export const Layout = ({ children, ...rest }) => {
   return (
-    <div>
+    <div id="wrapper">
       <Header {...rest} />
-      {cloneElement(children, { ...rest })}
+
+      <div className="content-page">
+        <div className="content">{cloneElement(children, { ...rest })}</div>
+      </div>
     </div>
   );
 };

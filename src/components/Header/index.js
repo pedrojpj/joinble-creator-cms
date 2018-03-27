@@ -26,7 +26,11 @@ const Header = ({
             </span>
           </Dialog>
 
-          <Dialog items={languageMenu} className={styles.navItems} position="right">
+          <Dialog
+            items={languageMenu}
+            className={styles.navItems}
+            position="right"
+          >
             <span className={styles.icon} id="language">
               <img src={iconCurrentLanguage} alt={currentLanguage} />
             </span>
@@ -43,7 +47,7 @@ Header.propTypes = {
   userMenu: DialogModel,
   languageMenu: DialogModel,
   name: PropTypes.string,
-  iconCurrentLanguage: PropTypes.shape({})
+  iconCurrentLanguage: PropTypes.string
 };
 
 export default Header;

@@ -46,7 +46,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "recompose": "^0.26.0",
-    "recompose-extends": "1.9.0",
+    "recompose-extends": "1.9.1",
     "style-loader": "0.19.0",
     "svg-country-flags": "^1.2.1",
     "sw-precache-webpack-plugin": "0.11.4",
@@ -66,12 +66,8 @@
     "cypress:open": "cypress open"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
+    "collectCoverageFrom": ["src/**/*.{js,jsx,mjs}"],
+    "setupFiles": ["<rootDir>/config/polyfills.js"],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
@@ -81,11 +77,10 @@
     "transform": {
       "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+      "^(?!.*\\.(js|jsx|mjs|css|json)$)":
+        "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
-    ],
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
@@ -100,12 +95,8 @@
     ]
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ],
-    "plugins": [
-      "relay"
-    ]
+    "presets": ["react-app"],
+    "plugins": ["relay"]
   },
   "eslintConfig": {
     "extends": "react-app"

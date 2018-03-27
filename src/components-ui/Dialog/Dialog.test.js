@@ -33,7 +33,11 @@ describe('Dialog Component UI', () => {
   });
 
   it('should click on the button and toggle the open state', () => {
-    const wrapper = mount(<DialogComponent items={DialogItems}>Button</DialogComponent>);
+    const wrapper = mount(
+      <DialogComponent items={DialogItems}>
+        <span>Button</span>
+      </DialogComponent>
+    );
     wrapper.find('span').simulate('click');
     expect(wrapper.find(Dialog).props().open).toBeTruthy();
     wrapper.find('span').simulate('click');
@@ -41,7 +45,11 @@ describe('Dialog Component UI', () => {
   });
 
   it('should show two items when clicking on the button', () => {
-    const wrapper = mount(<DialogComponent items={DialogItems}>Button</DialogComponent>);
+    const wrapper = mount(
+      <DialogComponent items={DialogItems}>
+        <span>Button</span>
+      </DialogComponent>
+    );
     wrapper.find('span').simulate('click');
     expect(wrapper.find(Dialog).props().open).toBeTruthy();
     expect(wrapper.find('li').length).toBe(2);
@@ -49,7 +57,9 @@ describe('Dialog Component UI', () => {
 
   it('should add a separator between items', () => {
     const wrapper = mount(
-      <DialogComponent items={DialogItemsWithSeparator}>Button</DialogComponent>
+      <DialogComponent items={DialogItemsWithSeparator}>
+        <span>Button</span>
+      </DialogComponent>
     );
     wrapper.find('span').simulate('click');
     expect(wrapper.find('li.divider').exists()).toBeTruthy();

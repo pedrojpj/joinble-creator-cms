@@ -31,3 +31,30 @@
   display: inline-block;
   margin: 17px 5px;
 }
+
+.topBarCenter {
+  text-align: center;
+}
+
+.headerAuth {
+  text-align: center;
+  position: relative;
+}
+
+.buttonBack {
+  background: transparent;
+  font-size: 20px;
+  border: 0;
+  cursor: pointer;
+  width: 30px !important;
+  height: 30px !important;
+  fill: #9fa2a7 !important;
+  position: absolute;
+  left: 0;
+  top: 30px;
+  transition: fill 0.3s ease-in;
+}
+
+.buttonBack:hover {
+  fill: #337ab7 !important;
+}

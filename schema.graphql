@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Wed Apr 04 2018 16:10:36 GMT+0200 (CEST)
+# timestamp: Tue Mar 27 2018 17:08:10 GMT+0200 (CEST)
 
 """This represent a App"""
 type App {
@@ -30,7 +30,7 @@ type changePassword {
   status: Boolean
 }
 
-type checkRecoverPasswordToken {
+type checkRevocerPasswordToken {
   status: Boolean
 }
 
@@ -113,13 +113,7 @@ type getUser {
 """This represent a Image"""
 type Image {
   name: String
-  image: String
-  id: String
-}
-
-input ImageInput {
-  image: String!
-  id: String!
+  url: String
 }
 
 type Login {
@@ -148,7 +142,6 @@ type Mutation {
   forgetPassword(email: String!): forgetPassword
   logout(token: String!): logout
   changePassword(token: String!, password: String!): changePassword
-  upload(image: ImageInput): Upload
 }
 
 """Options of Content"""
@@ -200,7 +193,6 @@ input ProfileInput {
   address: String!
   city: String!
   country: String!
-  avatar: String!
 }
 
 type Query {
@@ -210,7 +202,7 @@ type Query {
   app(id: ID!): App
   getUser: getUser
   checkUser: checkUser
-  checkRecoverPasswordToken(token: String!): checkRecoverPasswordToken
+  checkRecoverPasswordToken(token: String!): checkRevocerPasswordToken
   platforms: [Platform]
   countries(language: String): [Country]
   languages: [String]
@@ -247,11 +239,6 @@ type updateUser {
   user: User
 }
 
-type Upload {
-  errors: [ErrorSchema]
-  image: Image
-}
-
 """This represent a User"""
 type User {
   id: ID!
@@ -260,7 +247,6 @@ type User {
   city: String
   country: String
   address: String
-  avatar: Image
 }
 
 input UserInput {

@@ -8,4 +8,14 @@ import ChangePassword from './ChangePassword';
 import Profile from './Profile';
 
 export * from './Layout';
-export { Home, Login, Header, Error, CreateUser, Password, ChangePassword, Profile };
+export * from './Application';
+export {
+  Home,
+  Login,
+  Header,
+  Error,
+  CreateUser,
+  Password,
+  ChangePassword,
+  Profile
+};

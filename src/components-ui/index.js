@@ -7,8 +7,11 @@ import DropImage from './DropImage/DropImage';
 import Avatar from './Avatar/Avatar';
 import Combo from './Combo/Combo';
 import ComboItem from './Combo/ComboItem';
+import Title from './Title/Title';
+import Content from './Content/Content';
+import Panel from './Panel/Panel';
 
 export * from './Dialog/DialogModel';
 export * from './Notifications/NotificationModel';
 export * from './Notifications/Notification';
-export { Alert, Input, Dialog, Modal, Notifications, DropImage, Avatar, Combo, ComboItem };
+export { Alert, Input, Dialog, Modal, Notifications, DropImage, Avatar, Combo, ComboItem, Title, Content, Panel };

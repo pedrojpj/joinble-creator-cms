@@ -1,11 +1,4 @@
-import {
-  compose,
-  withHandlers,
-  withProps,
-  setDisplayName,
-  pure,
-  mapProps
-} from 'recompose';
+import { compose, withHandlers, withProps, setDisplayName, pure, mapProps } from 'recompose';
 import { graphql } from 'react-relay';
 
 import { withQuery, withMutation } from '../../hoc';
@@ -53,20 +46,24 @@ export default compose(
   withProps(({ translations, onLogout, router, changeLanguage }) => ({
     userMenu: [
       {
+        id: 'profile',
         name: translations.PROFILE,
         onClick: () => router.push('/cms/profile')
       },
       {
+        id: 'logout',
         name: translations.LOGOUT,
         onClick: onLogout
       }
     ],
     languageMenu: [
       {
+        id: 'spanish',
         name: translations.SPANISH,
         onClick: () => changeLanguage('es')
       },
       {
+        id: 'english',
         name: translations.ENGLISH,
         onClick: () => changeLanguage('en')
       }

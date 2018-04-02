@@ -1,13 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import {
-  compose,
-  pure,
-  withContext,
-  withProps,
-  withStateHandlers,
-  withHandlers
-} from 'recompose';
+import { compose, pure, withContext, withProps, withStateHandlers, withHandlers } from 'recompose';
 import uuid from 'uuid/v4';
 import anime from 'animejs';
 
@@ -17,26 +10,14 @@ import { RefsStore } from '../../utils';
 
 import styles from './styles.css';
 
-export const Notifications = ({
-  notifications,
-  children,
-  removeNotification,
-  refs
-}) => (
+export const Notifications = ({ notifications, children, removeNotification, refs }) => (
   <Fragment>
-    <div
-      className={styles.notificationCenter}
-      ref={r => refs.store('center', r)}
-    >
+    <div className={styles.notificationCenter} ref={r => refs.store('center', r)}>
       <div className={styles.container}>
         {notifications
           .filter(notification => notification.primary)
           .map(notification => (
-            <Notification
-              key={notification.id}
-              {...notification}
-              onRemove={removeNotification}
-            />
+            <Notification key={notification.id} {...notification} onRemove={removeNotification} />
           ))}
       </div>
     </div>
@@ -82,47 +63,42 @@ export default compose(
 
         const newNotifications = notifications.map(
           notification =>
-            notification.primary
-              ? { ...notification, primary: false }
-              : notification
+            notification.primary ? { ...notification, primary: false } : notification
         );
 
         return {
-          notifications: [
-            ...newNotifications,
-            { ...value, id: uuid(), primary: true }
-          ]
+          notifications: [...newNotifications, { ...value, id: uuid(), primary: true }]
         };
       },
+      deletePrimaryNotification: ({ notifications }) => () => ({
+        notifications: notifications.filter(notification => !notification.primary)
+      }),
       deleteNotification: ({ notifications }) => id => ({
-        notifications: notifications.filter(
-          notification => notification.id !== id
-        )
+        notifications: notifications.filter(notification => notification.id !== id)
       })
     }
   ),
   withHandlers({
-    insertNotification: ({ addNotification, deleteNotification }) => (
-      notification,
-      time
-    ) => {
+    insertNotification: ({
+      addNotification,
+      deletePrimaryNotification,
+      animationHide,
+      notifications
+    }) => (notification, time) => {
       addNotification(notification);
 
       if (time) {
         setTimeout(() => {
-          deleteNotification(notification);
-        }, 3000);
+          animationHide().then(() => deletePrimaryNotification());
+        }, time);
       }
     },
     removeNotification: ({ deleteNotification, animationHide }) => id => {
       animationHide().then(() => deleteNotification(id));
     }
   }),
-  withContext(
-    { addNotification: PropTypes.func },
-    ({ insertNotification }) => ({
-      addNotification: insertNotification
-    })
-  ),
+  withContext({ addNotification: PropTypes.func }, ({ insertNotification }) => ({
+    addNotification: insertNotification
+  })),
   pure
 )(Notifications);

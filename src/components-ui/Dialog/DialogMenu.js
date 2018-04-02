@@ -23,7 +23,7 @@ const DialogMenu = ({ items, onClickItem, position }) => {
       {items.map(item => (
         <Fragment key={uuid()}>
           {item.separator && <li className="divider" />}
-          <li>
+          <li id={item.id}>
             <a
               href="javascript:void(0)"
               onClick={() => {

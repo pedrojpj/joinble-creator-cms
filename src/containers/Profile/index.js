@@ -35,13 +35,7 @@ export default compose(
       city: { value: getUser.user.city || '' },
       country: { value: getUser.user.country || '' }
     }),
-    ({
-      translations,
-      formSetError,
-      setErrorMessage,
-      router,
-      addNotification
-    }) => form => {
+    ({ translations, formSetError, setErrorMessage, router, addNotification }) => form => {
       withMutation(
         graphql`
           mutation ProfileMutation($user: ProfileInput!) {
@@ -76,7 +70,7 @@ export default compose(
           }
 
           if (updateUser.user) {
-            addNotification({ message: translations.PROFILE_USER });
+            addNotification({ message: translations.PROFILE_UPDATE }, 3000);
           }
         })
         .catch(error => {

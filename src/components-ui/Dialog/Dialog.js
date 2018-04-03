@@ -3,17 +3,9 @@ import PropTypes from 'prop-types';
 import { compose, pure, withProps, withStateHandlers, lifecycle, withHandlers } from 'recompose';
 import classnames from 'classnames';
 
+import { RefsStore } from '../../utils';
 import DialogMenu from './DialogMenu';
 import { DialogModel } from './DialogModel';
-
-class RefsStore {
-  store(name, value) {
-    this[name] = value;
-  }
-  get(name) {
-    return this[name];
-  }
-}
 
 export const Dialog = ({ items, children, className, open, toggleOpen, refs, position }) => {
   let stylesButton = classnames({
@@ -44,7 +36,7 @@ Dialog.defaultProps = {
 };
 
 export default compose(
-  withProps({ refs: new RefsStore() }),
+  withProps({ refs: RefsStore }),
   withStateHandlers({ open: false }, { toggleOpen: ({ open }) => () => ({ open: !open }) }),
   withHandlers({
     clickOutside: ({ refs, open, toggleOpen }) => event => {

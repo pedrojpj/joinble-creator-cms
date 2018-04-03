@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Input } from '../../components-ui';
+import { Input, DropImage } from '../../components-ui';
 
 const Profile = ({ form, updateForm, submitForm, translations, countries }) => (
   <div>
@@ -15,6 +15,8 @@ const Profile = ({ form, updateForm, submitForm, translations, countries }) => (
             <div className="panel panel-primary">
               <div className="panel-body">
                 <form className="form-horizontal">
+                  <DropImage placeholder={translations.UPLOAD_AVATAR} name="avatar" />
+
                   <Input
                     type="text"
                     label={translations.NAME}
@@ -39,9 +41,7 @@ const Profile = ({ form, updateForm, submitForm, translations, countries }) => (
                   />
 
                   <div className="form-group">
-                    <label className="col-sm-2 control-label">
-                      {translations.COUNTRY}
-                    </label>
+                    <label className="col-sm-2 control-label">{translations.COUNTRY}</label>
                     <div className="col-sm-10">
                       <select
                         className="form-control"
@@ -71,11 +71,7 @@ const Profile = ({ form, updateForm, submitForm, translations, countries }) => (
 
                   <div className="form-group m-b-0">
                     <div className="col-sm-offset-2 col-sm-10">
-                      <button
-                        type="submit"
-                        className="btn btn-info"
-                        onClick={submitForm}
-                      >
+                      <button type="submit" className="btn btn-info" onClick={submitForm}>
                         {translations.SAVE}
                       </button>
                     </div>

@@ -12,8 +12,7 @@ export const translations = {
   ADVICE_CHANGE_PASSWORD:
     'Introduce la nueva contraseña, recuerda que al menos debe tener un carácter numérico y una mayúscula',
   TWO_PASSWORD_MUST_MATCH: 'Las dos contraseñas deben coincidir',
-  CHANGE_PASSWORD_OK:
-    'Tu contraseña ha cambiado correctamente. Por favor, accede de nuevo',
+  CHANGE_PASSWORD_OK: 'Tu contraseña ha cambiado correctamente. Por favor, accede de nuevo',
   SIGN_UP: 'Registrarse',
   ENTER_YOUR_NAME: 'Introduce tu nombre',
   ENTER_YOUR_ADDRESS: 'Introduce tu dirección',
@@ -22,8 +21,7 @@ export const translations = {
   CREATE_USER: 'Crea tu usuario',
   ADVICE_PASSWORD:
     'Introduce tu email y te enviaremos a tu correo las instrucciones para cambiar tu contraseña',
-  PASSWORD_OK:
-    'Te hemos enviado un email con las instrucciones para cambiar tu contraseña',
+  PASSWORD_OK: 'Te hemos enviado un email con las instrucciones para cambiar tu contraseña',
   RESET_PASSWORD: 'Cambia tu contraseña',
   RECOVER_PASSWORD: 'Recupera tu contraseña',
   LOGOUT: 'Desconectarse',
@@ -49,5 +47,6 @@ export const translations = {
   COUNTRY: 'País',
   CITY: 'Ciudad',
   SAVE: 'Guardar',
-  PROFILE_UPDATE: 'Tu usuario ha sido actualizado correctamente'
+  PROFILE_UPDATE: 'Tu usuario ha sido actualizado correctamente',
+  UPLOAD_AVATAR: 'Sube tu avatar'
 };

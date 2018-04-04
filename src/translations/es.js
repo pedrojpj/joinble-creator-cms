@@ -48,5 +48,6 @@ export const translations = {
   CITY: 'Ciudad',
   SAVE: 'Guardar',
   PROFILE_UPDATE: 'Tu usuario ha sido actualizado correctamente',
-  UPLOAD_AVATAR: 'Sube tu avatar'
+  UPLOAD_AVATAR: 'Sube tu avatar',
+  ERROR_UPLOAD_IMAGE: 'Hubo un problema subiendo la imagen. Inténtelo de nuevo'
 };

@@ -13,6 +13,9 @@ export default compose(
         user {
           name
           email
+          avatar {
+            image
+          }
         }
       }
     }

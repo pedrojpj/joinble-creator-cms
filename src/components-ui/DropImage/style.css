@@ -1,10 +1,9 @@
 .dropElement {
-  display: block;
   width: 120px;
   height: 120px;
   background: grey;
   border-radius: 50%;
-  display: flex;
+  display: inline-flex;
   text-align: center;
   color: white;
   justify-content: center;

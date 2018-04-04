@@ -7309,9 +7309,9 @@ readdirp@^2.0.0:
     readable-stream "^2.0.2"
     set-immediate-shim "^1.0.1"
 
-recompose-extends@1.9.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/recompose-extends/-/recompose-extends-1.9.1.tgz#2efcd3c5f84767d225d2e2ae15956e0abaa70246"
+recompose-extends@1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/recompose-extends/-/recompose-extends-1.9.2.tgz#0316c5d38d989c77aaaf8e76d55d423215ba76ce"
   dependencies:
     react "^16.1.1"
     react-dom "^16.2.0"

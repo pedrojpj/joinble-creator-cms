@@ -13,9 +13,12 @@ const validateExtensions = (files, extensions) => {
 
   files.map(file =>
     extensions.map(extension => {
+      console.log(extension);
+      console.log(file.type);
       if (file.type.includes(extension)) {
         valid = true;
       }
+      return extension;
     })
   );
   return valid;
@@ -82,7 +85,12 @@ DropImage.propTypes = {
   onDragLeaveImage: PropTypes.func,
   onUploadImage: PropTypes.func,
   formats: PropTypes.arrayOf(PropTypes.string),
-  files: PropTypes.arrayOf(PropTypes.shape({})),
+  files: PropTypes.arrayOf(
+    PropTypes.shape({
+      image: PropTypes.string,
+      id: PropTypes.string
+    })
+  ),
   removeImage: PropTypes.func,
   placeholder: PropTypes.string,
   className: PropTypes.string,
@@ -95,16 +103,17 @@ DropImage.defaultProps = {
 
 export default compose(
   defaultProps({
-    formats: ['png', 'jpg'],
+    formats: ['png', 'jpg', 'jpeg'],
+    files: [],
     onChange: () => {}
   }),
   withProps({
     refs: RefsStore
   }),
-  withStateHandlers(({ error }) => ({ error: error, files: [], dragOver: false }), {
+  withStateHandlers(({ error, files }) => ({ error: error, files: files, dragOver: false }), {
     setError: () => value => ({ error: value }),
     addFile: ({ files }, { onChange }) => file => {
-      onChange([...files, file]);
+      onChange([file]);
       return {
         files: [file]
       };

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Input, DropImage } from '../../components-ui';
 
-const Profile = ({ form, updateForm, submitForm, translations, countries }) => (
+const Profile = ({ form, updateForm, uploadImage, submitForm, translations, countries, user }) => (
   <div>
     <div className="page-header-title">
       <h4 className="page-title">Profile</h4>
@@ -15,7 +15,14 @@ const Profile = ({ form, updateForm, submitForm, translations, countries }) => (
             <div className="panel panel-primary">
               <div className="panel-body">
                 <form className="form-horizontal">
-                  <DropImage placeholder={translations.UPLOAD_AVATAR} name="avatar" />
+                  <div className="form-group text-center">
+                    <DropImage
+                      placeholder={translations.UPLOAD_AVATAR}
+                      name="avatar"
+                      files={user.avatar ? [user.avatar] : []}
+                      onChange={uploadImage}
+                    />
+                  </div>
 
                   <Input
                     type="text"
@@ -41,8 +48,8 @@ const Profile = ({ form, updateForm, submitForm, translations, countries }) => (
                   />
 
                   <div className="form-group">
-                    <label className="col-sm-2 control-label">{translations.COUNTRY}</label>
-                    <div className="col-sm-10">
+                    <label className="col-md-2 control-label">{translations.COUNTRY}</label>
+                    <div className="col-md-10">
                       <select
                         className="form-control"
                         value={form.country}
@@ -98,7 +105,8 @@ Profile.propTypes = {
     })
   ),
   submitForm: PropTypes.func,
-  updateForm: PropTypes.func
+  updateForm: PropTypes.func,
+  uploadImage: PropTypes.func
 };
 
 export default Profile;

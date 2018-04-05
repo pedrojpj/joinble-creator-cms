@@ -47,5 +47,6 @@ export const translations = {
   CITY: 'Ciudad',
   SAVE: 'Save',
   PROFILE_UPDATE: 'Your user has been updated correctly',
-  UPLOAD_AVATAR: 'Upload/drop your avatar'
+  UPLOAD_AVATAR: 'Upload/drop your avatar',
+  ERROR_UPLOAD_IMAGE: 'There was a problem uploading the image. Please try again'
 };

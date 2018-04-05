@@ -1,4 +1,4 @@
-import { compose, pure, getContext } from 'recompose';
+import { compose, pure, mapProps, withHandlers, getContext } from 'recompose';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
@@ -17,6 +17,11 @@ export default compose(
             country
             city
             address
+            avatar {
+              name
+              id
+              image
+            }
           }
         }
         countries {
@@ -27,13 +32,18 @@ export default compose(
     `
   ),
   getContext({ addNotification: PropTypes.func }),
+  mapProps(({ getUser, ...rest }) => ({
+    user: getUser.user,
+    ...rest
+  })),
   withForm(
-    ({ getUser }) => ({
-      name: { value: getUser.user.name, required: true },
-      email: { value: getUser.user.email, required: true },
-      address: { value: getUser.user.address || '' },
-      city: { value: getUser.user.city || '' },
-      country: { value: getUser.user.country || '' }
+    ({ user }) => ({
+      name: { value: user.name, required: true },
+      email: { value: user.email, required: true },
+      address: { value: user.address || '' },
+      city: { value: user.city || '' },
+      country: { value: user.country || '' },
+      avatar: { value: user.avatar ? user.avatar.token : '' }
     }),
     ({ translations, formSetError, setErrorMessage, router, addNotification }) => form => {
       withMutation(
@@ -47,6 +57,11 @@ export default compose(
                 city
                 country
                 address
+                avatar {
+                  name
+                  image
+                  id
+                }
               }
               errors {
                 key
@@ -78,5 +93,39 @@ export default compose(
         });
     }
   ),
+  withHandlers({
+    uploadImage: ({ updateField, addNotification, translations }) => value => {
+      if (!value.length) {
+        updateField('avatar', '');
+      } else {
+        withMutation(
+          graphql`
+            mutation ProfileImageMutation($image: ImageInput!) {
+              upload(image: $image) {
+                errors {
+                  key
+                  value
+                }
+                image {
+                  name
+                  image
+                  id
+                }
+              }
+            }
+          `,
+          { image: value[0] }
+        )
+          .then(({ upload }) => {
+            updateField('avatar', upload.image.id);
+          })
+          .catch(error => {
+            let message = error[0].message;
+            console.log(message);
+            addNotification({ message: translations[message], type: 'danger' }, 3000);
+          });
+      }
+    }
+  }),
   pure
 )(Profile);

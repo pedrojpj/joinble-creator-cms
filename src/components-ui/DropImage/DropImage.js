@@ -16,6 +16,7 @@ const validateExtensions = (files, extensions) => {
       if (file.type.includes(extension)) {
         valid = true;
       }
+      return extension;
     })
   );
   return valid;
@@ -32,12 +33,14 @@ export const DropImage = ({
   removeImage,
   placeholder,
   refs,
-  className
+  className,
+  error
 }) => {
   const dropStyle = classnames({
     [styles.dropElement]: true,
     [styles.drapOver]: dragOver,
-    [className]: className
+    [className]: className,
+    [styles.dropWithError]: error
   });
 
   return (
@@ -82,11 +85,17 @@ DropImage.propTypes = {
   onDragLeaveImage: PropTypes.func,
   onUploadImage: PropTypes.func,
   formats: PropTypes.arrayOf(PropTypes.string),
-  files: PropTypes.arrayOf(PropTypes.shape({})),
+  files: PropTypes.arrayOf(
+    PropTypes.shape({
+      image: PropTypes.string,
+      id: PropTypes.string
+    })
+  ),
   removeImage: PropTypes.func,
   placeholder: PropTypes.string,
   className: PropTypes.string,
-  name: PropTypes.string
+  name: PropTypes.string,
+  error: PropTypes.bool
 };
 
 DropImage.defaultProps = {
@@ -95,23 +104,24 @@ DropImage.defaultProps = {
 
 export default compose(
   defaultProps({
-    formats: ['png', 'jpg'],
+    formats: ['png', 'jpg', 'jpeg'],
+    files: [],
     onChange: () => {}
   }),
   withProps({
     refs: RefsStore
   }),
-  withStateHandlers(({ error }) => ({ error: error, files: [], dragOver: false }), {
+  withStateHandlers(({ error, files }) => ({ error: error, files: files, dragOver: false }), {
     setError: () => value => ({ error: value }),
     addFile: ({ files }, { onChange }) => file => {
-      onChange([...files, file]);
+      onChange([file]);
       return {
         files: [file]
       };
     },
     removeImage: ({ files }, { onChange }) => id => {
       onChange(files.filter(item => item.id !== id));
-      return { files: files.filter(item => item.id !== id) };
+      return { files: files.filter(item => item.id !== id), error: false };
     },
     toggleDragOver: () => value => ({ dragOver: value })
   }),
@@ -135,16 +145,14 @@ export default compose(
         if (dt.files && dt.files.length) {
           files = [...dt.files];
           const isValid = validateExtensions(files, formats);
+          setError(!isValid);
+
           if (isValid) {
             const reader = new FileReader();
-
             reader.onload = file => {
               addFile({ image: file.target.result, id: uuid() });
             };
-
             reader.readAsDataURL(files[0]);
-          } else {
-            setError(true);
           }
         }
       }
@@ -157,17 +165,14 @@ export default compose(
       if (event.target.files) {
         files = [...event.target.files];
         const isValid = validateExtensions(files, formats);
+        setError(!isValid);
 
         if (isValid) {
           const reader = new FileReader();
-
           reader.onload = file => {
             addFile({ image: file.target.result, id: uuid() });
           };
-
           reader.readAsDataURL(files[0]);
-        } else {
-          setError(true);
         }
       }
 

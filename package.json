@@ -47,7 +47,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "recompose": "^0.26.0",
-    "recompose-extends": "1.9.1",
+    "recompose-extends": "1.9.2",
     "style-loader": "0.19.0",
     "svg-country-flags": "^1.2.1",
     "sw-precache-webpack-plugin": "0.11.4",

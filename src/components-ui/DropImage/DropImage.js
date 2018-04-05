@@ -13,8 +13,6 @@ const validateExtensions = (files, extensions) => {
 
   files.map(file =>
     extensions.map(extension => {
-      console.log(extension);
-      console.log(file.type);
       if (file.type.includes(extension)) {
         valid = true;
       }
@@ -35,12 +33,14 @@ export const DropImage = ({
   removeImage,
   placeholder,
   refs,
-  className
+  className,
+  error
 }) => {
   const dropStyle = classnames({
     [styles.dropElement]: true,
     [styles.drapOver]: dragOver,
-    [className]: className
+    [className]: className,
+    [styles.dropWithError]: error
   });
 
   return (
@@ -94,7 +94,8 @@ DropImage.propTypes = {
   removeImage: PropTypes.func,
   placeholder: PropTypes.string,
   className: PropTypes.string,
-  name: PropTypes.string
+  name: PropTypes.string,
+  error: PropTypes.bool
 };
 
 DropImage.defaultProps = {
@@ -120,7 +121,7 @@ export default compose(
     },
     removeImage: ({ files }, { onChange }) => id => {
       onChange(files.filter(item => item.id !== id));
-      return { files: files.filter(item => item.id !== id) };
+      return { files: files.filter(item => item.id !== id), error: false };
     },
     toggleDragOver: () => value => ({ dragOver: value })
   }),
@@ -144,16 +145,14 @@ export default compose(
         if (dt.files && dt.files.length) {
           files = [...dt.files];
           const isValid = validateExtensions(files, formats);
+          setError(!isValid);
+
           if (isValid) {
             const reader = new FileReader();
-
             reader.onload = file => {
               addFile({ image: file.target.result, id: uuid() });
             };
-
             reader.readAsDataURL(files[0]);
-          } else {
-            setError(true);
           }
         }
       }
@@ -166,17 +165,14 @@ export default compose(
       if (event.target.files) {
         files = [...event.target.files];
         const isValid = validateExtensions(files, formats);
+        setError(!isValid);
 
         if (isValid) {
           const reader = new FileReader();
-
           reader.onload = file => {
             addFile({ image: file.target.result, id: uuid() });
           };
-
           reader.readAsDataURL(files[0]);
-        } else {
-          setError(true);
         }
       }
 

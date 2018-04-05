@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Link } from 'found';
 
-import { Dialog, DialogModel } from '../../components-ui';
+import { Dialog, DialogModel, Avatar } from '../../components-ui';
 import styles from './header.css';
 
 import logo from '../../assets/images/logoWhite.png';
@@ -16,7 +16,8 @@ const Header = ({
   iconCurrentLanguage,
   userMenu,
   languageMenu,
-  name
+  name,
+  avatar
 }) => {
   const styleTopBarLeft = classnames({
     'topbar-left': true,
@@ -34,21 +35,13 @@ const Header = ({
       <div className="navbar navbar-default" role="navigation">
         <div className="container">
           <div className="pull-right">
-            <Dialog
-              items={userMenu}
-              className={styles.navItems}
-              position="right"
-            >
+            <Dialog items={userMenu} className={styles.navItems} position="right">
               <span className={styles.icon} id="username">
-                {name}
+                <Avatar img={avatar} name={name} />
               </span>
             </Dialog>
 
-            <Dialog
-              items={languageMenu}
-              className={styles.navItems}
-              position="right"
-            >
+            <Dialog items={languageMenu} className={styles.navItems} position="right">
               <span className={styles.icon} id="language">
                 <img src={iconCurrentLanguage} alt={currentLanguage} />
               </span>
@@ -66,7 +59,8 @@ Header.propTypes = {
   userMenu: DialogModel,
   languageMenu: DialogModel,
   name: PropTypes.string,
-  iconCurrentLanguage: PropTypes.string
+  iconCurrentLanguage: PropTypes.string,
+  avatar: PropTypes.string
 };
 
 export default Header;

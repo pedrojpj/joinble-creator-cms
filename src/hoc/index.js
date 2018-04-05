@@ -6,5 +6,6 @@ import withEnv from './withEnv';
 export * from './withQuery';
 export * from './withMutation';
 export * from './withFragment';
+export * from './withRefetch';
 
 export { withTranslations, withAuth, withAnimation, withEnv };

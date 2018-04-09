@@ -4,8 +4,7 @@ import {
   withProps,
   setDisplayName,
   pure,
-  mapProps,
-  lifecycle
+  mapProps
 } from 'recompose';
 import { graphql } from 'react-relay';
 
@@ -28,15 +27,10 @@ export default compose(
       }
     }
   `),
-  lifecycle({
-    componentWillReceiveProps(nextProps) {
-      console.log(nextProps);
-    }
-  }),
   mapProps(({ getUser, ...rest }) => ({
     email: getUser ? getUser.user.email : null,
     name: getUser ? getUser.user.name : null,
-    avatar: getUser.user.avatar ? getUser.user.avatar.image : null,
+    avatar: getUser ? getUser.user.avatar.image : null,
     ...rest
   })),
   withHandlers({

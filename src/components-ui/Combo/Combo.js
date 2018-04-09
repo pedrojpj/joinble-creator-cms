@@ -1,5 +1,12 @@
 import React, { cloneElement } from 'react';
-import { compose, defaultProps, withHandlers, withProps, pure, withStateHandlers } from 'recompose';
+import {
+  compose,
+  defaultProps,
+  withHandlers,
+  withProps,
+  pure,
+  withStateHandlers
+} from 'recompose';
 import PropTypes from 'prop-types';
 
 import { RefsStore } from '../../utils';
@@ -42,18 +49,26 @@ export default compose(
     refs: RefsStore
   }),
   defaultProps({
-    onChange: () => {}
+    onChange: () => {},
+    updateField: undefined
   }),
-  withStateHandlers(({ value }) => ({ value }), { setValue: () => value => ({ value: value }) }),
+  withStateHandlers(({ value }) => ({ value }), {
+    setValue: () => value => ({ value: value })
+  }),
   withHandlers({
-    onSelectItem: ({ setValue, onChange, refs }) => value => {
+    onSelectItem: ({
+      setValue,
+      onChange,
+      refs,
+      updateField,
+      name
+    }) => value => {
       setValue(value);
       onChange(value);
-      console.log(refs.get('listbox'));
 
-      var event = new CustomEvent('change', { target: refs.get('listbox') });
-
-      console.log(event);
+      if (updateField) {
+        updateField({ name: value });
+      }
     }
   }),
   pure

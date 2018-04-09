@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 import { compose, pure } from 'recompose';
 import classnames from 'classnames';
 
-export const ComboItem = ({ children, value, onSelect, className, selected }) => {
+export const ComboItem = ({
+  children,
+  value,
+  onSelect,
+  className,
+  selected
+}) => {
   const comboStyle = classnames({
-    [className]: true,
+    [className]: className,
     selected: selected
   });
 

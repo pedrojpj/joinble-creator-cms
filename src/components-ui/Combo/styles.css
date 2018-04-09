@@ -1,0 +1,41 @@
+.combo {
+}
+
+.combo > div {
+  border-radius: 0;
+}
+
+.combo > div:first-child {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.combo > div:last-child {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.comboItem {
+  display: inline-flex;
+  background-color: #e6e6e6;
+  border-color: rgba(255, 255, 255, 0.2);
+  height: 40px;
+  min-width: 40px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  -webkit-box-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.comboItem[aria-selected='true'] {
+  background: #04a2b3 !important;
+  border: 1px solid #04a2b3 !important;
+  color: white;
+}
+
+.comboItem:hover {
+  background-color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}

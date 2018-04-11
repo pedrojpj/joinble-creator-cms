@@ -5,7 +5,15 @@ import anime from 'animejs';
 
 import { RefsStore } from '../../utils';
 
-export const Modal = ({ id, title, text, onCloseAnimation, refs }) => (
+export const Modal = ({
+  id,
+  title,
+  text,
+  onCloseAnimation,
+  refs,
+  actions,
+  onAccept
+}) => (
   <div
     id={id}
     className="modal"
@@ -23,13 +31,35 @@ export const Modal = ({ id, title, text, onCloseAnimation, refs }) => (
             className="close"
             data-dismiss="modal"
             aria-hidden="true"
-            onClick={onCloseAnimation}
+            onClick={() => onCloseAnimation()}
           >
             ×
           </button>
           {title && <h4 className="modal-title">{title}</h4>}
         </div>
-        <div className="modal-body">{text && <p dangerouslySetInnerHTML={{ __html: text }} />}</div>
+        <div className="modal-body">
+          {text && <p dangerouslySetInnerHTML={{ __html: text }} />}
+        </div>
+
+        {actions && (
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-default"
+              onClick={() => onCloseAnimation()}
+              data-dismiss="modal"
+            >
+              close
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => onCloseAnimation(onAccept)}
+            >
+              Save changes
+            </button>
+          </div>
+        )}
       </div>
     </div>
   </div>
@@ -39,7 +69,9 @@ Modal.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   text: PropTypes.string,
-  onCloseAnimation: PropTypes.func
+  onCloseAnimation: PropTypes.func,
+  actions: PropTypes.bool,
+  onAccept: PropTypes.func
 };
 
 export default compose(
@@ -47,10 +79,14 @@ export default compose(
     refs: RefsStore
   }),
   withHandlers({
-    onCloseAnimation: ({ refs, onClose }) => () => {
+    onCloseAnimation: ({ refs, onClose }) => action => {
       const timeLine = anime.timeline({
         complete: () => {
           onClose();
+
+          if (action) {
+            action();
+          }
         }
       });
 

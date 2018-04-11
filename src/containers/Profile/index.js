@@ -121,7 +121,6 @@ export default compose(
           })
           .catch(error => {
             let message = error[0].message;
-            console.log(message);
             addNotification({ message: translations[message], type: 'danger' }, 3000);
           });
       }

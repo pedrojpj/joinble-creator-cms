@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { compose, pure } from 'recompose';
 import classnames from 'classnames';
 
+import styles from './styles.css';
+
 export const Input = ({
   updateForm,
   name,
@@ -38,8 +40,10 @@ export const Input = ({
           onChange={updateForm}
           disabled={disabled}
         />
+        {error && (
+          <span className={styles.inputMessageError}>{errorMessage}</span>
+        )}
       </div>
-      {error && <span>{errorMessage}</span>}
     </div>
   );
 };

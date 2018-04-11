@@ -12,7 +12,8 @@ export const translations = {
   ADVICE_CHANGE_PASSWORD:
     'Enter the new password, remember that it must have at least one numeric character and another in capital letters.',
   TWO_PASSWORD_MUST_MATCH: 'The two passwords must match',
-  CHANGE_PASSWORD_OK: 'Your password has been changed correctly. Please login in again',
+  CHANGE_PASSWORD_OK:
+    'Your password has been changed correctly. Please login in again',
   SIGN_UP: 'Sign Up',
   ENTER_YOUR_NAME: 'Enter your name',
   ENTER_YOUR_ADDRESS: 'Enter your address',
@@ -20,7 +21,8 @@ export const translations = {
   ENTER_YOUR_CITY: 'Enter your city',
   CREATE_USER: 'Create User',
   ADVICE_PASSWORD: 'Enter your Email and instructions will be sent to you!',
-  PASSWORD_OK: 'We have sent you an email with instructions to reset your password',
+  PASSWORD_OK:
+    'We have sent you an email with instructions to reset your password',
   RESET_PASSWORD: 'Reset Password',
   RECOVER_PASSWORD: 'Recover password',
   LOGOUT: 'Logout',
@@ -48,5 +50,19 @@ export const translations = {
   SAVE: 'Save',
   PROFILE_UPDATE: 'Your user has been updated correctly',
   UPLOAD_AVATAR: 'Upload/drop your avatar',
-  ERROR_UPLOAD_IMAGE: 'There was a problem uploading the image. Please try again'
+  ERROR_UPLOAD_IMAGE:
+    'There was a problem uploading the image. Please try again',
+  APPLICATIONS: 'Applications',
+  NEW_APPLICATION: 'New Application',
+  APP_NAME: 'Application Name',
+  APP_DOMAIN: 'Web domain',
+  SELECT_PLATFORM: 'Select platforms',
+  SELECT_LANGUAGE: 'Select languages',
+  ERROR_PLATFORM: 'You must select at least one platform',
+  ERROR_LANGUAGE: 'You must select at least one language',
+  ERROR_DOMAIN: 'Enter a valid domain format. For example: www.example.com',
+  APP_CREATED: 'The application has been created correctly',
+  DELETE_APP: 'Delete Application',
+  DELETE_APP_MESSAGE: 'Are you sure you want to delete the application?',
+  DELETE_APP_OK: 'The application has been successfully deleted'
 };

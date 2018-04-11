@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Mon Apr 09 2018 09:21:19 GMT+0200 (CEST)
+# timestamp: Tue Apr 10 2018 18:19:34 GMT+0200 (CEST)
 
 """This represent a App"""
 type App {
@@ -19,9 +19,9 @@ input AppInput {
   id: String
   name: String!
   code: String!
-  platform: [platforms]!
+  platforms: [String]!
   domain: String!
-  icon: String!
+  icon: String
   languages: [String]!
 }
 

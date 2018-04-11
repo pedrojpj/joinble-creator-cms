@@ -54,5 +54,19 @@ export const translations = {
   ERROR_UPLOAD_IMAGE: 'Hubo un problema subiendo la imagen. Inténtelo de nuevo',
   APPLICATIONS: 'Aplicaciones',
   NEW_APPLICATION: 'Nueva Aplicación',
-  APP_NAME: 'Nombre de la aplicación'
+  APP_NAME: 'Nombre de la aplicación',
+  APP_DOMAIN: 'Dominio de la web',
+  APP_CODE: 'Código de la aplicación',
+  SELECT_PLATFORM: 'Selecciona plataformas',
+  SELECT_LANGUAGE: 'Seleccione idiomas',
+  ERROR_PLATFORM: 'Has de seleccionar al menos una plataforma',
+  ERROR_LANGUAGE: 'Has de seleccionar al menos un idioma',
+  ERROR_DOMAIN:
+    'Introduce un formato de dominio válido. Por ejemplo: www.example.com',
+  ERROR_CODE:
+    'Introduce un código de aplicación válido. Por ejemplo: com.joinble.app',
+  APP_CREATED: 'La aplicación ha sido creada correctamente',
+  DELETE_APP: 'Borrar Aplicación',
+  DELETE_APP_MESSAGE: '¿Estas seguro de eliminar la aplicación?',
+  DELETE_APP_OK: 'La aplicación ha sido borrada correctamente'
 };

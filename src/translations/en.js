@@ -50,8 +50,19 @@ export const translations = {
   SAVE: 'Save',
   PROFILE_UPDATE: 'Your user has been updated correctly',
   UPLOAD_AVATAR: 'Upload/drop your avatar',
-  ERROR_UPLOAD_IMAGE: 'There was a problem uploading the image. Please try again',
+  ERROR_UPLOAD_IMAGE:
+    'There was a problem uploading the image. Please try again',
   APPLICATIONS: 'Applications',
   NEW_APPLICATION: 'New Application',
-  APP_NAME: 'Application Name'
+  APP_NAME: 'Application Name',
+  APP_DOMAIN: 'Web domain',
+  SELECT_PLATFORM: 'Select platforms',
+  SELECT_LANGUAGE: 'Select languages',
+  ERROR_PLATFORM: 'You must select at least one platform',
+  ERROR_LANGUAGE: 'You must select at least one language',
+  ERROR_DOMAIN: 'Enter a valid domain format. For example: www.example.com',
+  APP_CREATED: 'The application has been created correctly',
+  DELETE_APP: 'Delete Application',
+  DELETE_APP_MESSAGE: 'Are you sure you want to delete the application?',
+  DELETE_APP_OK: 'The application has been successfully deleted'
 };

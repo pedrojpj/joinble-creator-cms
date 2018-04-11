@@ -10,8 +10,23 @@ import ComboItem from './Combo/ComboItem';
 import Title from './Title/Title';
 import Content from './Content/Content';
 import Panel from './Panel/Panel';
+import ButtonAction from './ButtonAction/ButtonAction';
 
 export * from './Dialog/DialogModel';
 export * from './Notifications/NotificationModel';
 export * from './Notifications/Notification';
-export { Alert, Input, Dialog, Modal, Notifications, DropImage, Avatar, Combo, ComboItem, Title, Content, Panel };
+export {
+  Alert,
+  ButtonAction,
+  Input,
+  Dialog,
+  Modal,
+  Notifications,
+  DropImage,
+  Avatar,
+  Combo,
+  ComboItem,
+  Title,
+  Content,
+  Panel
+};

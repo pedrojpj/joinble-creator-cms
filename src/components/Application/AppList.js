@@ -4,17 +4,15 @@ import { EntypoPlus } from 'react-entypo';
 
 import { Title } from '../../components-ui';
 import { AppItem } from '.';
-import styles from './style.css';
+import styles from './styles.css';
 
-export const AppList = ({ translations, apps, router }) => (
+export const AppList = ({ translations, apps, router, ...rest }) => (
   <div>
     <Title>{translations.APPLICATIONS}</Title>
 
     <div className="page-content-wrapper">
       <div className="container">
         <div className="row">
-          {apps.map(app => <AppItem />)}
-
           <div className="col-sm-6 col-lg-3">
             <button
               className={styles.buttonApp}
@@ -27,6 +25,7 @@ export const AppList = ({ translations, apps, router }) => (
               {translations.NEW_APPLICATION}
             </button>
           </div>
+          {apps.map(app => <AppItem key={app.id} {...app} {...rest} />)}
         </div>
       </div>
     </div>

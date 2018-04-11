@@ -6,13 +6,14 @@ const Home = props => (
   <div>
     <Combo
       label="Select Item"
-      value="1"
+      value={[1]}
+      multiple
       onChange={value => {
         console.log(value);
       }}
     >
-      <ComboItem value="1">1</ComboItem>
-      <ComboItem value="2">2</ComboItem>
+      <ComboItem value={1}>1</ComboItem>
+      <ComboItem value={2}>2</ComboItem>
     </Combo>
   </div>
 );

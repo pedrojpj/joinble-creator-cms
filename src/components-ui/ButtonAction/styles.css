@@ -1,0 +1,20 @@
+.button {
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in;
+}
+
+.button svg {
+  fill: white !important;
+  margin-top: 2px;
+}
+
+.button:hover {
+  border-color: white;
+}

@@ -18,7 +18,7 @@
 .comboItem {
   display: inline-flex;
   background-color: #e6e6e6;
-  border-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   height: 40px;
   min-width: 40px;
   align-items: center;
@@ -27,6 +27,11 @@
   -webkit-box-align: center;
   cursor: pointer;
   transition: all 0.3s ease-out;
+  padding: 0 4px;
+}
+
+.comboError .comboItem {
+  border-right: 1px solid #e6e6e6;
 }
 
 .comboItem[aria-selected='true'] {
@@ -37,5 +42,12 @@
 
 .comboItem:hover {
   background-color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.comboMessageError {
+  display: block;
+  color: #e66060;
+  font-size: 12px;
+  margin-top: 5px;
 }

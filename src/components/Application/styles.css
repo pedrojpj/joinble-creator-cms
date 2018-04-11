@@ -29,7 +29,7 @@
   border-radius: 20px;
   background: rgba(159, 162, 167, 1);
   position: absolute;
-  top: -20px;
+  top: -10px;
   left: 50%;
   margin-left: -30px;
   transition: background 0.3s ease;
@@ -39,4 +39,32 @@
   width: 30px !important;
   height: 30px !important;
   fill: white !important;
+}
+
+.appItem {
+  border-radius: 10px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.appHeader {
+}
+
+.appHeader h4 {
+  color: #9fa2a7;
+  font-family: 'PT Sans Caption', sans-serif;
+  font-weight: normal;
+}
+
+.appContent {
+  display: flex;
+  flex: 1;
+}
+
+.appActions {
+  border-top: 1px solid #2a323c;
+  padding: 10px;
+  width: 100%;
+  align-self: flex-end;
 }

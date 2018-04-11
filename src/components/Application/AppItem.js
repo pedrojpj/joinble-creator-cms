@@ -1,22 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
-export const AppItem = () => (
-  <div className="col-sm-6 col-lg-3">
-    <div className="panel text-center">
-      <div className="panel-heading">
-        <h4 className="panel-title text-muted font-light">
-          Total Subscription
-        </h4>
-      </div>
-      <div className="panel-body p-t-10">
-        <h2 className="m-t-0 m-b-15">
-          <i className="mdi mdi-arrow-down text-danger m-r-10" />
-          <b>8952</b>
-        </h2>
-        <p className="text-muted m-b-0 m-t-20">
-          <b>48%</b> From Last 24 Hours
-        </p>
+import styles from './styles.css';
+
+import { ButtonAction } from '../../components-ui';
+
+export const AppItem = ({ name, id, showDeleteModal }) => {
+  const styleItem = classnames({
+    panel: true,
+    'text-center': true,
+    [styles.appItem]: true
+  });
+
+  return (
+    <div className="col-sm-6 col-lg-3">
+      <div className={styleItem}>
+        <div className={styles.appHeader}>
+          <h4>{name}</h4>
+        </div>
+        <div className={styles.appContent}>
+          <div className={styles.appActions}>
+            <ButtonAction type="delete" onClick={() => showDeleteModal(id)} />
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
+
+AppItem.propTypes = {
+  name: PropTypes.string,
+  id: PropTypes.string,
+  showDeleteModal: PropTypes.func
+};

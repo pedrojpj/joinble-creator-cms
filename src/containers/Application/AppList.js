@@ -30,6 +30,9 @@ export default compose(
           name
           code
           platform
+          icon {
+            image
+          }
         }
       }
     `

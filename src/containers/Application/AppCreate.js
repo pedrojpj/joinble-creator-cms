@@ -1,10 +1,12 @@
-import { compose, pure, withState, getContext } from 'recompose';
+import { compose, pure, withState, withHandlers, getContext } from 'recompose';
 import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
 import PropTypes from 'prop-types';
 
 import { AppCreate } from '../../components/Application';
 import { withQuery, withMutation } from '../../hoc';
+
+import { CROPS_ICON } from '../../constants';
 
 export default compose(
   withQuery(
@@ -36,7 +38,8 @@ export default compose(
       code: {
         value: '',
         pattern: '^[a-z][a-z0-9_]*(.[a-z0-9_]+)+[0-9a-z_]$'
-      }
+      },
+      icon: { value: '' }
     },
     ({ router, addNotification, translations }) => form => {
       withMutation(
@@ -59,5 +62,39 @@ export default compose(
       });
     }
   ),
+  withHandlers({
+    uploadImage: ({ updateField, addNotification, translations }) => image => {
+      let imageFile = { ...image[0], crops: CROPS_ICON };
+
+      withMutation(
+        graphql`
+          mutation AppCreateImageMutation($image: ImageInput!) {
+            upload(image: $image) {
+              errors {
+                key
+                value
+              }
+              image {
+                name
+                image
+                id
+              }
+            }
+          }
+        `,
+        { image: imageFile }
+      )
+        .then(({ upload }) => {
+          updateField('icon', upload.image.id);
+        })
+        .catch(error => {
+          let message = error[0].message;
+          addNotification(
+            { message: translations[message], type: 'danger' },
+            3000
+          );
+        });
+    }
+  }),
   pure
 )(AppCreate);

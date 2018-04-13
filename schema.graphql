@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Tue Apr 10 2018 18:19:34 GMT+0200 (CEST)
+# timestamp: Thu Apr 12 2018 08:48:58 GMT+0200 (CEST)
 
 """This represent a App"""
 type App {
@@ -77,6 +77,11 @@ type createUser {
   token: Token
 }
 
+input CropsInput {
+  width: Int!
+  height: Int!
+}
+
 type deleteApp {
   status: Boolean
 }
@@ -119,6 +124,7 @@ type Image {
 
 input ImageInput {
   image: String!
+  crops: [CropsInput]
   id: String!
 }
 

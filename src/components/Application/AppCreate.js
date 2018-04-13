@@ -8,6 +8,7 @@ import {
   Input,
   Combo,
   ComboItem,
+  DropImage,
   Alert
 } from '../../components-ui';
 
@@ -19,6 +20,7 @@ export const AppCreate = ({
   languages,
   updateForm,
   updateField,
+  uploadImage,
   submitForm,
   formError,
   errorMessage
@@ -33,6 +35,15 @@ export const AppCreate = ({
             <div className="col-xs-12">
               {formError && <Alert type="danger">{errorMessage}</Alert>}
             </div>
+          </div>
+
+          <div className="form-group text-center">
+            <DropImage
+              placeholder={translations.UPLOAD_ICON}
+              name="icon"
+              mode="square"
+              onChange={uploadImage}
+            />
           </div>
 
           <Input
@@ -127,6 +138,7 @@ AppCreate.propTypes = {
   }),
   translations: PropTypes.shape({}),
   updateForm: PropTypes.func,
+  uploadImage: PropTypes.func,
   updateField: PropTypes.func,
   submitForm: PropTypes.func
 };

@@ -11,6 +11,7 @@ import Title from './Title/Title';
 import Content from './Content/Content';
 import Panel from './Panel/Panel';
 import ButtonAction from './ButtonAction/ButtonAction';
+import Image from './Image/Image';
 
 export * from './Dialog/DialogModel';
 export * from './Notifications/NotificationModel';
@@ -28,5 +29,6 @@ export {
   ComboItem,
   Title,
   Content,
-  Panel
+  Panel,
+  Image
 };

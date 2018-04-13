@@ -68,5 +68,6 @@ export const translations = {
   APP_CREATED: 'La aplicación ha sido creada correctamente',
   DELETE_APP: 'Borrar Aplicación',
   DELETE_APP_MESSAGE: '¿Estas seguro de eliminar la aplicación?',
-  DELETE_APP_OK: 'La aplicación ha sido borrada correctamente'
+  DELETE_APP_OK: 'La aplicación ha sido borrada correctamente',
+  UPLOAD_ICON: 'Sube un icono de la aplicación'
 };

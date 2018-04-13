@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose, withStateHandlers, withHandlers, withProps, defaultProps, pure } from 'recompose';
+import {
+  compose,
+  withStateHandlers,
+  withHandlers,
+  withProps,
+  defaultProps,
+  pure
+} from 'recompose';
 import classnames from 'classnames';
 import uuid from 'uuid/v4';
 import { EntypoCross } from 'react-entypo';
@@ -34,13 +41,15 @@ export const DropImage = ({
   placeholder,
   refs,
   className,
-  error
+  error,
+  mode
 }) => {
   const dropStyle = classnames({
     [styles.dropElement]: true,
     [styles.drapOver]: dragOver,
     [className]: className,
-    [styles.dropWithError]: error
+    [styles.dropWithError]: error,
+    [styles.square]: mode === 'square'
   });
 
   return (
@@ -95,11 +104,13 @@ DropImage.propTypes = {
   placeholder: PropTypes.string,
   className: PropTypes.string,
   name: PropTypes.string,
-  error: PropTypes.bool
+  error: PropTypes.bool,
+  mode: PropTypes.oneOf(['square', 'circle'])
 };
 
 DropImage.defaultProps = {
-  placeholder: 'Drop Image Here'
+  placeholder: 'Drop Image Here',
+  mode: 'circle'
 };
 
 export default compose(
@@ -111,20 +122,23 @@ export default compose(
   withProps({
     refs: RefsStore
   }),
-  withStateHandlers(({ error, files }) => ({ error: error, files: files, dragOver: false }), {
-    setError: () => value => ({ error: value }),
-    addFile: ({ files }, { onChange }) => file => {
-      onChange([file]);
-      return {
-        files: [file]
-      };
-    },
-    removeImage: ({ files }, { onChange }) => id => {
-      onChange(files.filter(item => item.id !== id));
-      return { files: files.filter(item => item.id !== id), error: false };
-    },
-    toggleDragOver: () => value => ({ dragOver: value })
-  }),
+  withStateHandlers(
+    ({ error, files }) => ({ error: error, files: files, dragOver: false }),
+    {
+      setError: () => value => ({ error: value }),
+      addFile: ({ files }, { onChange }) => file => {
+        onChange([file]);
+        return {
+          files: [file]
+        };
+      },
+      removeImage: ({ files }, { onChange }) => id => {
+        onChange(files.filter(item => item.id !== id));
+        return { files: files.filter(item => item.id !== id), error: false };
+      },
+      toggleDragOver: () => value => ({ dragOver: value })
+    }
+  ),
   withHandlers({
     onDragOverImage: ({ refs, toggleDragOver }) => event => {
       toggleDragOver(true);
@@ -134,7 +148,13 @@ export default compose(
       toggleDragOver(false);
       event.preventDefault();
     },
-    onDropImage: ({ maxItems, formats, setError, addFile, toggleDragOver }) => event => {
+    onDropImage: ({
+      maxItems,
+      formats,
+      setError,
+      addFile,
+      toggleDragOver
+    }) => event => {
       let files = [];
 
       toggleDragOver(false);

@@ -64,5 +64,6 @@ export const translations = {
   APP_CREATED: 'The application has been created correctly',
   DELETE_APP: 'Delete Application',
   DELETE_APP_MESSAGE: 'Are you sure you want to delete the application?',
-  DELETE_APP_OK: 'The application has been successfully deleted'
+  DELETE_APP_OK: 'The application has been successfully deleted',
+  UPLOAD_ICON: 'Upload an application icon'
 };

@@ -4,9 +4,9 @@ import classnames from 'classnames';
 
 import styles from './styles.css';
 
-import { ButtonAction } from '../../components-ui';
+import { ButtonAction, Image } from '../../components-ui';
 
-export const AppItem = ({ name, id, showDeleteModal }) => {
+export const AppItem = ({ name, icon, id, showDeleteModal }) => {
   const styleItem = classnames({
     panel: true,
     'text-center': true,
@@ -17,7 +17,11 @@ export const AppItem = ({ name, id, showDeleteModal }) => {
     <div className="col-sm-6 col-lg-3">
       <div className={styleItem}>
         <div className={styles.appHeader}>
-          <h4>{name}</h4>
+          <div className={styles.appIcon}>
+            <Image src={icon.image} alt={name} />
+          </div>
+
+          <h4 className={styles.appTitle}>{name}</h4>
         </div>
         <div className={styles.appContent}>
           <div className={styles.appActions}>
@@ -32,5 +36,8 @@ export const AppItem = ({ name, id, showDeleteModal }) => {
 AppItem.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
-  showDeleteModal: PropTypes.func
+  showDeleteModal: PropTypes.func,
+  icon: PropTypes.shape({
+    image: PropTypes.string
+  })
 };

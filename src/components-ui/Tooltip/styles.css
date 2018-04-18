@@ -1,0 +1,30 @@
+.tooltip {
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  border-radius: 5px;
+  font-size: 11px;
+  padding: 5px;
+}
+
+.tooltip {
+  position: relative;
+  background: rgba(0, 0, 0, 0.3);
+}
+.tooltip:after {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: ' ';
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-top-color: rgba(0, 0, 0, 0.3);
+  border-width: 5px;
+  margin-left: -5px;
+}
+
+.tooltipContent {
+  background: transparent !important;
+}

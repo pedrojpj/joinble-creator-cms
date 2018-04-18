@@ -12,6 +12,7 @@ import Content from './Content/Content';
 import Panel from './Panel/Panel';
 import ButtonAction from './ButtonAction/ButtonAction';
 import Image from './Image/Image';
+import Tooltip from './Tooltip/Tooltip';
 
 export * from './Dialog/DialogModel';
 export * from './Notifications/NotificationModel';
@@ -30,5 +31,6 @@ export {
   Title,
   Content,
   Panel,
-  Image
+  Image,
+  Tooltip
 };

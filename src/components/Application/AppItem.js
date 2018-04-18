@@ -6,7 +6,7 @@ import styles from './styles.css';
 
 import { ButtonAction, Image } from '../../components-ui';
 
-export const AppItem = ({ name, icon, id, showDeleteModal }) => {
+export const AppItem = ({ name, icon, id, showDeleteModal, translations }) => {
   const styleItem = classnames({
     panel: true,
     'text-center': true,
@@ -25,7 +25,11 @@ export const AppItem = ({ name, icon, id, showDeleteModal }) => {
         </div>
         <div className={styles.appContent}>
           <div className={styles.appActions}>
-            <ButtonAction type="delete" onClick={() => showDeleteModal(id)} />
+            <ButtonAction
+              type="delete"
+              onClick={() => showDeleteModal(id)}
+              tooltip={translations.DELETE_APP}
+            />
           </div>
         </div>
       </div>
@@ -39,5 +43,6 @@ AppItem.propTypes = {
   showDeleteModal: PropTypes.func,
   icon: PropTypes.shape({
     image: PropTypes.string
-  })
+  }),
+  translations: PropTypes.shape({})
 };

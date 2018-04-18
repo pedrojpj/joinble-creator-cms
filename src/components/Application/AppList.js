@@ -14,10 +14,7 @@ export const AppList = ({ translations, apps, router, ...rest }) => (
       <div className="container">
         <div className="row">
           <div className="col-sm-6 col-lg-3">
-            <button
-              className={styles.buttonApp}
-              onClick={() => router.push('/cms/app/create')}
-            >
+            <button className={styles.buttonApp} onClick={() => router.push('/cms/app/create')}>
               <span>
                 <EntypoPlus />
               </span>
@@ -25,7 +22,7 @@ export const AppList = ({ translations, apps, router, ...rest }) => (
               {translations.NEW_APPLICATION}
             </button>
           </div>
-          {apps.map(app => <AppItem key={app.id} {...app} {...rest} />)}
+          {apps.map(app => <AppItem key={app.id} {...app} {...rest} translations={translations} />)}
         </div>
       </div>
     </div>

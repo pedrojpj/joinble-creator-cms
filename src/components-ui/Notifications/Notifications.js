@@ -10,6 +10,8 @@ import { RefsStore } from '../../utils';
 
 import styles from './styles.css';
 
+let timeFunction;
+
 export const Notifications = ({ notifications, children, removeNotification, refs }) => (
   <Fragment>
     <div className={styles.notificationCenter} ref={r => refs.store('center', r)}>
@@ -88,12 +90,13 @@ export default compose(
       addNotification(notification);
 
       if (time) {
-        setTimeout(() => {
+        timeFunction = setTimeout(() => {
           animationHide().then(() => deletePrimaryNotification());
         }, time);
       }
     },
     removeNotification: ({ deleteNotification, animationHide }) => id => {
+      clearTimeout(timeFunction);
       animationHide().then(() => deleteNotification(id));
     }
   }),

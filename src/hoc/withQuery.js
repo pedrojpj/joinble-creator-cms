@@ -17,8 +17,7 @@ export const withQuery = (rootQuery, variables) => BaseComponent =>
     render() {
       invariant();
 
-      const vars =
-        typeof variables === 'function' ? variables(this.props) : variables;
+      const vars = typeof variables === 'function' ? variables(this.props) : variables;
 
       return (
         <QueryRenderer
@@ -34,14 +33,7 @@ export const withQuery = (rootQuery, variables) => BaseComponent =>
               return <Error code={error.code} error={error} {...this.props} />;
             }
 
-            return (
-              <BaseComponent
-                {...props}
-                {...this.props}
-                error={error}
-                retryQuery={retry}
-              />
-            );
+            return <BaseComponent {...props} {...this.props} error={error} retryQuery={retry} />;
           }}
         />
       );

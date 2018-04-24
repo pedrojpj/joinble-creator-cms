@@ -1,7 +1,7 @@
 import React from 'react';
 import { compose, pure } from 'recompose';
 import PropTypes from 'prop-types';
-import { EntypoTrash } from 'react-entypo';
+import { EntypoTrash, EntypoEdit } from 'react-entypo';
 
 import { Tooltip } from '../index';
 
@@ -11,13 +11,14 @@ export const ButtonAction = ({ onClick, type, tooltip }) => (
   <Tooltip message={tooltip}>
     <button onClick={onClick} className={styles.button}>
       {type === 'delete' && <EntypoTrash />}
+      {type === 'edit' && <EntypoEdit />}
     </button>
   </Tooltip>
 );
 
 ButtonAction.propTypes = {
   onClick: PropTypes.func,
-  type: PropTypes.oneOf(['delete']).isRequired,
+  type: PropTypes.oneOf(['delete', 'edit']).isRequired,
   tooltip: PropTypes.string
 };
 

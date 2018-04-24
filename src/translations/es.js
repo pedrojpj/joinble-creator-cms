@@ -12,8 +12,7 @@ export const translations = {
   ADVICE_CHANGE_PASSWORD:
     'Introduce la nueva contraseña, recuerda que al menos debe tener un carácter numérico y una mayúscula',
   TWO_PASSWORD_MUST_MATCH: 'Las dos contraseñas deben coincidir',
-  CHANGE_PASSWORD_OK:
-    'Tu contraseña ha cambiado correctamente. Por favor, accede de nuevo',
+  CHANGE_PASSWORD_OK: 'Tu contraseña ha cambiado correctamente. Por favor, accede de nuevo',
   SIGN_UP: 'Registrarse',
   ENTER_YOUR_NAME: 'Introduce tu nombre',
   ENTER_YOUR_ADDRESS: 'Introduce tu dirección',
@@ -22,8 +21,7 @@ export const translations = {
   CREATE_USER: 'Crea tu usuario',
   ADVICE_PASSWORD:
     'Introduce tu email y te enviaremos a tu correo las instrucciones para cambiar tu contraseña',
-  PASSWORD_OK:
-    'Te hemos enviado un email con las instrucciones para cambiar tu contraseña',
+  PASSWORD_OK: 'Te hemos enviado un email con las instrucciones para cambiar tu contraseña',
   RESET_PASSWORD: 'Cambia tu contraseña',
   RECOVER_PASSWORD: 'Recupera tu contraseña',
   LOGOUT: 'Desconectarse',
@@ -61,13 +59,14 @@ export const translations = {
   SELECT_LANGUAGE: 'Seleccione idiomas',
   ERROR_PLATFORM: 'Has de seleccionar al menos una plataforma',
   ERROR_LANGUAGE: 'Has de seleccionar al menos un idioma',
-  ERROR_DOMAIN:
-    'Introduce un formato de dominio válido. Por ejemplo: www.example.com',
-  ERROR_CODE:
-    'Introduce un código de aplicación válido. Por ejemplo: com.joinble.app',
+  ERROR_DOMAIN: 'Introduce un formato de dominio válido. Por ejemplo: www.example.com',
+  ERROR_CODE: 'Introduce un código de aplicación válido. Por ejemplo: com.joinble.app',
   APP_CREATED: 'La aplicación ha sido creada correctamente',
+  APP_EDITED: 'La aplicación ha sido editada correctamente',
   DELETE_APP: 'Borrar Aplicación',
   DELETE_APP_MESSAGE: '¿Estas seguro de eliminar la aplicación?',
   DELETE_APP_OK: 'La aplicación ha sido borrada correctamente',
-  UPLOAD_ICON: 'Sube un icono de la aplicación'
+  UPLOAD_ICON: 'Sube un icono de la aplicación',
+  EDIT_APP: 'Editar aplicación',
+  BACK: 'Volver'
 };

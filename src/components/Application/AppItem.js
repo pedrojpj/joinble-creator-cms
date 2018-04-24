@@ -6,7 +6,7 @@ import styles from './styles.css';
 
 import { ButtonAction, Image } from '../../components-ui';
 
-export const AppItem = ({ name, icon, id, showDeleteModal, translations }) => {
+export const AppItem = ({ name, icon, id, showDeleteModal, editApp, translations }) => {
   const styleItem = classnames({
     panel: true,
     'text-center': true,
@@ -25,6 +25,8 @@ export const AppItem = ({ name, icon, id, showDeleteModal, translations }) => {
         </div>
         <div className={styles.appContent}>
           <div className={styles.appActions}>
+            <ButtonAction type="edit" tooltip={translations.EDIT_APP} onClick={() => editApp(id)} />
+
             <ButtonAction
               type="delete"
               onClick={() => showDeleteModal(id)}
@@ -41,6 +43,7 @@ AppItem.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,
   showDeleteModal: PropTypes.func,
+  editApp: PropTypes.func,
   icon: PropTypes.shape({
     image: PropTypes.string
   }),

@@ -13,6 +13,7 @@ import Panel from './Panel/Panel';
 import ButtonAction from './ButtonAction/ButtonAction';
 import Image from './Image/Image';
 import Tooltip from './Tooltip/Tooltip';
+import Spinner from './Spinner/Spinner';
 
 export * from './Dialog/DialogModel';
 export * from './Notifications/NotificationModel';
@@ -32,5 +33,6 @@ export {
   Content,
   Panel,
   Image,
-  Tooltip
+  Tooltip,
+  Spinner
 };

@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  compose,
-  pure,
-  lifecycle,
-  withStateHandlers,
-  branch,
-  renderComponent
-} from 'recompose';
+import { compose, pure, lifecycle, withStateHandlers, branch, renderComponent } from 'recompose';
 import notFound from '../../assets/images/noFound.png';
 
+import Spinner from '../Spinner/Spinner';
+
 export const ImageComponent = ({ src, alt, load }) =>
-  load && <img src={src} alt={alt} />;
+  load ? <img src={src} alt={alt} /> : <Spinner size="small" />;
 
 Image.propTypes = {
   src: PropTypes.string,
@@ -29,6 +24,7 @@ export default compose(
       isError: () => () => ({ error: true })
     }
   ),
+
   branch(({ error }) => error, renderComponent(ImageNotFound)),
   lifecycle({
     componentDidMount() {

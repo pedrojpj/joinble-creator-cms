@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Combo, ComboItem } from '../../components-ui';
+import { Combo, ComboItem, Spinner } from '../../components-ui';
 
 const Home = props => (
   <div>
@@ -14,6 +14,8 @@ const Home = props => (
     >
       <ComboItem value={1}>1</ComboItem>
       <ComboItem value={2}>2</ComboItem>
+
+      <Spinner />
     </Combo>
   </div>
 );

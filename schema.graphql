@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Thu Apr 12 2018 08:48:58 GMT+0200 (CEST)
+# timestamp: Mon Apr 23 2018 08:42:48 GMT+0200 (CEST)
 
 """This represent a App"""
 type App {
@@ -7,7 +7,7 @@ type App {
   user: ID!
   name: String
   code: String
-  platform: [platforms]
+  platforms: [platforms]
   domain: String
   icon: Image
   languages: [String]

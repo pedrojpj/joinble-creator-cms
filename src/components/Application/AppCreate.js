@@ -12,6 +12,8 @@ import {
   Alert
 } from '../../components-ui';
 
+import styles from './styles.css';
+
 export const AppCreate = ({
   translations,
   form,
@@ -23,10 +25,13 @@ export const AppCreate = ({
   uploadImage,
   submitForm,
   formError,
-  errorMessage
+  errorMessage,
+  icon,
+  router,
+  mode
 }) => (
   <div>
-    <Title>{translations.NEW_APPLICATION}</Title>
+    <Title>{mode === 'create' ? translations.NEW_APPLICATION : translations.EDIT_APP}</Title>
 
     <Content>
       <Panel>
@@ -42,6 +47,7 @@ export const AppCreate = ({
               placeholder={translations.UPLOAD_ICON}
               name="icon"
               mode="square"
+              files={icon}
               onChange={uploadImage}
             />
           </div>
@@ -102,26 +108,25 @@ export const AppCreate = ({
             type="text"
             name="code"
             form={form}
-            disabled={
-              !form.platforms.includes('android') ||
-              !form.platforms.includes('ios')
-            }
+            disabled={!form.platforms.includes('android') || !form.platforms.includes('ios')}
             updateForm={updateForm}
             placeholder={translations.APP_CODE}
             error={formFieldsWithErrors.includes('code')}
             errorMessage={translations.ERROR_CODE}
           />
 
-          <div className="form-group m-b-0">
-            <div className="col-sm-offset-2 col-sm-10">
-              <button
-                type="submit"
-                className="btn btn-info"
-                onClick={submitForm}
-              >
-                {translations.SAVE}
-              </button>
-            </div>
+          <div className={styles.appBarBottom}>
+            <button
+              type="button"
+              className="btn btn-default"
+              onClick={() => router.push('/cms/app/list')}
+            >
+              {translations.BACK}
+            </button>
+
+            <button type="submit" className="btn btn-info" onClick={submitForm}>
+              {translations.SAVE}
+            </button>
           </div>
         </form>
       </Panel>
@@ -140,5 +145,12 @@ AppCreate.propTypes = {
   updateForm: PropTypes.func,
   uploadImage: PropTypes.func,
   updateField: PropTypes.func,
-  submitForm: PropTypes.func
+  submitForm: PropTypes.func,
+  icon: PropTypes.arrayOf(PropTypes.shape({})),
+  mode: PropTypes.oneOf(['create', 'edit'])
+};
+
+AppCreate.defaultProps = {
+  icon: [],
+  mode: 'create'
 };

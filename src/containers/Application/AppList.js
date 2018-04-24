@@ -1,11 +1,4 @@
-import {
-  compose,
-  pure,
-  lifecycle,
-  withHandlers,
-  withStateHandlers,
-  getContext
-} from 'recompose';
+import { compose, pure, withHandlers, withStateHandlers, getContext } from 'recompose';
 import { graphql } from 'react-relay';
 import { withModal } from 'recompose-extends';
 import PropTypes from 'prop-types';
@@ -29,7 +22,7 @@ export default compose(
           id
           name
           code
-          platform
+          platforms
           icon {
             image
           }
@@ -37,13 +30,9 @@ export default compose(
       }
     `
   ),
-  lifecycle({
-    componentDidMount() {
-      console.log(this.props);
-    }
-  }),
   getContext({ addNotification: PropTypes.func }),
   withHandlers({
+    editApp: ({ router }) => id => router.push(`/cms/app/edit/${id}`),
     deleteApp: ({
       showDeleteModal,
       dataModal,

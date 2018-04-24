@@ -1,4 +1,12 @@
-import { compose, pure, withState, withHandlers, getContext } from 'recompose';
+import {
+  compose,
+  pure,
+  withState,
+  withHandlers,
+  getContext,
+  withProps,
+  lifecycle
+} from 'recompose';
 import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
 import PropTypes from 'prop-types';
@@ -11,36 +19,57 @@ import { CROPS_ICON } from '../../constants';
 export default compose(
   withQuery(
     graphql`
-      query AppCreateQuery {
+      query AppEditQuery($id: ID!) {
         languages
         platforms {
           name
           code
         }
+        app(id: $id) {
+          id
+          name
+          code
+          platforms
+          domain
+          icon {
+            name
+            id
+            image
+          }
+          languages
+        }
       }
-    `
+    `,
+    ({ params }) => ({ id: params.id })
   ),
+  lifecycle({
+    componentDidMount() {
+      console.log(this.props);
+    }
+  }),
   getContext({ addNotification: PropTypes.func }),
   withState('errorMessage', 'setErrorMessage', ({ translations }) => translations.ERROR_FORM),
+  withProps(({ app }) => ({ icon: app.icon ? [app.icon] : '', mode: 'edit' })),
   withForm(
-    {
-      name: { value: '', required: true },
-      platforms: { value: [], required: true },
-      languages: { value: [], required: true },
+    ({ app }) => ({
+      id: { value: app.id || '' },
+      name: { value: app.name || '', required: true },
+      platforms: { value: app.platforms || [], required: true },
+      languages: { value: app.languages || [], required: true },
       domain: {
-        value: '',
+        value: app.domain || '',
         pattern: '((xn--)?[a-z0-9]+(-[a-z0-9]+)*\\.)+[a-z]{2,}'
       },
       code: {
-        value: '',
+        value: app.code || '',
         pattern: '^[a-z][a-z0-9_]*(.[a-z0-9_]+)+[0-9a-z_]$'
       },
-      icon: { value: '' }
-    },
+      icon: { value: app.icon ? app.icon.id : '' || '' }
+    }),
     ({ router, addNotification, translations }) => form => {
       withMutation(
         graphql`
-          mutation AppCreateMutation($app: AppInput!) {
+          mutation AppEditMutation($app: AppInput!) {
             addApp(app: $app) {
               id
             }
@@ -49,7 +78,7 @@ export default compose(
         { app: form }
       ).then(({ addApp }) => {
         if (addApp.id) {
-          addNotification({ message: translations.APP_CREATED, type: 'success' }, 3000);
+          addNotification({ message: translations.APP_EDITED, type: 'success' }, 3000);
           router.push({ pathname: '/cms/app/list' });
         }
       });
@@ -61,7 +90,7 @@ export default compose(
 
       withMutation(
         graphql`
-          mutation AppCreateImageMutation($image: ImageInput!) {
+          mutation AppEditImageMutation($image: ImageInput!) {
             upload(image: $image) {
               errors {
                 key

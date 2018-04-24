@@ -25,14 +25,14 @@ const Header = ({
   });
 
   return (
-    <header className="topbar">
+    <header className="topbar" style={{ height: '60px' }}>
       <div className={styleTopBarLeft}>
         <Link to="/">
           <img src={logo} alt="Joinble" />
         </Link>
       </div>
 
-      <div className="navbar navbar-default" role="navigation">
+      <div className="navbar navbar-default" style={{ height: '60px' }} role="navigation">
         <div className="container">
           <div className="pull-right">
             <Dialog items={userMenu} className={styles.navItems} position="right">

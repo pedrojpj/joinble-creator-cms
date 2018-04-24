@@ -6,16 +6,8 @@ import CreateUser from './CreateUser';
 import Password from './Password';
 import ChangePassword from './ChangePassword';
 import Profile from './Profile';
+import Menu from './Menu';
 
 export * from './Layout';
 export * from './Application';
-export {
-  Home,
-  Login,
-  Header,
-  Error,
-  CreateUser,
-  Password,
-  ChangePassword,
-  Profile
-};
+export { Home, Login, Header, Error, CreateUser, Password, ChangePassword, Profile, Menu };

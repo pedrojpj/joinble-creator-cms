@@ -1,0 +1,42 @@
+.buttonNew {
+  background-color: rgba(50, 60, 72, 1);
+  cursor: pointer;
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  min-height: 200px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+.buttonNew:hover {
+  background-color: rgba(50, 60, 72, 0.5);
+  border-color: rgba(4, 162, 179, 0.5);
+}
+
+.buttonNew:hover span {
+  background: rgba(4, 162, 179, 1);
+}
+
+.buttonNew span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background: rgba(159, 162, 167, 1);
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  margin-left: -30px;
+  transition: background 0.3s ease;
+}
+
+.buttonNew span svg {
+  width: 30px !important;
+  height: 30px !important;
+  fill: white !important;
+}

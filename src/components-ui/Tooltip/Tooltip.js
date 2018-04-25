@@ -25,7 +25,7 @@ export default compose(
   withProps({ refs: RefsStore }),
   lifecycle({
     componentDidMount() {
-      const instance = new Tooltipjs(this.props.refs.get('children'), {
+      new Tooltipjs(this.props.refs.get('children'), {
         title: this.props.message,
         template: templateTooltip,
         placement: 'top'

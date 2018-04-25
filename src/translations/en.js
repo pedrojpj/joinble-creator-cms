@@ -65,5 +65,16 @@ export const translations = {
   DELETE_APP_OK: 'The application has been successfully deleted',
   UPLOAD_ICON: 'Upload an application icon',
   EDIT_APP: 'Edit application',
-  BACK: 'Back'
+  BACK: 'Back',
+  PAGES: 'Pages',
+  NEW_PAGE: 'New Page',
+  EDIT_PAGE: 'Edit Page',
+  PAGE_NAME: 'Page Name',
+  PAGE_SLUG: 'Page Slug',
+  PAGE_PRIMARY: 'Página principal',
+  PAGE_CREATED: 'The page has been created correctly',
+  DELETE_PAGE: 'Delete page',
+  DELETE_PAGE_MESSAGE: 'Are you sure you want to delete the page?',
+  DELETE_PAGE_OK: 'The page has been successfully deleted',
+  PAGE_EDITED: 'The page has been edited correctly'
 };

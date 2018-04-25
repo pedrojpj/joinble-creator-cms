@@ -1,12 +1,4 @@
-import {
-  compose,
-  pure,
-  withState,
-  withHandlers,
-  getContext,
-  withProps,
-  lifecycle
-} from 'recompose';
+import { compose, pure, withState, withHandlers, getContext, withProps } from 'recompose';
 import { graphql } from 'react-relay';
 import { withForm } from 'recompose-extends';
 import PropTypes from 'prop-types';
@@ -42,11 +34,6 @@ export default compose(
     `,
     ({ params }) => ({ id: params.id })
   ),
-  lifecycle({
-    componentDidMount() {
-      console.log(this.props);
-    }
-  }),
   getContext({ addNotification: PropTypes.func }),
   withState('errorMessage', 'setErrorMessage', ({ translations }) => translations.ERROR_FORM),
   withProps(({ app }) => ({ icon: app.icon ? [app.icon] : '', mode: 'edit' })),

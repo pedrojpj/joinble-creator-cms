@@ -70,5 +70,14 @@ export const translations = {
   EDIT_APP: 'Editar aplicación',
   BACK: 'Volver',
   PAGES: 'Páginas',
-  NEW_PAGE: 'Nueva página'
+  NEW_PAGE: 'Nueva página',
+  EDIT_PAGE: 'Editar página',
+  PAGE_NAME: 'Nombre de la página',
+  PAGE_SLUG: 'Url de la página',
+  PAGE_PRIMARY: 'Página principal',
+  PAGE_CREATED: 'La página ha sido creada correctamente',
+  DELETE_PAGE: 'Borrar página',
+  DELETE_PAGE_MESSAGE: '¿Estas seguro de eliminar la página?',
+  DELETE_PAGE_OK: 'La página ha sido borrada correctamente',
+  PAGE_EDITED: 'La página ha sido editada correctamente'
 };

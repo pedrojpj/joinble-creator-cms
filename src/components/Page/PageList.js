@@ -2,17 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Title, Content, ButtonNew } from '../../components-ui';
-import styles from './styles.css';
+import { PageItem } from '../../components/Page';
 
-const PageList = ({ translations, router, pages, params }) => (
+const PageList = ({ translations, router, pages, params, ...rest }) => (
   <div>
     <Title>{translations.PAGES}</Title>
     <Content>
       <div className="row">
         <div className="col-sm-6 col-lg-3">
-          <ButtonNew text={translations.NEW_PAGE} link={`cms/app/${params.id}/pages/create`} />
+          <ButtonNew text={translations.NEW_PAGE} link={`/cms/app/${params.id}/pages/create`} />
         </div>
-        {pages.map(page => <div />)}
+        {pages.map(page => (
+          <PageItem key={page.id} {...page} {...rest} translations={translations} />
+        ))}
       </div>
     </Content>
   </div>

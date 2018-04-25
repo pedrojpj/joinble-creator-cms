@@ -1,3 +1,5 @@
 import PageList from './PageList';
+import PageCreate from './PageCreate';
+import PageEdit from './PageEdit';
 
-export { PageList };
+export { PageList, PageCreate, PageEdit };

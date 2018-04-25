@@ -23,7 +23,8 @@ import {
   Profile,
   AppList,
   AppCreate,
-  AppEdit
+  AppEdit,
+  PageList
 } from './containers';
 
 export default createFarceRouter({
@@ -37,6 +38,7 @@ export default createFarceRouter({
         <Route path="/app/list" Component={AppList} />
         <Route path="/app/create" Component={AppCreate} />
         <Route path="/app/edit/:id" Component={AppEdit} />
+        <Route path="/app/:id/pages" Component={PageList} />
       </Route>
       <Route path="/auth" Component={LayoutAuth}>
         <Route path="/login" Component={Login} />

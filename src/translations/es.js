@@ -68,5 +68,7 @@ export const translations = {
   DELETE_APP_OK: 'La aplicación ha sido borrada correctamente',
   UPLOAD_ICON: 'Sube un icono de la aplicación',
   EDIT_APP: 'Editar aplicación',
-  BACK: 'Volver'
+  BACK: 'Volver',
+  PAGES: 'Páginas',
+  NEW_PAGE: 'Nueva página'
 };

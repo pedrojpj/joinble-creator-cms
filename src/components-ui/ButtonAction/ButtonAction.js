@@ -9,7 +9,13 @@ import styles from './styles.css';
 
 export const ButtonAction = ({ onClick, type, tooltip }) => (
   <Tooltip message={tooltip}>
-    <button onClick={onClick} className={styles.button}>
+    <button
+      onClick={event => {
+        onClick();
+        event.stopPropagation();
+      }}
+      className={styles.button}
+    >
       {type === 'delete' && <EntypoTrash />}
       {type === 'edit' && <EntypoEdit />}
     </button>

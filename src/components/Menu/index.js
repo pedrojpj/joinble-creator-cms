@@ -19,7 +19,7 @@ const Menu = ({ translations }) => {
           <li>
             <Link to="/cms/app/list" activeClassName="active">
               <i>
-                <span class="fab fa-app-store-ios" />
+                <span className="fab fa-app-store-ios" />
               </i>
               {translations.APPLICATIONS}
             </Link>

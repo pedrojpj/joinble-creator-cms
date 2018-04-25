@@ -11,6 +11,7 @@ import Title from './Title/Title';
 import Content from './Content/Content';
 import Panel from './Panel/Panel';
 import ButtonAction from './ButtonAction/ButtonAction';
+import ButtonNew from './ButtonNew/ButtonNew';
 import Image from './Image/Image';
 import Tooltip from './Tooltip/Tooltip';
 import Spinner from './Spinner/Spinner';
@@ -21,6 +22,7 @@ export * from './Notifications/Notification';
 export {
   Alert,
   ButtonAction,
+  ButtonNew,
   Input,
   Dialog,
   Modal,

@@ -19,7 +19,7 @@ const Spinner = ({ scale }) => (
 
 Spinner.propTypes = {
   size: PropTypes.oneOf(['large', 'medium', 'small']),
-  scale: PropTypes.number
+  scale: PropTypes.oneOfType([PropTypes.func, PropTypes.number])
 };
 
 Spinner.defaultProps = {

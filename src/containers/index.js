@@ -10,4 +10,5 @@ import Menu from './Menu';
 
 export * from './Layout';
 export * from './Application';
+export * from './Page';
 export { Home, Login, Header, Error, CreateUser, Password, ChangePassword, Profile, Menu };

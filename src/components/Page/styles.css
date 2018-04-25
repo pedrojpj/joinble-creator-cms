@@ -1,0 +1,40 @@
+.formBottom {
+  text-align: center;
+}
+
+.formBottom button {
+  margin: 0 5px;
+}
+
+.pageItem {
+  border-radius: 10px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.pageHeader {
+}
+
+.pageHeader h4 {
+  color: #9fa2a7;
+  font-family: 'PT Sans Caption', sans-serif;
+  font-weight: normal;
+}
+
+.pageContent {
+  display: flex;
+  flex: 1;
+}
+
+.pageActions {
+  border-top: 1px solid #2a323c;
+  padding: 10px;
+  width: 100%;
+  align-self: flex-end;
+}
+
+.pageActions button {
+  margin: 0 3px;
+}

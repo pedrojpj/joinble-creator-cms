@@ -4,9 +4,18 @@ import classnames from 'classnames';
 
 import styles from './styles.css';
 
-import { ButtonAction, Image } from '../../components-ui';
+import { ButtonAction, Image, DateFormat } from '../../components-ui';
 
-export const AppItem = ({ name, icon, id, showDeleteModal, editApp, translations, onClick }) => {
+export const AppItem = ({
+  name,
+  icon,
+  id,
+  updateAt,
+  showDeleteModal,
+  editApp,
+  translations,
+  onClick
+}) => {
   const styleItem = classnames({
     panel: true,
     'text-center': true,
@@ -24,6 +33,14 @@ export const AppItem = ({ name, icon, id, showDeleteModal, editApp, translations
           <h4 className={styles.appTitle}>{name}</h4>
         </div>
         <div className={styles.appContent}>
+          <DateFormat
+            element="p"
+            className={styles.appDate}
+            date={updateAt}
+            text={translations.LAST_UPDATE}
+            fromNow
+          />
+
           <div className={styles.appActions}>
             <ButtonAction type="edit" tooltip={translations.EDIT_APP} onClick={() => editApp(id)} />
 
@@ -44,6 +61,7 @@ AppItem.propTypes = {
   id: PropTypes.string,
   showDeleteModal: PropTypes.func,
   editApp: PropTypes.func,
+  updateAt: PropTypes.string,
   icon: PropTypes.shape({
     image: PropTypes.string
   }),

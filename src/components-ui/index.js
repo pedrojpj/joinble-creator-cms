@@ -15,6 +15,7 @@ import ButtonNew from './ButtonNew/ButtonNew';
 import Image from './Image/Image';
 import Tooltip from './Tooltip/Tooltip';
 import Spinner from './Spinner/Spinner';
+import DateFormat from './DateFormat/DateFormat';
 
 export * from './Dialog/DialogModel';
 export * from './Notifications/NotificationModel';
@@ -36,5 +37,6 @@ export {
   Panel,
   Image,
   Tooltip,
-  Spinner
+  Spinner,
+  DateFormat
 };

@@ -2,10 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { ButtonAction } from '../../components-ui';
+import { ButtonAction, DateFormat } from '../../components-ui';
 import styles from './styles.css';
 
-export const PageItem = ({ name, icon, id, showDeleteModal, editPage, translations, onClick }) => {
+export const PageItem = ({
+  name,
+  icon,
+  updateAt,
+  id,
+  showDeleteModal,
+  editPage,
+  translations,
+  onClick
+}) => {
   const styleItem = classnames({
     panel: true,
     'text-center': true,
@@ -19,6 +28,14 @@ export const PageItem = ({ name, icon, id, showDeleteModal, editPage, translatio
           <h4 className={styles.pageTitle}>{name}</h4>
         </div>
         <div className={styles.pageContent}>
+          <DateFormat
+            element="p"
+            className={styles.pageDate}
+            date={updateAt}
+            text={translations.LAST_UPDATE}
+            fromNow
+          />
+
           <div className={styles.pageActions}>
             <ButtonAction
               type="edit"

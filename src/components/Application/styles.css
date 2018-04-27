@@ -18,6 +18,7 @@
 .appContent {
   display: flex;
   flex: 1;
+  flex-direction: column;
 }
 
 .appActions {
@@ -25,6 +26,7 @@
   padding: 10px;
   width: 100%;
   align-self: flex-end;
+  margin-top: auto;
 }
 
 .appActions button {
@@ -50,7 +52,9 @@
 
 .appTitle {
   margin-top: 65px;
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: bold !important;
+  color: white !important;
 }
 
 .appBarBottom {
@@ -59,4 +63,10 @@
 
 .appBarBottom button {
   margin: 0 5px;
+}
+
+.appDate {
+  text-align: center;
+  font-style: italic;
+  font-size: 13px;
 }

@@ -28,13 +28,11 @@ describe('User', () => {
     cy.get('select[name="country"]').select(fakeUser.country);
     cy.get('input[name="city"]').type(fakeUser.city);
     cy.get('input[name="password"]').type(fakeUser.password);
-    cy.get('input[name="conditions"]').click();
+    cy.get('#check-conditions').click();
 
     cy.get('button[type="submit"]').click();
 
-    cy.get('#username').should($span => {
-      expect($span.text()).to.contain(fakeUser.name);
-    });
+    cy.get('#username').should('be.visible');
   });
 
   it('should send email to reset password', () => {

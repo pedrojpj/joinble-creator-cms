@@ -89,7 +89,13 @@ const CreateUser = ({
 
         <div className="form-group">
           <div className="col-xs-12">
-            <Checkbox name="conditions" value={form.conditions} onChange={updateForm}>
+            <Checkbox
+              id="check-conditions"
+              name="conditions"
+              value={form.conditions}
+              onChange={updateForm}
+              error={formFieldsWithErrors.includes('conditions')}
+            >
               {' '}
               {translations.READ_CONDITIONS}{' '}
               <a

@@ -5,17 +5,18 @@ import classnames from 'classnames';
 
 import styles from './styles.css';
 
-const Checkbox = ({ children, name, value, onChangeCheck, isChecked }) => {
+export const Checkbox = ({ children, name, id, value, onChangeCheck, isChecked, error }) => {
   const customStyles = classnames({
     [styles.customCheck]: true,
-    [styles.customCheckActive]: isChecked
+    [styles.customCheckActive]: isChecked,
+    'parsley-error': error
   });
 
   return (
-    <label className={styles.label}>
+    <label className={styles.label} htmlFor={name} id={id}>
       <div className={customStyles}>
-        <i class="fas fa-check" />
-        <input type="checkbox" name={name} value={value} onChange={onChangeCheck} />
+        <i className="fas fa-check" />
+        <input type="checkbox" name={name} id={name} value={value} onChange={onChangeCheck} />
       </div>
       {children}
     </label>
@@ -24,10 +25,12 @@ const Checkbox = ({ children, name, value, onChangeCheck, isChecked }) => {
 
 Checkbox.propTypes = {
   children: PropTypes.node,
+  id: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.oneOf([PropTypes.string, PropTypes.bool, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]),
   onChangeCheck: PropTypes.func,
-  isChecked: PropTypes.bool
+  isChecked: PropTypes.bool,
+  error: PropTypes.bool
 };
 
 export default compose(

@@ -13,6 +13,7 @@ export const Input = ({
   placeholder,
   error,
   errorMessage,
+  autoComplete,
   label,
   disabled
 }) => {
@@ -35,14 +36,13 @@ export const Input = ({
           className={inputStyles}
           type={type}
           name={name}
+          autoComplete={autoComplete}
           placeholder={placeholder}
           value={form[name]}
           onChange={updateForm}
           disabled={disabled}
         />
-        {error && (
-          <span className={styles.inputMessageError}>{errorMessage}</span>
-        )}
+        {error && <span className={styles.inputMessageError}>{errorMessage}</span>}
       </div>
     </div>
   );
@@ -57,7 +57,12 @@ Input.propTypes = {
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   label: PropTypes.string,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  autoComplete: PropTypes.oneOf(['off', 'on'])
+};
+
+Input.defaultProps = {
+  autoComplete: 'off'
 };
 
 export default compose(pure)(Input);

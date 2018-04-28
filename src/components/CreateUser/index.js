@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input, Alert } from '../../components-ui';
+import { Input, Alert, Checkbox } from '../../components-ui';
 import { HeaderAuth } from '../Header';
 
 const CreateUser = ({
@@ -89,36 +89,30 @@ const CreateUser = ({
 
         <div className="form-group">
           <div className="col-xs-12">
-            <div className="checkbox checkbox-primary">
-              <input
-                id="conditions"
-                name="conditions"
-                type="checkbox"
-                value={form.conditions}
-                onChange={updateForm}
-              />
-              <label htmlFor="conditions">
-                {translations.READ_CONDITIONS}{' '}
-                <a
-                  onClick={e => {
-                    e.preventDefault();
-                    showConditions();
-                  }}
-                >
-                  {translations.CONDITIONS_USE}
-                </a>
-              </label>
-            </div>
+            <Checkbox
+              id="check-conditions"
+              name="conditions"
+              value={form.conditions}
+              onChange={updateForm}
+              error={formFieldsWithErrors.includes('conditions')}
+            >
+              {' '}
+              {translations.READ_CONDITIONS}{' '}
+              <a
+                onClick={e => {
+                  e.preventDefault();
+                  showConditions();
+                }}
+              >
+                {translations.CONDITIONS_USE}
+              </a>
+            </Checkbox>
           </div>
         </div>
 
         <div className="form-group text-center m-t-40">
           <div className="col-xs-12">
-            <button
-              onClick={submitForm}
-              className="btn btn-primary btn-block btn-lg"
-              type="submit"
-            >
+            <button onClick={submitForm} className="btn btn-primary btn-block btn-lg" type="submit">
               {translations.CREATE_USER}
             </button>
           </div>

@@ -16,6 +16,7 @@ import Image from './Image/Image';
 import Tooltip from './Tooltip/Tooltip';
 import Spinner from './Spinner/Spinner';
 import DateFormat from './DateFormat/DateFormat';
+import Checkbox from './Checkbox/Checkbox';
 
 export * from './Dialog/DialogModel';
 export * from './Notifications/NotificationModel';
@@ -38,5 +39,6 @@ export {
   Image,
   Tooltip,
   Spinner,
-  DateFormat
+  DateFormat,
+  Checkbox
 };

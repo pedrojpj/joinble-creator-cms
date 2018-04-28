@@ -16,15 +16,8 @@ const getInitials = function(string) {
 
 export const Avatar = ({ img, name, initials }) => (
   <div className={styles.avatar}>
-    {img ? (
-      <img src={img} alt={name} />
-    ) : (
-      <span className={styles.avatarInitials}>{initials}</span>
-    )}
+    {img ? <img src={img} alt={name} /> : <span className={styles.avatarInitials}>{initials}</span>}
   </div>
 );
 
-export default compose(
-  withProps(({ name }) => ({ initials: getInitials(name) })),
-  pure
-)(Avatar);
+export default compose(withProps(({ name }) => ({ initials: getInitials(name) })), pure)(Avatar);

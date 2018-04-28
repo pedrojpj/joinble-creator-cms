@@ -1,0 +1,40 @@
+.customCheck {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  border-radius: 3px;
+  background-color: white;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: #2a323c;
+  transition: 0.3s ease-in-out;
+  margin-top: 2px;
+  margin-right: 10px;
+}
+
+.customCheck:hover {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.customCheck svg {
+  display: none;
+  color: white;
+  padding: 2px;
+}
+
+.customCheckActive {
+  background: #04a2b3;
+  border-color: #04a2b3;
+}
+
+.customCheckActive svg {
+  display: block;
+}
+
+.customCheck input {
+  display: none;
+}
+
+.label {
+  position: relative;
+}

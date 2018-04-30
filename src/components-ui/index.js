@@ -17,6 +17,7 @@ import Tooltip from './Tooltip/Tooltip';
 import Spinner from './Spinner/Spinner';
 import DateFormat from './DateFormat/DateFormat';
 import Checkbox from './Checkbox/Checkbox';
+import Toggle from './Toggle/Toggle';
 
 export * from './Dialog/DialogModel';
 export * from './Notifications/NotificationModel';
@@ -40,5 +41,6 @@ export {
   Tooltip,
   Spinner,
   DateFormat,
-  Checkbox
+  Checkbox,
+  Toggle
 };

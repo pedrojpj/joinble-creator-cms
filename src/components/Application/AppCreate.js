@@ -28,7 +28,8 @@ export const AppCreate = ({
   errorMessage,
   icon,
   router,
-  mode
+  mode,
+  checkEnableCode
 }) => (
   <div>
     <Title>{mode === 'create' ? translations.NEW_APPLICATION : translations.EDIT_APP}</Title>
@@ -110,7 +111,7 @@ export const AppCreate = ({
             type="text"
             name="code"
             form={form}
-            disabled={!form.platforms.includes('android') || !form.platforms.includes('ios')}
+            disabled={checkEnableCode() ? true : false}
             updateForm={updateForm}
             placeholder={translations.APP_CODE}
             error={formFieldsWithErrors.includes('code')}
@@ -149,7 +150,8 @@ AppCreate.propTypes = {
   updateField: PropTypes.func,
   submitForm: PropTypes.func,
   icon: PropTypes.arrayOf(PropTypes.shape({})),
-  mode: PropTypes.oneOf(['create', 'edit'])
+  mode: PropTypes.oneOf(['create', 'edit']),
+  checkEnableCode: PropTypes.func
 };
 
 AppCreate.defaultProps = {

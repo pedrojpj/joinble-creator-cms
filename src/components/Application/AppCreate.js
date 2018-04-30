@@ -11,6 +11,7 @@ import {
   DropImage,
   Alert
 } from '../../components-ui';
+import { ICONS, ICONS_LANGUAGE } from '../../constants';
 
 import styles from './styles.css';
 
@@ -73,8 +74,8 @@ export const AppCreate = ({
             errorMessage={translations.ERROR_PLATFORM}
           >
             {platforms.map(platform => (
-              <ComboItem value={platform.code} key={platform.code}>
-                {platform.name}
+              <ComboItem value={platform.code} key={platform.code} tooltip={platform.name}>
+                <i class={`fab fa-${ICONS[platform.code]}`} />
               </ComboItem>
             ))}
           </Combo>
@@ -90,8 +91,8 @@ export const AppCreate = ({
             errorMessage={translations.ERROR_LANGUAGE}
           >
             {languages.map(language => (
-              <ComboItem value={language} key={language}>
-                {language}
+              <ComboItem value={language} key={language} tooltip={translations.LANGUAGES[language]}>
+                <span className={`flag-icon flag-icon-${ICONS_LANGUAGE[language]}`} />
               </ComboItem>
             ))}
           </Combo>

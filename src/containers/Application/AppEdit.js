@@ -100,6 +100,16 @@ export default compose(
           let message = error[0].message;
           addNotification({ message: translations[message], type: 'danger' }, 3000);
         });
+    },
+    checkEnableCode: ({ form }) => () => {
+      if (form.platforms.includes('android')) {
+        return false;
+      }
+
+      if (form.platforms.includes('ios')) {
+        return false;
+      }
+      return true;
     }
   }),
   pure

@@ -6,8 +6,8 @@ import { withRouter } from 'found';
 
 import styles from './styles.css';
 
-const ButtonNew = ({ text, link, router }) => (
-  <button className={styles.buttonNew} onClick={() => router.push(link)}>
+const ButtonNew = ({ text, link, router, id }) => (
+  <button id={id} className={styles.buttonNew} onClick={() => router.push(link)}>
     <span>
       <EntypoPlus />
     </span>
@@ -19,7 +19,8 @@ const ButtonNew = ({ text, link, router }) => (
 ButtonNew.propTypes = {
   text: PropTypes.string,
   link: PropTypes.string,
-  router: PropTypes.shape({})
+  router: PropTypes.shape({}),
+  id: PropTypes.string
 };
 
 export default compose(withRouter, pure)(ButtonNew);

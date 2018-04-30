@@ -17,7 +17,7 @@ const Menu = ({ translations }) => {
       <div id="sidebar-menu">
         <ul>
           <li>
-            <Link to="/cms/app/list" activeClassName="active">
+            <Link to="/cms/app/list" id="link-app" activeClassName="active">
               <i>
                 <span className="fab fa-app-store-ios" />
               </i>

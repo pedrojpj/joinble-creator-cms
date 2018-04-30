@@ -63,6 +63,7 @@ export const AppCreate = ({
 
           <Combo
             name="platforms"
+            id="combo-platforms"
             value={form.platforms}
             multiple
             label={translations.SELECT_PLATFORM}
@@ -81,6 +82,7 @@ export const AppCreate = ({
             name="languages"
             value={form.languages}
             multiple
+            id="combo-languages"
             label={translations.SELECT_LANGUAGE}
             updateField={updateField}
             error={formFieldsWithErrors.includes('languages')}
@@ -124,7 +126,7 @@ export const AppCreate = ({
               {translations.BACK}
             </button>
 
-            <button type="submit" className="btn btn-info" onClick={submitForm}>
+            <button type="submit" className="btn btn-info" id="button-save" onClick={submitForm}>
               {translations.SAVE}
             </button>
           </div>

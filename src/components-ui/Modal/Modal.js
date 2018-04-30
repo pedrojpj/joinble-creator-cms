@@ -5,15 +5,7 @@ import anime from 'animejs';
 
 import { RefsStore } from '../../utils';
 
-export const Modal = ({
-  id,
-  title,
-  text,
-  onCloseAnimation,
-  refs,
-  actions,
-  onAccept
-}) => (
+export const Modal = ({ id, title, text, onCloseAnimation, refs, actions, onAccept }) => (
   <div
     id={id}
     className="modal"
@@ -37,26 +29,26 @@ export const Modal = ({
           </button>
           {title && <h4 className="modal-title">{title}</h4>}
         </div>
-        <div className="modal-body">
-          {text && <p dangerouslySetInnerHTML={{ __html: text }} />}
-        </div>
+        <div className="modal-body">{text && <p dangerouslySetInnerHTML={{ __html: text }} />}</div>
 
         {actions && (
           <div className="modal-footer">
             <button
               type="button"
+              id="button-modal-close"
               className="btn btn-default"
               onClick={() => onCloseAnimation()}
               data-dismiss="modal"
             >
-              close
+              Close
             </button>
             <button
               type="button"
+              id="button-modal-accept"
               className="btn btn-primary"
               onClick={() => onCloseAnimation(onAccept)}
             >
-              Save changes
+              Accept
             </button>
           </div>
         )}

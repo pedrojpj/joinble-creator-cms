@@ -9,9 +9,13 @@ export const AppList = ({ translations, apps, router, ...rest }) => (
     <Title>{translations.APPLICATIONS}</Title>
 
     <Content>
-      <div className="row">
+      <div className="row" id="app-list">
         <div className="col-sm-6 col-lg-3">
-          <ButtonNew text={translations.NEW_APPLICATION} link="/cms/app/create" />
+          <ButtonNew
+            id="button-new-app"
+            text={translations.NEW_APPLICATION}
+            link="/cms/app/create"
+          />
         </div>
         {apps.map(app => (
           <AppItem

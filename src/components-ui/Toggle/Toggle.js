@@ -1,28 +1,35 @@
 import React from 'react';
-import { compose, withHandlers, withStateHandlers, pure } from 'recompose';
 import PropTypes from 'prop-types';
+import {
+  compose,
+  setDisplayName,
+  withHandlers,
+  withStateHandlers,
+  defaultProps,
+  pure
+} from 'recompose';
 import classnames from 'classnames';
 
 import styles from './styles.css';
 
-export const Checkbox = ({ children, name, id, value, onChangeCheck, isChecked, error }) => {
+const Toggle = ({ children, name, value, onChangeToggle, error, isChecked }) => {
   const customStyles = classnames({
-    [styles.customCheck]: true,
-    [styles.customCheckActive]: isChecked,
+    [styles.customToggle]: true,
+    [styles.customToggleActive]: isChecked,
     'parsley-error': error
   });
 
   return (
-    <label className={styles.label} htmlFor={name} id={id}>
+    <label>
       <div className={customStyles}>
-        <i className="fas fa-check" />
+        <span />
         <input
           type="checkbox"
           name={name}
           id={name}
           value={value}
           checked={isChecked}
-          onChange={onChangeCheck}
+          onChange={onChangeToggle}
         />
       </div>
       {children}
@@ -30,25 +37,29 @@ export const Checkbox = ({ children, name, id, value, onChangeCheck, isChecked, 
   );
 };
 
-Checkbox.propTypes = {
+Toggle.propTypes = {
   children: PropTypes.node,
-  id: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]),
-  onChangeCheck: PropTypes.func,
+  onChangeToggle: PropTypes.func,
+  error: PropTypes.bool,
   isChecked: PropTypes.bool,
-  error: PropTypes.bool
+  refs: PropTypes.shape({})
 };
 
 export default compose(
+  setDisplayName('ToggleComponent'),
+  defaultProps({
+    onChange: () => {}
+  }),
   withStateHandlers(({ value }) => ({ isChecked: value ? true : false }), {
     setChecked: () => value => ({ isChecked: value })
   }),
   withHandlers({
-    onChangeCheck: ({ setChecked, onChange }) => event => {
+    onChangeToggle: ({ setChecked, onChange }) => event => {
       setChecked(event.target.checked);
       onChange(event);
     }
   }),
   pure
-)(Checkbox);
+)(Toggle);

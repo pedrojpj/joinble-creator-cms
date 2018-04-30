@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { Title, Content, Input, Alert } from '../../components-ui';
+import { Title, Content, Input, Alert, Toggle } from '../../components-ui';
 import styles from './styles.css';
 
 const PageCreate = ({
@@ -43,16 +43,9 @@ const PageCreate = ({
 
         <div className="form-group">
           <div className="col-xs-12">
-            <div className="checkbox checkbox-primary">
-              <input
-                id="primary"
-                name="primary"
-                type="checkbox"
-                value={form.primary}
-                onChange={updateForm}
-              />
-              <label htmlFor="primary">{translations.PAGE_PRIMARY}</label>
-            </div>
+            <Toggle name="primary" value={form.primary} onChange={updateForm}>
+              {translations.PAGE_PRIMARY}
+            </Toggle>
           </div>
         </div>
 

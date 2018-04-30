@@ -1,0 +1,39 @@
+.customToggle {
+  height: 26px;
+  min-width: 46px;
+  border-radius: 14px;
+  background-color: #2a323c;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 8px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  transition: 0.3s ease-in-out;
+}
+
+.customToggle input {
+  display: none;
+}
+
+.customToggleActive {
+  background: #04a2b3;
+  border-color: #04a2b3;
+}
+
+.customToggle span {
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  border-radius: 9px;
+  background-color: white;
+  position: absolute;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform: translateX(0);
+}
+
+.customToggleActive span {
+  transform: translateX(21px);
+}

@@ -77,5 +77,12 @@ export const translations = {
   DELETE_PAGE_MESSAGE: 'Are you sure you want to delete the page?',
   DELETE_PAGE_OK: 'The page has been successfully deleted',
   PAGE_EDITED: 'The page has been edited correctly',
-  LAST_UPDATE: 'Last Update'
+  LAST_UPDATE: 'Last Update',
+  LANGUAGES: {
+    en: 'English',
+    es: 'Spanish',
+    de: 'German',
+    pt: 'Portuguese',
+    fr: 'French'
+  }
 };

@@ -3,27 +3,25 @@ import PropTypes from 'prop-types';
 import { compose, pure } from 'recompose';
 import classnames from 'classnames';
 
-export const ComboItem = ({
-  children,
-  value,
-  onSelect,
-  className,
-  selected
-}) => {
+import Tooltip from '../Tooltip/Tooltip';
+
+export const ComboItem = ({ children, value, onSelect, className, selected, tooltip }) => {
   const comboStyle = classnames({
     [className]: className,
     selected: selected
   });
 
   return (
-    <div
-      className={comboStyle}
-      onClick={() => onSelect(value)}
-      aria-selected={selected}
-      role="option"
-    >
-      {children}
-    </div>
+    <Tooltip message={tooltip}>
+      <div
+        className={comboStyle}
+        onClick={() => onSelect(value)}
+        aria-selected={selected}
+        role="option"
+      >
+        {children}
+      </div>
+    </Tooltip>
   );
 };
 

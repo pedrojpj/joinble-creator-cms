@@ -10,6 +10,7 @@ import styles from './styles.css';
 export const ButtonAction = ({ onClick, type, tooltip }) => (
   <Tooltip message={tooltip}>
     <button
+      aria-label={type}
       onClick={event => {
         onClick();
         event.stopPropagation();

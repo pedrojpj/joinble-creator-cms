@@ -1,6 +1,15 @@
 import React from 'react';
 
-import { Combo, ComboItem, Spinner, Checkbox, Toggle } from '../../components-ui';
+import {
+  Combo,
+  ComboItem,
+  Spinner,
+  Checkbox,
+  Toggle,
+  Tabs,
+  Tab,
+  TabContent
+} from '../../components-ui';
 
 const Home = props => (
   <div>
@@ -26,6 +35,14 @@ const Home = props => (
 
     <br />
     <Toggle>Active?</Toggle>
+
+    <br />
+    <Tabs activeTab={1}>
+      <Tab>Link 1</Tab>
+      <Tab>Link 2</Tab>
+      <TabContent>Content 1</TabContent>
+      <TabContent>Content 2</TabContent>
+    </Tabs>
   </div>
 );
 

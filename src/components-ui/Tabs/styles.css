@@ -1,0 +1,34 @@
+.tab {
+  padding: 0 20px;
+  line-height: 50px;
+  cursor: pointer;
+  min-width: 160px;
+  text-align: center;
+  box-sizing: border-box;
+  transition: all 0.5s ease;
+}
+
+.tab:focus,
+.tab:active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tabActive {
+  color: #04a2b3;
+  font-weight: bold;
+}
+
+.tabRippleContent {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 2px;
+}
+
+.tabRipple {
+  border-bottom: 3px solid #04a2b3;
+  min-width: 160px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}

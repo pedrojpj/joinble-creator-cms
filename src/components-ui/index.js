@@ -22,6 +22,7 @@ import Toggle from './Toggle/Toggle';
 export * from './Dialog/DialogModel';
 export * from './Notifications/NotificationModel';
 export * from './Notifications/Notification';
+export * from './Tabs';
 export {
   Alert,
   ButtonAction,

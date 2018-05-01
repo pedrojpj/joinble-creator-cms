@@ -31,8 +31,10 @@ const withTranslations = () => BaseComponent => {
         return LocalStorage.get('LANGUAGE');
       } else {
         if (this.availableLanguages.includes(navigator.language)) {
+          LocalStorage.set('LANGUAGE', navigator.language);
           return navigator.language;
         } else {
+          LocalStorage.set('LANGUAGE', this.availableLanguages[0]);
           return this.availableLanguages[0];
         }
       }

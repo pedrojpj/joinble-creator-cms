@@ -18,6 +18,10 @@ function fetchQuery(operation, variables) {
     options.headers.Authorization = 'JWT ' + LocalStorage.get('AUTH_TOKEN');
   }
 
+  if (localStorage.getItem('LANGUAGE')) {
+    options.headers['Accept-Language'] = LocalStorage.get('LANGUAGE');
+  }
+
   return fetch('http://localhost:8000/graphql', options)
     .then(response => {
       return response.json();

@@ -36,7 +36,7 @@ export default compose(
   ),
   getContext({ addNotification: PropTypes.func }),
   withState('errorMessage', 'setErrorMessage', ({ translations }) => translations.ERROR_FORM),
-  withProps(({ app }) => ({ icon: app.icon ? [app.icon] : '', mode: 'edit' })),
+  withProps(({ app }) => ({ icon: app.icon.image ? [app.icon] : [], mode: 'edit' })),
   withForm(
     ({ app }) => ({
       id: { value: app.id || '' },

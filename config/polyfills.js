@@ -19,4 +19,14 @@ Object.assign = require('object-assign');
 // We don't polyfill it in the browser--this is user's responsibility.
 if (process.env.NODE_ENV === 'test') {
   require('raf').polyfill(global);
+
+  window.matchMedia =
+    window.matchMedia ||
+    function() {
+      return {
+        matches: false,
+        addListener: function() {},
+        removeListener: function() {}
+      };
+    };
 }

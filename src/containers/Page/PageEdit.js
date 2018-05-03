@@ -1,4 +1,12 @@
-import { compose, withState, withProps, getContext, setDisplayName, pure } from 'recompose';
+import {
+  compose,
+  withState,
+  withProps,
+  getContext,
+  setDisplayName,
+  lifecycle,
+  pure
+} from 'recompose';
 import PropTypes from 'prop-types';
 import { withForm } from 'recompose-extends';
 import { graphql } from 'react-relay';
@@ -26,6 +34,11 @@ export default compose(
     `,
     ({ params }) => ({ id: params.pageId })
   ),
+  lifecycle({
+    componentDidMount() {
+      console.log(this.props);
+    }
+  }),
   withForm(
     ({ page }) => ({
       id: { value: page.id },

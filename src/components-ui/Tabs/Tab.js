@@ -20,7 +20,7 @@ const Tab = ({ children, onClick, active }) => {
 Tab.propTypes = {
   children: PropTypes.node,
   onClick: PropTypes.func,
-  active: PropTypes.string
+  active: PropTypes.bool
 };
 
 export default Tab;

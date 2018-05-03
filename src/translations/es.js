@@ -87,5 +87,7 @@ export const translations = {
     de: 'Alemán',
     pt: 'Portugués',
     fr: 'Francés'
-  }
+  },
+  CONFIGURATION: 'Configuración',
+  CONTENT: 'Contenido'
 };

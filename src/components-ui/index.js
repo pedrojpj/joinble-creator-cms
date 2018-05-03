@@ -23,6 +23,7 @@ export * from './Dialog/DialogModel';
 export * from './Notifications/NotificationModel';
 export * from './Notifications/Notification';
 export * from './Tabs';
+export * from './Carousel';
 export {
   Alert,
   ButtonAction,

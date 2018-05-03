@@ -14,9 +14,6 @@
   cursor: pointer;
 }
 
-.pageHeader {
-}
-
 .pageHeader h4 {
   color: #9fa2a7;
   font-family: 'PT Sans Caption', sans-serif;
@@ -48,4 +45,25 @@
   text-align: center;
   font-style: italic;
   font-size: 13px;
+}
+
+.widgetContainer {
+  padding-top: 20px;
+}
+
+.widgetContent {
+  text-align: center;
+  font-size: 30px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.widgetContent h4 {
+  text-align: center;
+  font-size: 12px;
+}
+
+.widgetContent i {
+  font-size: 30px;
 }

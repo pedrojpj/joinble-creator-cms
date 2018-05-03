@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Mon Apr 23 2018 08:42:48 GMT+0200 (CEST)
+# timestamp: Wed May 02 2018 22:51:59 GMT+0200 (CEST)
 
 """This represent a App"""
 type App {
@@ -283,7 +283,8 @@ input UserInput {
 type Widget {
   id: ID!
   name: String
-  description: Translation
+  description: String
+  icon: String
   content: [Content]
   repeat: Boolean
   mode: String

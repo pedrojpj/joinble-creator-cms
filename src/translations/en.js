@@ -84,5 +84,7 @@ export const translations = {
     de: 'German',
     pt: 'Portuguese',
     fr: 'French'
-  }
+  },
+  CONFIGURATION: 'Configuration',
+  CONTENT: 'Content'
 };

@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {} from 'react-dnd';
 
 import { Carousel, CarouselItem } from '../../components-ui';
 import styles from './styles.css';
 
 const PageContent = ({ widgets }) => (
   <div className={styles.widgetContainer}>
-    <Carousel>
+    <Carousel vertical>
       {widgets.map(widget => (
         <CarouselItem key={widget.name} className={styles.widgetContent}>
           <h4>{widget.name}</h4>

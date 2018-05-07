@@ -1,4 +1,5 @@
 import React, { cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import { compose, withProps, withHandlers, pure } from 'recompose';
 import uuid from 'uuid';
 import classnames from 'classnames';
@@ -13,8 +14,8 @@ const styleButtonRight = classnames({
   [styles.buttonRight]: true
 });
 
-const Carousel = ({ carouselItem, settings, refs, slickNext, slickPrev }) => (
-  <div className={styles.carouselContainer}>
+const Carousel = ({ carouselItem, settings, refs, slickNext, slickPrev, className }) => (
+  <div className={classnames({ [styles.carouselContainer]: true, [className]: className })}>
     <div className={styles.action}>
       <button type="button" className={styles.button} onClick={slickPrev}>
         <i class="fas fa-angle-left" />
@@ -31,9 +32,18 @@ const Carousel = ({ carouselItem, settings, refs, slickNext, slickPrev }) => (
   </div>
 );
 
+Carousel.propTypes = {
+  carouselItem: PropTypes.arrayOf(PropTypes.node),
+  settings: PropTypes.shape({}),
+  refs: PropTypes.shape({}),
+  slickNext: PropTypes.func,
+  slickPrev: PropTypes.func,
+  className: PropTypes.string
+};
+
 export default compose(
   pure,
-  withProps(({ children }) => ({
+  withProps(({ children, vertical }) => ({
     carouselItem: children.filter(item => item.type === CarouselItem),
     refs: RefsStore,
     settings: {
@@ -42,7 +52,9 @@ export default compose(
       infinite: true,
       speed: 500,
       slidesToShow: 4,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      vertical: vertical ? true : false,
+      verticalSwiping: vertical ? true : false
     }
   })),
   withHandlers({

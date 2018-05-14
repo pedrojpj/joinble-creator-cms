@@ -14,19 +14,27 @@ const styleButtonRight = classnames({
   [styles.buttonRight]: true
 });
 
-const Carousel = ({ carouselItem, settings, refs, slickNext, slickPrev, className }) => (
+const Carousel = ({ carouselItem, settings, refs, slickNext, slickPrev, className, vertical }) => (
   <div className={classnames({ [styles.carouselContainer]: true, [className]: className })}>
-    <div className={styles.action}>
+    <div className={classnames({ [styles.action]: true, [styles.actionTop]: vertical })}>
       <button type="button" className={styles.button} onClick={slickPrev}>
-        <i class="fas fa-angle-left" />
+        <i
+          className={classnames({ fas: true, 'fa-angle-left': !vertical, 'fa-angle-up': vertical })}
+        />
       </button>
     </div>
     <Slider {...settings} ref={r => refs.store('slider', r)}>
       {carouselItem.map((item, i) => cloneElement(item, { key: uuid.v4() }))}
     </Slider>
-    <div className={styles.actionRight}>
+    <div className={classnames({ [styles.actionRight]: true, [styles.actionBottom]: vertical })}>
       <button type="button" className={styleButtonRight} onClick={slickNext}>
-        <i class="fas fa-angle-right" />
+        <i
+          className={classnames({
+            fas: true,
+            'fa-angle-right': !vertical,
+            'fa-angle-down': vertical
+          })}
+        />
       </button>
     </div>
   </div>
@@ -38,7 +46,8 @@ Carousel.propTypes = {
   refs: PropTypes.shape({}),
   slickNext: PropTypes.func,
   slickPrev: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
+  vertical: PropTypes.bool
 };
 
 export default compose(

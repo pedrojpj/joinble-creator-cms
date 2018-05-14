@@ -8,13 +8,20 @@
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease-in;
-}
-
-.button svg {
-  fill: white !important;
-  margin-top: 2px;
+  color: white;
+  font-size: 12px;
 }
 
 .button:hover {
   border-color: white;
+}
+
+.buttonDark {
+  border: 2px solid #2c323b;
+  color: #2c323b;
+}
+
+.buttonDark:hover {
+  border-color: #323c48;
+  color: #323c48;
 }

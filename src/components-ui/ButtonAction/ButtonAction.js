@@ -1,13 +1,12 @@
 import React from 'react';
 import { compose, pure } from 'recompose';
 import PropTypes from 'prop-types';
-import { EntypoTrash, EntypoEdit } from 'react-entypo';
+import classnames from 'classnames';
 
 import { Tooltip } from '../index';
-
 import styles from './styles.css';
 
-export const ButtonAction = ({ onClick, type, tooltip }) => (
+export const ButtonAction = ({ onClick, type, tooltip, theme }) => (
   <Tooltip message={tooltip}>
     <button
       aria-label={type}
@@ -15,10 +14,10 @@ export const ButtonAction = ({ onClick, type, tooltip }) => (
         onClick();
         event.stopPropagation();
       }}
-      className={styles.button}
+      className={classnames({ [styles.button]: true, [styles.buttonDark]: theme === 'dark' })}
     >
-      {type === 'delete' && <EntypoTrash />}
-      {type === 'edit' && <EntypoEdit />}
+      {type === 'delete' && <i className="far fa-trash-alt" />}
+      {type === 'edit' && <i className="fas fa-pencil-alt" />}
     </button>
   </Tooltip>
 );
@@ -26,7 +25,12 @@ export const ButtonAction = ({ onClick, type, tooltip }) => (
 ButtonAction.propTypes = {
   onClick: PropTypes.func,
   type: PropTypes.oneOf(['delete', 'edit']).isRequired,
-  tooltip: PropTypes.string
+  tooltip: PropTypes.string,
+  theme: PropTypes.oneOf(['light', 'dark'])
+};
+
+ButtonAction.defaultProps = {
+  theme: 'light'
 };
 
 export default compose(pure)(ButtonAction);

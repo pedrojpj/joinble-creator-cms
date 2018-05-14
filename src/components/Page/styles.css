@@ -49,6 +49,7 @@
 
 .widgetContainer {
   padding-top: 20px;
+  width: 160px;
 }
 
 .widgetContent {
@@ -57,7 +58,7 @@
   display: flex;
   align-content: center;
   align-items: center;
-  width: 100px;
+  margin-bottom: 8px;
 }
 
 .widgetContent h4 {
@@ -67,4 +68,25 @@
 
 .widgetContent i {
   font-size: 30px;
+}
+
+.contentContainer {
+  padding: 20px 0;
+  display: flex;
+  flex: 1;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.body {
+  border-radius: 10px;
+  flex: 1;
+  background: #323c48;
+  padding: 5px;
+  position: relative;
 }

@@ -69,6 +69,25 @@
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
+.actionTop {
+  height: 60px;
+  width: 100%;
+  top: -40px;
+  background: linear-gradient(
+    to bottom,
+    rgba(42, 50, 60, 1) 0%,
+    rgba(42, 50, 60, 1) 44%,
+    rgba(42, 50, 60, 1) 62%,
+    rgba(42, 50, 60, 0) 100%
+  );
+}
+
+.actionTop button {
+  display: inline-block;
+  text-align: center;
+  margin-left: auto;
+}
+
 .actionRight {
   height: 100%;
   width: 60px;
@@ -85,4 +104,26 @@
     rgba(42, 50, 60, 1) 100%
   );
   z-index: 10;
+}
+
+.actionBottom {
+  height: 60px;
+  bottom: -40px;
+  width: 100%;
+  top: inherit;
+  right: inherit;
+  left: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(42, 50, 60, 0) 0%,
+    rgba(42, 50, 60, 1) 44%,
+    rgba(42, 50, 60, 1) 100%
+  );
+}
+
+.actionBottom button {
+  display: inline-block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }

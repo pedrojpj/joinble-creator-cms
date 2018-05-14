@@ -24,7 +24,7 @@ const Tabs = ({ tabContent, tabItem, onClickTab, activeTab, refs }) => (
       )}
     </ul>
     <div className={styles.tabRippleContent}>
-      <span class={styles.tabRipple} ref={r => refs.store('ripple', r)} />
+      <span className={styles.tabRipple} ref={r => refs.store('ripple', r)} />
     </div>
     <div className="tab-content">
       {tabContent.map((item, i) =>

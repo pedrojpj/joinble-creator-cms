@@ -1,0 +1,31 @@
+.widgetItem {
+  background: #ececec;
+  border-radius: 10px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.widgetItem h4 {
+  color: #9fa2a7;
+  font-family: 'PT Sans Caption', sans-serif;
+  font-weight: normal;
+  font-size: 12px;
+  text-align: center;
+}
+
+.widgetItemActions {
+  border-top: 1px solid #323c48;
+  padding: 10px;
+  width: 100%;
+  align-self: flex-end;
+  align-content: center;
+  align-items: center;
+  margin-top: auto;
+  text-align: center;
+}
+
+.widgetItemActions button {
+  margin: 0 3px;
+}

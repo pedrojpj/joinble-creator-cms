@@ -473,7 +473,17 @@ fieldset[disabled] .form-control {
 .tab-content {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   color: #9fa2a7;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
+
+.tab-content .tab-pane.active {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .nav.nav-tabs > li:last-of-type a {
   margin-right: 0px;
 }
@@ -3269,11 +3279,14 @@ body.fixed-left .side-menu.left {
 .content-page {
   margin-left: 240px;
   overflow: hidden;
+  min-height: 100vh;
 }
 .content-page > .content {
-  margin-bottom: 60px;
-  margin-top: 70px;
-  padding: 20px 5px 15px 5px;
+  padding: 90px 5px 15px 5px;
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+  flex-direction: column;
 }
 .button-menu-mobile {
   background: #323c48;
@@ -3586,7 +3599,25 @@ body.fixed-left .side-menu.left {
 }
 .page-content-wrapper {
   margin-top: -100px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
+
+.page-content-wrapper .container {
+  width: 100%;
+  padding: 0 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content-wrapper .container form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 body.fixed-left-void {
   min-height: 1024px;
 }

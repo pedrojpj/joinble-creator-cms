@@ -56,7 +56,7 @@ const PageCreate = ({
             </div>
           </TabContent>
           <TabContent>
-            <PageContent />
+            <PageContent translations={translations} />
           </TabContent>
         </Tabs>
       </form>

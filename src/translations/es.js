@@ -89,5 +89,7 @@ export const translations = {
     fr: 'Francés'
   },
   CONFIGURATION: 'Configuración',
-  CONTENT: 'Contenido'
+  CONTENT: 'Contenido',
+  EDIT_WIDGET: 'Editar Widget',
+  DELETE_WIDGET: 'Quitar Widget'
 };

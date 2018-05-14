@@ -1,0 +1,45 @@
+.select {
+  padding: 7px 10px 7px 20px;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #a8b7c5;
+  cursor: pointer;
+  position: relative;
+  line-height: 30px;
+}
+
+.selectActive {
+  border: 1px solid #a8b7c5;
+}
+
+.selectArrow {
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  position: absolute;
+  right: 15px;
+  bottom: 18px;
+  border-top: 8px solid #697b8c;
+}
+
+.selectContent {
+  position: absolute;
+  border: 1px solid #a8b7c5;
+  padding: 10px 0;
+  z-index: 10000;
+}
+
+.option {
+  padding: 5px 30px;
+  font-size: 14px;
+  color: #697b8c;
+  cursor: pointer;
+  margin-bottom: 1px;
+}
+
+.option:hover,
+.optionSelected {
+  background: #4bb4b3;
+  color: white;
+}

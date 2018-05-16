@@ -1,9 +1,17 @@
 import React, { Fragment, cloneElement } from 'react';
 import { createPortal } from 'react-dom';
-import { withStateHandlers, withProps, compose, pure, lifecycle, withHandlers } from 'recompose';
+import {
+  withStateHandlers,
+  withProps,
+  compose,
+  pure,
+  lifecycle,
+  withHandlers,
+  defaultProps,
+  setDisplayName
+} from 'recompose';
 import uuid from 'uuid';
 import cn from 'classnames';
-
 import { RefsStore } from '../../utils';
 
 import Option from './Option';
@@ -18,19 +26,21 @@ if (!document.getElementById('select')) {
 const selectRoot = document.getElementById('select');
 const el = document.createElement('div');
 
-const Select = ({
+export const Select = ({
   label,
   value,
   show,
   toggleShow,
   options,
   refs,
+  removeValue,
   stylesContainer,
   onClickOption,
   showValue,
   values,
   multiple,
-  id
+  id,
+  optionsSelected
 }) => (
   <Fragment>
     <div
@@ -40,9 +50,23 @@ const Select = ({
     >
       {!showValue() ? label : showValue()} <span className={styles.selectArrow} />
     </div>
+    {values && (
+      <ul className={styles.selectList}>
+        {optionsSelected.map(option => (
+          <li key={option.props.value}>
+            <span>{option.props.children}</span>
+            <button onClick={() => removeValue(option.props.value)}>x</button>
+          </li>
+        ))}
+      </ul>
+    )}
     {show &&
       createPortal(
-        <div className={styles.selectContent} style={stylesContainer}>
+        <div
+          className={styles.selectContent}
+          ref={r => refs.store(`select-menu-${id}`, r)}
+          style={stylesContainer}
+        >
           {options.map((item, i) =>
             cloneElement(item, {
               key: uuid.v4(),
@@ -57,54 +81,96 @@ const Select = ({
 );
 
 export default compose(
+  setDisplayName('SelectComponent'),
+  defaultProps({
+    onChange: () => {}
+  }),
   withProps(({ children }) => ({
-    options: children.filter(item => item.type === Option),
+    options: children ? children.filter(item => item.type === Option) : [],
     refs: RefsStore,
     id: uuid.v4()
   })),
-  lifecycle({
-    componentDidMount() {
-      selectRoot.appendChild(el);
-    },
-    componentWillUnmount() {
-      selectRoot.removeChild(el);
-    }
-  }),
   withStateHandlers(
-    ({ value, values }) => ({
+    ({ value, values, options }) => ({
       show: false,
       stylesContainer: {},
       value: value || null,
-      values: values || []
+      values: values || [],
+      optionsSelected: values ? options.filter(option => values.includes(option.props.value)) : []
     }),
     {
       toggleShow: ({ show }, { refs, id }) => () => {
         const { width, top, left, height } = refs.get(`select-${id}`).getBoundingClientRect();
+
         return { show: !show, stylesContainer: { width, top: top + height, left } };
       },
-      addValue: () => value => ({
-        value: value
+      closeShow: () => () => ({
+        show: false
       }),
-      addValues: ({ values }) => value => ({
-        values: values.includes(value) ? values.filter(v => v !== value) : [...values, value]
-      })
+      addValue: () => value => ({
+        value
+      }),
+      addValues: ({ values }, { onChange, name, options }) => value => {
+        const newValues = values.includes(value)
+          ? values.filter(v => v !== value)
+          : [...values, value];
+
+        const optionsSelected = options.filter(option => newValues.includes(option.props.value));
+
+        onChange(name, value);
+        return {
+          values: newValues,
+          optionsSelected
+        };
+      },
+      removeValue: ({ values }, { onChange, name, options }) => value => {
+        const newValues = values.filter(item => item !== value);
+        const optionsSelected = options.filter(option => newValues.includes(option.props.value));
+
+        onChange(name, value);
+        return {
+          values: values.filter(item => item !== value),
+          optionsSelected
+        };
+      }
     }
   ),
   withHandlers({
-    onClickOption: ({ toggleShow, addValue, addValues, multiple }) => value => {
+    clickOutside: ({ refs, show, closeShow, id }) => event => {
+      if (refs.get(`select-${id}`) === event.target) {
+        return false;
+      }
+
+      if (refs.get(`select-menu-${id}`) && !refs.get(`select-menu-${id}`).contains(event.target)) {
+        if (show) {
+          closeShow();
+        }
+      }
+    },
+    onClickOption: ({ closeShow, addValue, name, addValues, onChange, multiple }) => value => {
       if (multiple) {
         addValues(value);
       } else {
         addValue(value);
-        toggleShow();
+        onChange(name, value);
+        closeShow();
       }
     },
-    showValue: ({ values, value, multiple }) => () => {
+    showValue: ({ optionsSelected, value, multiple }) => () => {
       if (multiple) {
-        return values.join(',');
+        return optionsSelected.map(option => option.props.children).join(',');
       } else {
         return value;
       }
+    }
+  }),
+  lifecycle({
+    componentDidMount() {
+      selectRoot.appendChild(el);
+      document.addEventListener('mousedown', this.props.clickOutside);
+    },
+    componentWillUnmount() {
+      document.removeEventListener('mousedown', this.props.clickOutside);
     }
   }),
   pure

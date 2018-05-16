@@ -9,6 +9,9 @@
 
 .selectActive {
   border: 1px solid #a8b7c5;
+  border-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .selectArrow {
@@ -25,9 +28,51 @@
 
 .selectContent {
   position: absolute;
-  border: 1px solid #a8b7c5;
   padding: 10px 0;
   z-index: 10000;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  background-color: white;
+  border: 0;
+  border-radius: 4px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.selectList {
+  margin: 12px 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.selectList li {
+  background: #04a2b3;
+  border-radius: 2px;
+  color: white;
+  padding: 2px 20px 2px 30px;
+  margin-bottom: 1px;
+  line-height: 20px;
+}
+
+.selectList li > span {
+  display: inline-block;
+  position: relative;
+  max-width: 80%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.selectList li button {
+  float: right;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  position: relative;
+  top: 2px;
+  border: 0;
+  color: #04a2b3;
+  line-height: 1px;
 }
 
 .option {
@@ -36,10 +81,11 @@
   color: #697b8c;
   cursor: pointer;
   margin-bottom: 1px;
+  transition: all 0.3s ease-out;
 }
 
 .option:hover,
 .optionSelected {
-  background: #4bb4b3;
+  background: #04a2b3;
   color: white;
 }

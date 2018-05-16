@@ -50,7 +50,7 @@
     "react-router-dom": "^4.2.2",
     "react-slick": "^0.23.1",
     "recompose": "^0.26.0",
-    "recompose-extends": "1.9.5",
+    "recompose-extends": "1.9.6",
     "style-loader": "0.19.0",
     "svg-country-flags": "^1.2.1",
     "sw-precache-webpack-plugin": "0.11.4",
@@ -72,12 +72,8 @@
     "e2e": "cypress run --record --key bd5e7855-acc7-4752-b4d0-272013cf52a0"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
+    "collectCoverageFrom": ["src/**/*.{js,jsx,mjs}"],
+    "setupFiles": ["<rootDir>/config/polyfills.js"],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
@@ -89,29 +85,15 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
-    ],
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "moduleFileExtensions": [
-      "web.js",
-      "mjs",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ]
+    "moduleFileExtensions": ["web.js", "mjs", "js", "json", "web.jsx", "jsx", "node"]
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ],
-    "plugins": [
-      "relay"
-    ]
+    "presets": ["react-app"],
+    "plugins": ["relay"]
   },
   "eslintConfig": {
     "extends": "react-app"

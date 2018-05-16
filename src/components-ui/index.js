@@ -24,6 +24,7 @@ export * from './Notifications/NotificationModel';
 export * from './Notifications/Notification';
 export * from './Tabs';
 export * from './Carousel';
+export * from './Select';
 export {
   Alert,
   ButtonAction,
